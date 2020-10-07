@@ -1,0 +1,831 @@
+<!-- Taglines
+GovLab Projects: Building new technology to solve public problems
+GovLab Academy: Coaching public entrepreneurs
+GovLab Observatory: Reporting on innovations in governance
+The GovLab:   -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <title>The Governance Lab</title>
+    <meta property="og:title" content="The Governance Lab" />
+    <meta content="Deepening Our Understanding of How to Govern
+    More Effectively and Legitimately Through Technology" property="og:description">
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://www.thegovlab.org/static/img/govlab-og.png" />
+    <meta content="The GovLab" property="og:site_name">
+    <script src="https://use.typekit.net/zez3buj.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+    <link href="static/img/favicon-transparent.png" rel="shortcut icon">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="static/vendor/normalize.css">
+    <link rel="stylesheet" href="static/vendor/slick.css">
+    <link rel="stylesheet" href="static/styles/styles.css">
+    
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-40012093-4', 'auto');
+      ga('send', 'pageview');
+    </script>
+<script type="text/javascript">
+    //this code loads the lighthouse widget. Additional config parameters to edit available on https://support.helpdocs.io/article/ykv7l5jthy-lighthouse-widget-api
+        window.hdlh = {
+          widget_key: "8bi8g1ygumkphadqnumx",
+          primary_color: '#C1D37F',
+          logo: 'https://newjersey.github.io/cv/img/fas_logo.png', 
+          brand: '',
+          color_mode: 'dark',
+          disable_authorship: true,
+          launcher_button_image: 'https://newjersey.github.io/cv/img/question_12.svg',
+          i18n: { // change the value of the strings we use inside Lighthouse, for internationalization
+      contact_button: 'Ask a scientist your question',
+      contact_name_placeholder: 'Name (Optional)',
+      contact_email_placeholder: 'Email (Required)',
+      search_placeholder: 'Ask your questions here...',
+      contact_message_placeholder: 'Type your question or message for us here...',
+          }
+        };
+        (function(h,d){var s=d.createElement("script");s.type='text/javascript';s.async=true;s.src=h+"?t="+new Date().getTime();d.head.appendChild(s);})("https://lighthouse.helpdocs.io/load",document);
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === "complete") {
+        ready_alert();
+    }
+    });
+    //The following code is to show the text box descring the widget. 
+    function ready_alert(){
+        //delay text box to compensate for widget loading time
+        setTimeout(function() {
+        document.getElementById("covid-19").style.display="block";
+      }, 1000);
+      //hide text box on mouseover
+        var test = document.getElementById("covid-19");
+          test.addEventListener("mouseover", myFunction);
+          function myFunction(){document.getElementById("covid-19").style.display="none";};
+          //hide textbox after 12seconds
+    setTimeout(function() {
+    document.getElementById("covid-19").style.display="none";
+    }, 12000);
+    
+    
+    };
+      </script>
+
+</head>
+<body id="homepage">
+    
+    <!-- Class for google material icons ".material-icons" -->
+    <header class="b-top-nav ">
+        <div class="e-nav-group">
+            <div class="e-nav-item js-nav-trigger e-nav-trigger">
+                <i class="material-icons">menu</i>
+            </div>
+            <form class="e-search m-active" action="">
+                <div class="e-nav-item js-search-trigger e-search-trigger">
+                    <i class="material-icons">search</i>
+                </div>
+                <input class="js-search-value" type="text">
+                <input class="js-search-submit" type="submit" value="Search">
+            </form>
+        </div>
+
+        <div class="e-logo">
+            <a href="./"><img src="static/img/govlab-logo-white.png" alt=""></a>
+        </div>
+        
+
+        <div class="e-social-media e-nav-group">
+            <a class="e-site-button" style="color: rgba(255,255,255,0.7); background-color: rgba(255,255,255,0.2); padding: 5px; font-size: 12pt; font-weight: 600" href="./our-sites.html">OUR SITES</a>
+            <a href="https://twitter.com/TheGovLab" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-twitter"></i></a>
+            <!-- <a href="#" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-facebook"></i></a> -->
+            <a href="https://www.youtube.com/user/TheGovLab" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-youtube-play"></i></a>
+        </div>
+    </header>
+
+    <!-- Main Menu (Off Canvas) -->
+    <nav class="b-main-menu">
+        <a href="./">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./projects.html">Projects</a>
+        <a href="./events.html" >Events</a>
+        <!-- <a href="./events.html">Events</a> -->
+        <a href="./publications.html">Publications</a>
+        <a href="./team.html">Team</a>
+        <a href="./global-advisory-council.html">Global Advisory Council</a>
+        <a href="./our-transparency.html">Our Transparency</a>
+        <a href="./job-board.html">Job Board</a>
+        <a href="./contact.html">Contact</a>
+    </nav>
+
+    
+<p id="covid-19" style="display:none;">Questions about COVID-19?<br>Click below to Ask a Scientist</p>
+    <section id="homepage-banner" class="b-landing-questions b-top-section large-header">
+        <canvas id="demo-canvas"></canvas>
+        <h2 class="e-question">Deepening our understanding of how to govern<br> more effectively and legitimately through technology</h2>
+        <a href="./about.html" class="b-button m-purple">Find out More<i class="material-icons">arrow_forward</i></a>
+        <a href="http://thegovlab.org/blog/" class="b-button m-purple">Explore the Blog<i class="material-icons">arrow_forward</i></a>
+    </section>
+    <section class="b-govlab-fronts">
+        <a href="./projects.html" class="e-govlab-front m-projects">
+            <h2>Projects<br>&nbsp;</h2>
+            <p class="e-explanation">See how the GovLab is transforming governance around the world</p>
+        </a><!-- Collapsing 4px space
+     --><a href="https://thelivinglib.org/" target="_blank" class="e-govlab-front m-observatory">
+            <h2>The Living<br>&nbsp; Library</h2>
+            <p class="e-explanation">Learn and stay up-to-date on emerging forms of governance innovation</p>
+        </a><!-- Collapsing 4px space
+     --><a href="http://govlabacademy.org" target="_blank" class="e-govlab-front m-academy">
+            <h2>Academy<br>&nbsp;</h2>
+            <p class="e-explanation">Get training and mentorship for your projects from GovLab's network of experts</p>
+        </a><!-- Collapsing 4px space
+     --><a href="./community.html" class="e-govlab-front m-community">
+            <h2>Community<br>&nbsp;</h2>
+            <p class="e-explanation">Get answers to your questions, share knowledge and find collaborators</p>
+        </a>
+    </section>
+
+    <div class="e-banner-container">
+            <!-- this will be pulled via RSS -->
+            <section class="b-featured-content m-article">
+                <header>
+                    <div class="e-banner-controls">
+                        <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                        <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                    </div>
+                    <div class="e-wrap">
+                        <div class="e-banner-index">
+                            <span class="m-active"></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <h4>From Our Blog</h4>
+                    </div>
+                </header>
+
+                <div class="e-wrap">
+                    <div>
+                        <div class="e-half">
+                            <div class="e-content">
+                                <h2 class="e-article-name js-article-1-title"></h2>
+                                <p class="e-byline">By: <strong class="js-article-1-author"></strong></p>
+                            </div>
+                        </div>
+                        <div class="e-half">
+                            <div class="e-content js-article-1-content">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="e-action-group">
+                        <div class="e-half">
+                            <div class="e-action">
+                                <a class="b-button m-naked" href="http://thegovlab.org/category/blog" target="_blank">All Articles<i class="material-icons">arrow_forward</i></a>
+                            </div>
+                        </div>
+                        <div class="e-half">
+                            <div class="e-action">
+                                <a class="b-button m-naked js-article-1-link" href="">Read more<i class="material-icons">arrow_forward</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="b-featured-content m-article">
+                <header>
+                    <div class="e-banner-controls">
+                        <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                        <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                    </div>
+                    <div class="e-wrap">
+                        <div class="e-banner-index">
+                            <span></span>
+                            <span class="m-active"></span>
+                            <span></span>
+                        </div>
+                        <h4>From Our Blog</h4>
+                    </div>
+                </header>
+
+                <div class="e-wrap">
+                    <div>
+                        <div class="e-half">
+                            <div class="e-content">
+                                <h2 class="e-article-name js-article-2-title">Looking Back at the “Data-Driven &amp; Collaborative Solutions” Public Forum on Opening Governance</h2>
+                                <p class="e-byline">By: <strong class="js-article-2-author">Stefaan Verhulst</strong></p>
+                            </div>
+                        </div>
+                        <div class="e-half">
+                            <div class="e-content js-article-2-content">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="e-action-group">
+                        <div class="e-half">
+                            <div class="e-action">
+                                <a class="b-button m-naked" href="http://thegovlab.org/category/blog">All Articles<i class="material-icons">arrow_forward</i></a>
+                            </div>
+                        </div>
+                        <div class="e-half">
+                            <div class="e-action">
+                                <a class="b-button m-naked js-article-2-link" href="">Read more<i class="material-icons">arrow_forward</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="b-featured-content m-article">
+                <header>
+                    <div class="e-banner-controls">
+                        <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                        <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                    </div>
+                    <div class="e-wrap">
+                        <div class="e-banner-index">
+                            <span></span>
+                            <span></span>
+                            <span class="m-active"></span>
+                        </div>
+                        <h4>From Our Blog</h4>
+                    </div>
+                </header>
+
+                <div class="e-wrap">
+                    <div>
+                        <div class="e-half">
+                            <div class="e-content">
+                                <h2 class="e-article-name js-article-3-title">Looking Back at the “Data-Driven &amp; Collaborative Solutions” Public Forum on Opening Governance</h2>
+                                <p class="e-byline">By: <strong class="js-article-3-author">Stefaan Verhulst</strong></p>
+                            </div>
+                        </div>
+                        <div class="e-half">
+                            <div class="e-content js-article-3-content">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="e-action-group">
+                        <div class="e-half">
+                            <div class="e-action">
+                                <a class="b-button m-naked" href="http://thegovlab.org/category/blog">All Articles<i class="material-icons">arrow_forward</i></a>
+                            </div>
+                        </div>
+                        <div class="e-half">
+                            <div class="e-action">
+                                <a class="b-button m-naked js-article-3-link" href="">Read more<i class="material-icons">arrow_forward</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="b-subscribe">
+            <div class="e-wrap">
+                <div>
+                    <h4><strong>Subscribe</strong>
+                    To The Digest</h4>
+                    <p>A weekly curation of new findings and developments on innovation in governance</p>
+                </div>
+
+                <form method="post" action="https://thegovlab.us6.list-manage.com/subscribe/post?u=1a990feb5c&amp;id=d90a01c7ff" target="_blank" >
+                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_1a990feb5c_d90a01c7ff" tabindex="-1" value=""></div>
+
+                    <input type="email" name="EMAIL" placeholder="Email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="e-wrap">
+                <p><a href="https://thelivinglib.org/" target="_blank" class="b-button m-naked">Go to Digest<i class="material-icons">arrow_forward</i></a></p>
+            </div>
+        </div>
+
+        <div class="b-featured-content-wrapper m-publication">
+        <div class="e-banner-container">
+            
+            
+                <section id="wanted-data-stewards" class="b-featured-content m-publication">
+                    <header>
+                        <div class="e-banner-controls">
+                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                        </div>
+                        <div class="e-wrap">
+                            <div class="e-banner-index">
+                                
+
+                                
+                                    <span class="m-active"></span>
+                                
+                                    <span></span>
+                                
+                                    <span></span>
+                                
+                            </div>
+                            <h4>Featured Publication</h4>
+                        </div>
+                    </header>
+
+                    <div class="e-wrap">
+                        <div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                    <h2 class="e-article-name">Wanted Data Stewards</h2>
+                                    <p class="e-byline">By: <strong>Stefaan G. Verhulst, Andrew J. Zahuranec, Andrew Young, and Michelle Winowatan</strong></p>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                     <a href="./static/files/publications/wanted-data-stewards.pdf"><img src="./static/files/publications/wanted-data-stewards.png"></a> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="e-action-group">
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="./publications.html">All Publications<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-action m-centered">
+                                    <a class="b-button m-naked m-action-centered" href="./static/files/publications/wanted-data-stewards.pdf">Read more<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                
+            
+                <section id="todays-problems-yesterdays-toolkit" class="b-featured-content m-publication">
+                    <header>
+                        <div class="e-banner-controls">
+                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                        </div>
+                        <div class="e-wrap">
+                            <div class="e-banner-index">
+                                
+
+                                
+                                    <span></span>
+                                
+                                    <span class="m-active"></span>
+                                
+                                    <span></span>
+                                
+                            </div>
+                            <h4>Featured Publication</h4>
+                        </div>
+                    </header>
+
+                    <div class="e-wrap">
+                        <div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                    <h2 class="e-article-name">Today's Problems, Yesterday's Toolkit</h2>
+                                    <p class="e-byline">By: <strong>Beth Noveck, Rod Glover</strong></p>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                     <a href="./static/files/publications/ANZSOG-report.pdf"><img src="./static/files/publications/anzsog-cover.png"></a> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="e-action-group">
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="./publications.html">All Publications<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-action m-centered">
+                                    <a class="b-button m-naked m-action-centered" href="./static/files/publications/ANZSOG-report.pdf">Read more<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                
+            
+                <section id="open-data-impact-when-demand-and-supply-meet" class="b-featured-content m-publication">
+                    <header>
+                        <div class="e-banner-controls">
+                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                        </div>
+                        <div class="e-wrap">
+                            <div class="e-banner-index">
+                                
+
+                                
+                                    <span></span>
+                                
+                                    <span></span>
+                                
+                                    <span class="m-active"></span>
+                                
+                            </div>
+                            <h4>Featured Publication</h4>
+                        </div>
+                    </header>
+
+                    <div class="e-wrap">
+                        <div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                    <h2 class="e-article-name">Open Data Impact: When Demand and Supply Meet</h2>
+                                    <p class="e-byline">By: <strong>Stefaan Verhulst and Andrew Young</strong></p>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                     <a href="./static/files/publications/open-data-impact-key-findings.pdf"><img src="./static/files/publications/open-data-impact-key-findings-thumbnail.png"></a> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="e-action-group">
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="./publications.html">All Publications<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-action m-centered">
+                                    <a class="b-button m-naked m-action-centered" href="./static/files/publications/open-data-impact-key-findings.pdf">Read more<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+        </div>
+
+    <div class="b-featured-content-wrapper m-project">
+        <div class="e-banner-container">
+            
+                <section id="datacollaboratives-org" class="b-featured-content m-project">
+                    <header>
+                        <div class="e-banner-controls">
+                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                        </div>
+                        <div class="e-wrap">
+                            <div class="e-banner-index">
+                                
+
+                                
+                                    <span class="m-active"></span>
+                                
+                                    <span></span>
+                                
+                                    <span></span>
+                                
+                            </div>
+                            <h4>Featured Project</h4>
+                        </div>
+                    </header>
+
+                    <div class="e-wrap">
+                        <div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                    <h2 class="e-project-name">DataCollaboratives .org</h2>
+                                    <h3 class="e-question">Creating Public Value by Exchanging Data</h3>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                     <p>The GovLab is advancing a number of initiatives focused on increasing our understanding of data collaboratives. The hub of this work, DataCollaboratives.org, is a resource on creating public value by exchanging data, collecting examples of data collaboratives from around the world, and providing information on how to develop and implement a data collaborative. The site, and the GovLab’s work on the topic in general, seeks to provide insight on how the responsible exchange of corporate data can improve people’s lives.</p>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="e-action-group">
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="./projects.html">All Projects<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="project-datacollaboratives-org.html">Find out more<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
+                <section id="crowdlaw" class="b-featured-content m-project">
+                    <header>
+                        <div class="e-banner-controls">
+                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                        </div>
+                        <div class="e-wrap">
+                            <div class="e-banner-index">
+                                
+
+                                
+                                    <span></span>
+                                
+                                    <span class="m-active"></span>
+                                
+                                    <span></span>
+                                
+                            </div>
+                            <h4>Featured Project</h4>
+                        </div>
+                    </header>
+
+                    <div class="e-wrap">
+                        <div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                    <h2 class="e-project-name">CrowdLaw</h2>
+                                    <h3 class="e-question">Develop recommendations on how to use crowdlaw to improve the quality of lawmaking. We want to explore when and under what circumstances engagement can result in lawmaking that is either more legitimate, more effective or both.</h3>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                     <p>Crowdlaw is an emerging field of practice that is comprised of lawyers, platform developers, lawyers, government employees and research scientists, among others including citizen advocates. GovLab plays a convening role to engage practitioners from around the world and has initiated a dialogue in order to identify case studies and pilots, assess impact and inspire greater innovation across political, government and civil society actors.</p>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="e-action-group">
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="./projects.html">All Projects<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="project-crowdlaw.html">Find out more<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
+                <section id="blockchange-blockchain-technology-for-social-change" class="b-featured-content m-project">
+                    <header>
+                        <div class="e-banner-controls">
+                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
+                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
+                        </div>
+                        <div class="e-wrap">
+                            <div class="e-banner-index">
+                                
+
+                                
+                                    <span></span>
+                                
+                                    <span></span>
+                                
+                                    <span class="m-active"></span>
+                                
+                            </div>
+                            <h4>Featured Project</h4>
+                        </div>
+                    </header>
+
+                    <div class="e-wrap">
+                        <div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                    <h2 class="e-project-name">Blockchange: Blockchain Technology for Social Change</h2>
+                                    <h3 class="e-question">How can we use blockchain technology for social good?</h3>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-content">
+                                     <p>By providing new ways to securely identify individuals and organizations, and record transactions of various types in a distributed manner, blockchain technologies have been heralded as a new tool to address information asymmetries, establish trust and improve governance. The GovLab’s Blockchange initiative, supported by the Rockefeller Foundation, studies the promise and practice of leveraging blockchain to achieve social change objectives across three types of use case: identity, track & trace, and smarter contracting.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="e-action-group">
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="./projects.html">All Projects<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                            <div class="e-half">
+                                <div class="e-action">
+                                    <a class="b-button m-naked" href="project-blockchange-blockchain-technology-for-social-change.html">Find out more<i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
+        </div>
+
+
+        <div class="e-banner-container">
+            
+        </div>
+    </div>
+    <div class="b-sticky b-sticky--index m-gray js-target-sticky js-active">
+        <div class="e-wrap">
+            <i class="material-icons e-close js-close">close</i>
+            <div class="b-stickysubscribe">
+                <div class="e-wrap">
+                    <div>
+                        <h4><strong>Stay in touch </strong><br>
+                            with the GovLab</h4>
+                        <p>Sign up to receive occasional updates on new GovLab projects, events and developments on innovation in governance.</p>
+                        <!-- <p><a href="https://thelivinglib.org/" target="_blank" class="b-button m-naked">Go to Digest<i class="material-icons">arrow_forward</i></a></p> -->
+                       
+                    </div>
+    
+                    <form method="post" action="https://thegovlab.us6.list-manage.com/subscribe/post?u=1a990feb5c&amp;id=7de5242eb3" target="_blank" >
+                        <div style="position: absolute; left: -5000px;"><input type="text" name="b_1a990feb5c_d90a01c7ff" tabindex="-1" value=""></div>
+                        <div id="mc_embed_signup_scroll">
+                        <div class="mc-field-group input-group" style="display:none">
+                                <input type="checkbox" value="1" name="group[25][1]" id="mce-group[25]-25-0" checked><label
+                                for="mce-group[25]-25-0"></label>
+                                <input type="checkbox" value="2" name="group[25][2]" id="mce-group[25]-25-1" checked><label
+                                for="mce-group[25]-25-1"></label>
+                                <input type="checkbox" value="4" name="group[25][4]" id="mce-group[25]-25-2" checked><label
+                                for="mce-group[25]-25-2"></label>
+                                <input type="checkbox" value="8" name="group[25][8]" id="mce-group[25]-25-3" checked><label
+                                for="mce-group[25]-25-3"></label>
+                                <input type="checkbox" value="16" name="group[25][16]" id="mce-group[25]-25-4" checked><label
+                                for="mce-group[25]-25-4"></label>
+                                <input type="checkbox" value="32" name="group[25][32]" id="mce-group[25]-25-5" checked><label
+                                for="mce-group[25]-25-5"></label>
+                        </div>
+                        <div class="fields">
+                            <div class="names">
+                                <input id="fname" type="text" name="FNAME" class="" value="" placeholder="First Name">
+                                <label style="display:none" for="fname">First Name </label>
+                                <input type="text" name="LNAME" placeholder="Last Name">
+                                <label style="display:none" for="lname">Last Name </label>
+                            </div>
+                            <div class="mail-submit">
+                                <input type="email" id="email_mc" name="EMAIL" placeholder="Email">
+                                <label style="display:none" for="email_mc">Email</label>
+                                <button type="submit">Subscribe</button> 
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class='b-footer'>
+        <div class="e-wrap">
+            <div class="e-content m-sections">
+                <h4>Sections</h4>
+                <a href="./">Home</a>
+                <a href="./about.html">About</a>
+                <a href="./projects.html">Projects</a>
+                <!-- <a href="./events.html">Events</a> -->
+                <a href="./events.html" >Events</a>
+                <a href="./publications.html">Publications</a>
+                <a href="./team.html">Team</a>
+                <a href="./global-advisory-council.html">Advisory Council</a>
+                <a href="./our-transparency.html">Our Transparency</a>
+                <a href="./job-board.html">Job Board</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./brand.html">Brand Assets</a>
+            </div>
+            <div class="e-content">
+                <h4>Lead Supporters</h4>
+                <a class="e-partner-logo" href="https://www.macfound.org/" target="_blank"><img src="static/img/partners/macarthur-logo-white.png" alt="MacArthur Foundation"></a>
+                <a class="e-partner-logo m-omidyar" href="https://www.omidyar.com/" tagret="_blank"><img src="static/img/partners/omidyar-logo-white.svg" alt="Omidyar Network"></a>
+            </div>
+            <div class="e-content">
+                <h4>Based at</h4>
+                <a class="e-partner-logo" href="http://engineering.nyu.edu/tandon" target="_blank"><img src="static/img/partners/nyu.png" alt="NYU Tandon School of Engineering - New York University"></a>
+                <!--<a class="e-partner-logo m-mit" href="https://www.media.mit.edu/" target="_blank"><img src="static/img/partners/mit-logo-white.png" alt="MIT Media Lab"></a> -->
+            </div>
+        </div>
+    </footer>
+    <!-- <div class="b-build-team">
+        <div class="e-wrap">
+            <div class="e-social-media">
+                <a href="#" class="e-nav-item"><i class="e-social-media-item fa fa-lg fa-twitter"></i></a>
+                <a href="#" class="e-nav-item"><i class="e-social-media-item fa fa-lg fa-facebook"></i></a>
+                <a href="#" class="e-nav-item"><i class="e-social-media-item fa fa-lg fa-medium"></i></a>
+        </div>
+            <p>This website was created by these <a href="#">GovLabbers</a>.</p>
+        </div>
+    </div> -->
+    <div class="b-copyright">
+        <div class="e-wrap">
+            <a class="e-cc-badge" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+            This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a><br><br>
+        </div>
+    </div>
+    <div id="overlay"></div>
+    
+    <script src="static/vendor/slick.min.js"></script>
+    <script src="static/vendor/EasePack.min.js"></script>
+    <script src="static/vendor/rAF.js"></script>
+    <script src="static/vendor/TweenLite.min.js"></script>
+    <script src="static/js/scripts.js"></script>
+    
+
+</body>
+</html>
