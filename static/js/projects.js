@@ -46,11 +46,11 @@ new Vue({
     }
   },
   created: function created() {
-    this.fetchTeam();
+    this.fetchProjects();
   },
   methods: {
 
-    fetchTeam() {
+    fetchProjects() {
       self = this;
       const client = new DirectusSDK({
         url: "https://directus.thegovlab.com/",
