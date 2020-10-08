@@ -87,7 +87,7 @@ new Vue({
       this.listview = false;
     },
     projectsMore(slug) {
-      window.location.href= 'www.thegovlab.org'+slug+'.html';
+      window.location.href= 'www.thegovlab.org'+slug;
     }
   }
 });
