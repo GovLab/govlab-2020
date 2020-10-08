@@ -123,7 +123,8 @@ new Vue({
     fields: ['*.*','project_team.team_id.*','gallery.directus_files_id.*','project_team.team_id.picture.*']
   }
   ).then(data => {
-
+	console.log(data);
+	
   return data;
 
 }).then(data2 => {
