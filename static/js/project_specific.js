@@ -12,27 +12,6 @@ function isReloadedPage() {
 function main() {
   if (isReloadedPage()) {
     window.location.reload();
-    $(window).on('load', function() {
-      $('.b-project-slider').slick({
-          arrows: false,
-          infinite: false,
-          draggable: false,
-          centerMode: true,
-          slidesToShow: 1,
-          variableWidth: true,
-          focusOnSelect: true,
-          swipeToSlide: true,
-          responsive: [
-          {
-              breakpoint: 800,
-              settings: {
-                  draggable: true,
-                  slidesToShow: 1,
-              }
-          }
-          ]
-      });
-  });
   }
 }
 main();
@@ -48,6 +27,8 @@ const client=  new DirectusSDK({
   storage: window.localStorage
 })
 
+
+// Vue.use(VueCarousel)
 
 Vue.use(VueMeta);
 new Vue({
@@ -75,12 +56,12 @@ new Vue({
 },
       projectData: [],
       items: [],
-      listview: false,
+      gallerInit: false,
       progessAr: ['m-define','m-prototype','m-test','m-complete'],
       progess:'',
       meta_title: 'The GovLab | Project',
       meta_content: '',
-      projectslug:'project-network-of-innovators',
+      projectslug:'',
       apiURL: 'https://directus.thegovlab.com/thegovlab/items/projects'
   },
 
@@ -94,11 +75,47 @@ new Vue({
     }
   },
   created: function created() {
-//     this.projectslug=window.location.pathname.split('/');
-//     this.projectslug = this.projectslug[this.projectslug.length - 1].split('.')[0];
+    this.projectslug=window.location.href.split('/');
+    this.projectslug = this.projectslug[this.projectslug.length - 1];
+    
 
     this.fetchProject();
+
+
   },
+mounted() {
+  this.$nextTick(function () {
+    // this.gallerInit = true;
+    console.log(this.gallerInit);
+    console.log('this mounted',this);
+    console.log('window mounted',window);
+
+
+    setTimeout(function () {
+      $('.b-project-slider').slick({
+          arrows: false,
+          infinite: false,
+          draggable: false,
+          centerMode: true,
+          slidesToShow: 1,
+          variableWidth: true,
+          focusOnSelect: true,
+          swipeToSlide: true,
+          responsive: [
+          {
+              breakpoint: 800,
+              settings: {
+                  draggable: true,
+                  slidesToShow: 1,
+              }
+          }
+          ]
+      });
+    }, 700);
+
+
+  })
+},
   methods: {
     onSetTranslate() {
       console.log('onSetTranslate')
@@ -113,8 +130,7 @@ new Vue({
     fetchProject() {
       self = this;
 
-
-      client.getItems(
+client.getItems(
   'projects',
   {
     filter: {
@@ -123,8 +139,7 @@ new Vue({
     fields: ['*.*','project_team.team_id.*','gallery.directus_files_id.*','project_team.team_id.picture.*']
   }
   ).then(data => {
-	console.log(data);
-	
+
   return data;
 
 }).then(data2 => {
@@ -147,7 +162,7 @@ new Vue({
       this.listview = false;
     },
     projectsMore(slug) {
-      window.location.href= '../project/'+slug;
+      window.location.href= 'www.thegovlab.org'+slug+'.html';
     },
     isMobile() {
     	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -156,30 +171,6 @@ new Vue({
     		return false
     	}
     },
-  },
-    updated() {
-      $(window).on('load', function() {
-        $('.b-project-slider').slick({
-            arrows: false,
-            infinite: false,
-            draggable: false,
-            centerMode: true,
-            slidesToShow: 1,
-            variableWidth: true,
-            focusOnSelect: true,
-            swipeToSlide: true,
-            responsive: [
-            {
-                breakpoint: 800,
-                settings: {
-                    draggable: true,
-                    slidesToShow: 1,
-                }
-            }
-            ]
-        });
-    });
-
-    }
+  }
 });
 
