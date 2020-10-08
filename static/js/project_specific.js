@@ -12,6 +12,27 @@ function isReloadedPage() {
 function main() {
   if (isReloadedPage()) {
     window.location.reload();
+   $(window).on('load', function() {
+      $('.b-project-slider').slick({
+          arrows: false,
+          infinite: false,
+          draggable: false,
+          centerMode: true,
+          slidesToShow: 1,
+          variableWidth: true,
+          focusOnSelect: true,
+          swipeToSlide: true,
+          responsive: [
+          {
+              breakpoint: 800,
+              settings: {
+                  draggable: true,
+                  slidesToShow: 1,
+              }
+          }
+          ]
+      });
+  });
   }
 }
 main();
@@ -89,8 +110,7 @@ mounted() {
     console.log(this.gallerInit);
     console.log('this mounted',this);
     console.log('window mounted',window);
-
-
+	  
     setTimeout(function () {
       $('.b-project-slider').slick({
           arrows: false,
@@ -111,7 +131,7 @@ mounted() {
           }
           ]
       });
-    }, 1000);
+    }, 500);
 
 
   })
