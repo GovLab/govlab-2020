@@ -97,7 +97,7 @@ new Vue({
     this.projectslug=window.location.pathname.split('/');
     this.projectslug = this.projectslug[this.projectslug.length - 1].split('.')[0];
 
-    this.fetchTeam();
+    this.fetchProject();
   },
   methods: {
     onSetTranslate() {
@@ -110,7 +110,7 @@ new Vue({
       console.log('Swiper click slide!', reallyIndex)
     },
 
-    fetchTeam() {
+    fetchProject() {
       self = this;
 
 
