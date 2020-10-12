@@ -163,7 +163,7 @@ $(window).scroll(function(){
         var param = $('.js-search-value').val();
         event.preventDefault();
         if (param != '') {
-            window.location.href = "http://thegovlab.org/?s=" + param;
+            window.location.href = "https://blog.thegovlab.com/?q=" + param;
         }
     });
 
