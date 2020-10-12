@@ -82,7 +82,7 @@ new Vue({
       progess:'',
       meta_title: 'The GovLab | Project',
       meta_content: '',
-      projectslug:'project-network-of-innovators',
+      projectslug:'',
       apiURL: 'https://directus.thegovlab.com/thegovlab/items/projects'
   },
 
@@ -96,13 +96,9 @@ new Vue({
     }
   },
   created: function created() {
-//     this.projectslug=window.location.href.split('/');
-//     this.projectslug = this.projectslug[this.projectslug.length - 1];
-    
-
+    this.projectslug=window.location.href.split('/');
+    this.projectslug = this.projectslug[this.projectslug.length - 1];
     this.fetchProject();
-
-
   },
 mounted() {
   this.$nextTick(function () {
