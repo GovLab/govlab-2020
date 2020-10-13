@@ -116,7 +116,9 @@
 
 				<div class="medium-8 small-11 small-centered medium-centered columns">
 				<h3>The Governance Lab @ NYU</h3>
-          <div id="map"></div>
+<!--           <div id="map"></div> -->
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12100.487359679479!2d-73.985741!3d40.6933142!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5444a81f681b0a02!2sThe%20GovLab!5e0!3m2!1sen!2sus!4v1602614457826!5m2!1sen!2sus" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
 
 					<div class="row">
 						<div class="medium-12 medium-centered columns">
@@ -178,40 +180,40 @@
 	</main>
 
 	<script>
-		L.mapbox.accessToken = 'pk.eyJ1IjoiYW5uYWJpYWxhcyIsImEiOiJjaWh3bzVybjUwMm92dGZraHFwcnY4bG16In0.j2Sl8c2UoLY_yHBjO1vAfQ';
-		var map = L.mapbox.map('map', 'annabialas.c1658c05', {
-			infoControl: false,
-			attributionControl: false,
-			legendControl: {
-	      			position: 'topright'
-	  		}
-		}).setView([40.6934,-73.9859], 14);
+// 		L.mapbox.accessToken = 'pk.eyJ1IjoiYW5uYWJpYWxhcyIsImEiOiJjaWh3bzVybjUwMm92dGZraHFwcnY4bG16In0.j2Sl8c2UoLY_yHBjO1vAfQ';
+// 		var map = L.mapbox.map('map', 'annabialas.c1658c05', {
+// 			infoControl: false,
+// 			attributionControl: false,
+// 			legendControl: {
+// 	      			position: 'topright'
+// 	  		}
+// 		}).setView([40.6934,-73.9859], 14);
 
-	  	var attribution = L.control.attribution();
-		attribution.setPrefix('Made by <a href="./"><strong>GovLab</strong></a>');
-		attribution.addAttribution('Powered by <a href="https://www.mapbox.com/about/maps/">Mapbox + OpenStreetMap</a> <a href="http://mapbox.com/map-feedback/" class="mapbox-improve-map">Improve this map</a>');
-		attribution.addTo(map);
+// 	  	var attribution = L.control.attribution();
+// 		attribution.setPrefix('Made by <a href="./"><strong>GovLab</strong></a>');
+// 		attribution.addAttribution('Powered by <a href="https://www.mapbox.com/about/maps/">Mapbox + OpenStreetMap</a> <a href="http://mapbox.com/map-feedback/" class="mapbox-improve-map">Improve this map</a>');
+// 		attribution.addTo(map);
 
-		map.scrollWheelZoom.disable();
-
-
-		map.legendControl.addLegend('<strong>The GovLab</strong><br>NYU Tandon School of Engineering<br>2 MetroTech Center, 9th Floor<br>Brooklyn, NY 11201<br><em>(Entrance at Lawrence Street)</em>');
+// 		map.scrollWheelZoom.disable();
 
 
-		var marker = L.mapbox.featureLayer({
-	 			type: 'Feature',
-	  			geometry: {
-	      			type: 'Point',
-	      			coordinates: [-73.9859, 40.6934]
-	  			},
-	 			properties: {
-	      			'marker-color': '#523080',
-	      			'marker-size':'large',
-	      			'marker-symbol': 'chemist',
-	      			'title': '<strong>The GovLab</strong>',
-	      			'description': 'NYU Tandon School of Engineering<br>2 MetroTech Center, 9th Floor<br>Brooklyn, NY 11201<br><em>(Entrance at Lawrence Street)</em>'
-	  			}
-		}).addTo(map);
+// 		map.legendControl.addLegend('<strong>The GovLab</strong><br>NYU Tandon School of Engineering<br>2 MetroTech Center, 9th Floor<br>Brooklyn, NY 11201<br><em>(Entrance at Lawrence Street)</em>');
+
+
+// 		var marker = L.mapbox.featureLayer({
+// 	 			type: 'Feature',
+// 	  			geometry: {
+// 	      			type: 'Point',
+// 	      			coordinates: [-73.9859, 40.6934]
+// 	  			},
+// 	 			properties: {
+// 	      			'marker-color': '#523080',
+// 	      			'marker-size':'large',
+// 	      			'marker-symbol': 'chemist',
+// 	      			'title': '<strong>The GovLab</strong>',
+// 	      			'description': 'NYU Tandon School of Engineering<br>2 MetroTech Center, 9th Floor<br>Brooklyn, NY 11201<br><em>(Entrance at Lawrence Street)</em>'
+// 	  			}
+// 		}).addTo(map);
 
 	</script>
 
