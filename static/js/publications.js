@@ -34,7 +34,7 @@ new Vue({
       pubtitle:'',
       puburl:'',
       pub_date_order: 'asc',
-      dorder: 'asc',
+      title_order: 'asc',
       meta_title: 'The GovLab | Publications',
       meta_content: 'Deepening our understanding of how to govern more effectively and legitimately through technology.'
     }
@@ -52,6 +52,7 @@ new Vue({
     this.fetchPubs();
   },
   methods: {
+
     fetchPubs() {
       self = this;
       const client = new DirectusSDK({
@@ -77,52 +78,25 @@ new Vue({
     self = this;
     self.pubtitle = title;
     self.puburl = url;
-
+    console.log(self.pubtitle +' - '+self.puburl);
     this.$gtag.event('publication', {
     'event_category':'Publications',
     'event_label': self.pubtitle,
     'value':  parseInt(1)
   })
-},
-    reversePub() {
-      if (this.dorder == 'asc')
-      {
-      self.pubData.sort(function(a, b) {
-      var textA = a.pub_date;
-      var textB = b.pub_date;
-      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  });
-  this.dorder = 'desc';
-}else if (this.dorder == 'desc')
-{
-  self.pubData.sort(function(a, b) {
-  var textA = a.pub_date;
-  var textB = b.pub_date;
-  return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
-});
-this.dorder = 'asc';
-}
-    },
-    orderName() {
-        if (this.aorder == 'asc')
-        {
-        self.pubData.sort(function(a, b) {
-        var textA = a.title.toUpperCase();
-        var textB = b.title.toUpperCase();
-        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-    });
-    this.aorder = 'desc';
-  }else if (this.aorder == 'desc')
-  {
-    self.pubData.sort(function(a, b) {
-    var textA = a.title.toUpperCase();
-    var textB = b.title.toUpperCase();
-    return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
-});
-  this.aorder = 'asc';
-  }
-  },
 
+},
+  sortL (key) {
+    self = this;
+
+    self.pubData.sort(function(a, b) {
+    var textA = a[key];
+    var textB = b[key];
+    if(self[key + '_order'] == 'asc') return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    else return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+  })
+  self[key + '_order'] == 'asc' ? self[key + '_order'] = 'desc' : self[key + '_order'] = 'asc';
+  },
   formatDate(date) {
   return moment(date).format('MMMM YYYY');
   }
