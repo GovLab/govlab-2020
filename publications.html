@@ -99,16 +99,16 @@
       <!-- Sorting Controllers -->
       <div class="b-controllers">
         <p class="m-inline">Sort by:</p>
-        <button class="sort b-button m-purple" @click="reversePub()">Publication Date (Default)</button>
-        <button class="sort b-button m-purple" @click="orderName()">Publication Name</button>
+        <button class="sort b-button m-purple" @click="sortL('pub_date')">Publication Date (Default)</button>
+        <button class="sort b-button m-purple" @click="sortL('title')">Publication Name</button>
       </div>
 
       <div class="list">
         <section class="b-page-section" v-for='pub in pubData'>
         <div class="row" @click="accessPub(pub.title, pub.url)">
-          <div class="columns large-7 large-offset-1">
+          <div class="columns large-7 large-offset-1" >
 
-              <a :href="pub.url" class="" target="_blank">
+              <a :href="pub.url"  class="" target="_blank">
 
                 <h3 class="name">{{pub.title}}</h3>
               </a>
