@@ -221,27 +221,27 @@ $(window).scroll(function(){
     });
 
 
-        // Language switching language 
+        // Language switching language
         $('.js-en').click(function() {
             // Switch Classes for the Project Listing
             $('.m-spanish').addClass('m-hide');
             $('.m-english').removeClass('m-hide');
-    
+
             // Adds 'active' state to the button
             $(this).addClass('m-active');
             $('.js-es').removeClass('m-active');
         });
-    
+
         $('.js-es').click(function() {
             // Switch Classes for the Project Listing
             $('.m-english').addClass('m-hide');
             $('.m-spanish').removeClass('m-hide');
-    
+
             // Adds 'active' state to the button
             $(this).addClass('m-active');
             $('.js-en').removeClass('m-active');
         });
-    
+
 
     $('.e-banner-container').slick({
         arrows: false,
@@ -290,9 +290,11 @@ $(window).scroll(function(){
 
 var render = function(posts) {
     posts.forEach(function (element, index) {
+        console.log(element);
         var title = element.title,
-        content = element.content;
-
+        content = element.excerpt;
+        var author = "";
+        Promise.all(element.authors.map(function (a, i){ if(i<element.authors.length-1){author += a.team_id.name+', '}; if(i==element.authors.length-1){author += a.team_id.name}}));
         if (title.length > 100) {
             title = title.substr(0, 100) + '...';
         }
@@ -302,7 +304,7 @@ var render = function(posts) {
         }
 
         $('.js-article-' + (index + 1) + '-title').text(title);
-        $('.js-article-' + (index + 1) + '-author').text(element.author);
+        $('.js-article-' + (index + 1) + '-author').text(author);
         $('.js-article-' + (index + 1) + '-content').html(content);
         $('.js-article-' + (index + 1) + '-link').attr('href', element.link);
     });
@@ -324,19 +326,38 @@ var render = function(posts) {
 // Note that this assumes that thegovlab.org has CORS headers.
 //This is only temporary to pull specific blog posts instead of the latest
 // $.get('http://thegovlab.org/featured-website/feed/', function(xml) {
-    $.get('http://thegovlab.org/website-feature/feed/', function(xml) {
-    var posts = [];
-    $('item', xml).each(function() {
-        posts.push({
-            title: $('title', this).text(),
-            author: $('dc\\:creator', this).text() /* Firefox */ ||
-            $('creator', this).text() /* Webkit */,
-            content: $('description', this).text(),
-            link: $('link', this).text()
-        });
-    });
-    render(posts);
-}).error(function(d,e) { console.log(e); });
+      const client=  new DirectusSDK({
+        url: "https://directus.thegovlab.com/",
+        project: "thegovlab",
+        storage: window.localStorage
+      })
+
+      client.getItems(
+        'blog', {
+          limit: 3,
+          sort:"-original_date",
+          fields: ['*.*','authors.team_id.*','authors.team_id.picture.*','related_posts.incoming_blog_id.*','related_publications.pub_id.*','related_publications.pub_id.picture.*','related_projects.projects_id.*','related_projects.projects_id.main_picture.*']
+        }).then(data => {
+          render(data.data);
+          // console.log(data);
+})
+.catch(error => console.error(error));
+
+
+// Old.
+//     $.get('http://thegovlab.org/website-feature/feed/', function(xml) {
+//     var posts = [];
+//     $('item', xml).each(function() {
+//         posts.push({
+//             title: $('title', this).text(),
+//             author: $('dc\\:creator', this).text() /* Firefox */ ||
+//             $('creator', this).text() /* Webkit */,
+//             content: $('description', this).text(),
+//             link: $('link', this).text()
+//         });
+//     });
+//     // render(posts);
+// }).error(function(d,e) { console.log(e); });
 
 
 // functions for the effect on the homepage main banner
