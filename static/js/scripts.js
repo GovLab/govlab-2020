@@ -293,6 +293,7 @@ var render = function(posts) {
         console.log(element);
         var title = element.title,
         content = element.excerpt;
+
         var author = "";
         Promise.all(element.authors.map(function (a, i){ if(i<element.authors.length-1){author += a.team_id.name+', '}; if(i==element.authors.length-1){author += a.team_id.name}}));
         if (title.length > 100) {
@@ -306,7 +307,7 @@ var render = function(posts) {
         $('.js-article-' + (index + 1) + '-title').text(title);
         $('.js-article-' + (index + 1) + '-author').text(author);
         $('.js-article-' + (index + 1) + '-content').html(content);
-        $('.js-article-' + (index + 1) + '-link').attr('href', element.link);
+        $('.js-article-' + (index + 1) + '-link').attr('href', 'https://blog.thegovlab.org/post/' + element.slug);
     });
 
     $('.e-banner-container').each(function() {
@@ -344,7 +345,7 @@ var render = function(posts) {
 .catch(error => console.error(error));
 
 
-// Old.
+// Old Pull
 //     $.get('http://thegovlab.org/website-feature/feed/', function(xml) {
 //     var posts = [];
 //     $('item', xml).each(function() {
