@@ -1,4 +1,62 @@
+
+### Project Redirect ### 
 /project/*  /project/index.html?:splat  200
+
+/project-100-questions-initiative.html* /project/project-100-questions-initiative
+/project-blockchain-and-extractives-governance.html* /project/project-blockchain-and-extractives-governance
+/project-blockchange-blockchain-technology-for-social-change.html* /project/project-blockchange-blockchain-technology-for-social-change
+/project-circular-city.html* /project/project-circular-city
+/project-city-challenges-san-pedro-garza-garcia.html* /project/project-city-challenges-san-pedro-garza-garcia
+/project-city-challenges.html* /project/project-city-challenges
+/project-contracts-for-data-collaboration.html* /project/project-contracts-for-data-collaboration
+/project-crowdlaw-playbook.html* /project/project-crowdlaw-playbook
+/project-crowdlaw.html* /project/project-crowdlaw
+/project-crowdsorcerer.html* /project/project-crowdsorcerer
+/project-data-4-covid19.html* /project/project-data-4-covid19
+/project-data-assembly.html* /project/project-data-assembly
+/project-data-collaboratives-to-improve-childrens-lives.html* /project/project-data-collaboratives-to-improve-childrens-lives
+/project-data-driven-criminal-justice.html* /project/project-data-driven-criminal-justice
+/project-data-labs.html* /project/project-data-labs
+/project-data-responsibility.html* /project/project-data-responsibility
+/project-data-stewards-network.html* /project/project-data-stewards-network
+/project-datacollaboratives-org.html* /project/project-datacollaboratives-org
+/project-docker-for-data.html* /project/project-docker-for-data
+/project-fda-profiles.html* /project/project-fda-profiles
+/project-gender-and-urban-mobility-in-chile.html* /project/project-gender-and-urban-mobility-in-chile
+/project-icma-innovation-skills-survey.html* /project/project-icma-innovation-skills-survey
+/project-information-for-impact-liberating-nonprofit-sector-data.html* /project/project-information-for-impact-liberating-nonprofit-sector-data
+/project-innovation-skills-accelerator.html* /project/project-innovation-skills-accelerator
+/project-legisletters.html* /project/project-legisletters
+/project-living-library.html* /project/project-living-library
+/project-netmundial-solutions-map.html* /project/project-netmundial-solutions-map
+/project-network-of-innovators.html* /project/project-network-of-innovators
+/project-nhs-open-data.html* /project/project-nhs-open-data
+/project-nhs-public-data-science-network.html* /project/project-nhs-public-data-science-network
+/project-open-data-500-global-network.html* /project/project-open-data-500-global-network
+/project-open-data-demand.html* /project/project-open-data-demand
+/project-open-data-in-developing-economies.html* /project/project-open-data-in-developing-economies
+/project-open-data-policy-lab.html* /project/project-open-data-policy-lab
+/project-open-datas-impact.html* /project/project-open-datas-impact
+/project-open-governance-research-exchange-ogrx.html* /project/project-open-governance-research-exchange-ogrx
+/project-open-grantmaking.html* /project/project-open-grantmaking
+/project-open-justice.html* /project/project-open-justice
+/project-open-nyu.html* /project/project-open-nyu
+/project-open-policymaking.html* /project/project-open-policymaking
+/project-orgpedia-crowdsourcing-and-impact-modeling.html* /project/project-orgpedia-crowdsourcing-and-impact-modeling
+/project-peer-to-patent.html* /project/project-peer-to-patent
+/project-responsible-data-for-children.html* /project/project-responsible-data-for-children
+/project-smarter-crowdsourcing-anti-corruption.html* /project/project-smarter-crowdsourcing-anti-corruption
+/project-smarter-crowdsourcing-cotopaxi.html* /project/project-smarter-crowdsourcing-cotopaxi
+/project-smarter-crowdsourcing-zika.html* /project/project-smarter-crowdsourcing-zika
+/project-smarter-state-case-studies.html* /project/project-smarter-state-case-studies
+/project-solving-public-problems-with-data.html* /project/project-solving-public-problems-with-data
+/project-the-govlab-academy.html* /project/project-the-govlab-academy
+/project-the-govlab-public-projects-canvas.html* /project/project-the-govlab-public-projects-canvas
+/project-the-macarthur-research-network-on-opening-governance.html* /project/project-the-macarthur-research-network-on-opening-governance
+/project-the-potential-of-social-media-intelligence-to-improve-peoples-lives.html* /project/project-the-potential-of-social-media-intelligence-to-improve-peoples-lives
+/project-using-collective-intelligence-to-solve-public-problems.html* /project/project-using-collective-intelligence-to-solve-public-problems
+
+### Blog redirects ###
 /opening-government-collaborative-strategies-for-solving-the-worlds-hardest-problems* https://blog.thegovlab.com/post/opening-government-collaborative-strategies-for-solving-the-worlds-hardest-problems
 /opening-government-collaborative-strategies-for-solving-the-worlds-hardest-problems* https://blog.thegovlab.com/post/opening-government-collaborative-strategies-for-solving-the-worlds-hardest-problems
 /the-open-government-partnership-ogp-turns-one* https://blog.thegovlab.com/post/the-open-government-partnership-ogp-turns-one
