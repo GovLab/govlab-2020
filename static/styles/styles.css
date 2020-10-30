@@ -3401,7 +3401,11 @@ button:focus {
     display: inline;
     text-transform: uppercase;
     margin-right: 15px; }
+  #publications-page .b-page-section h4{
+    font-size:1.1rem;
+    text-transform: none;
 
+  }
 .b-divider h3 {
   text-align: center; }
 

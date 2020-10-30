@@ -111,8 +111,10 @@
               <a :href="pub.url"  class="" target="_blank">
 
                 <h3 class="name">{{pub.title}}</h3>
+                <h4 class="subtitle">{{pub.subtitle}}</h4>
               </a>
-            <p v-if="pub.description" v-html="pub.description"></p>
+              
+            <!-- <p v-if="pub.description" v-html="pub.description"></p> -->
             <p>{{pub.authors}}</p>
             <p class="date">{{formatDate(pub.pub_date)}}</p>
 
