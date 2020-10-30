@@ -327,22 +327,7 @@ var render = function(posts) {
 // Note that this assumes that thegovlab.org has CORS headers.
 //This is only temporary to pull specific blog posts instead of the latest
 // $.get('http://thegovlab.org/featured-website/feed/', function(xml) {
-//       const client=  new DirectusSDK({
-//         url: "https://directus.thegovlab.com/",
-//         project: "thegovlab",
-//         storage: window.localStorage
-//       })
 
-//       client.getItems(
-//         'blog', {
-//           limit: 3,
-//           sort:"-original_date",
-//           fields: ['*.*','authors.team_id.*','authors.team_id.picture.*','related_posts.incoming_blog_id.*','related_publications.pub_id.*','related_publications.pub_id.picture.*','related_projects.projects_id.*','related_projects.projects_id.main_picture.*']
-//         }).then(data => {
-//           render(data.data);
-//           // console.log(data);
-// })
-// .catch(error => console.error(error));
 
 
 // Old Pull
