@@ -2,6 +2,11 @@
 /dc/ https://datacollaboratives.org/
 /datacollaboratives/ https://datacollaboratives.org/
 /govlab-digest https://thelivinglib.org/
+/author/* https://blog.thegovlab.org
+selected-readings/* civic-innovation/
+
+### PDF and fiel redirects ###
+/wordpress/wp-content/uploads/* https://directus.thegovlab.com/uploads/thegovlab/blog_img_archive/:splat  200
 
 ### Project Redirect ###
 /project/*  /project/index.html?:splat  200
