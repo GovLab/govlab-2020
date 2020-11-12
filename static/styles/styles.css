@@ -120,6 +120,7 @@ input {
       @media (min-width: 1025px) {
         .b-top-nav .e-logo img {
           max-width: 140px; } }
+          
   .b-top-nav .e-social-media {
     text-align: right;
     display: block; }
@@ -989,11 +990,11 @@ button:focus {
 
 /* Header */
 #homepage .e-logo img {
-  max-width: 200px;
+  max-width: 350px;
   margin-top: 80px; }
   @media (min-width: 1025px) {
     #homepage .e-logo img {
-      max-width: 300px;
+      max-width: 350px;
       margin-top: 60px; } }
 
 #homepage .b-top-section {
