@@ -2,9 +2,9 @@
 /dc/ https://datacollaboratives.org/
 /datacollaboratives/ https://datacollaboratives.org/
 /govlab-digest https://thelivinglib.org/
-/author/* https://blog.thegovlab.org/?q= :splat
-/authors/* https://blog.thegovlab.org/?q= :splat
-/tag/* https://blog.thegovlab.org/?q= :splat
+/author/* https://blog.thegovlab.org/?q=:splat
+/authors/* https://blog.thegovlab.org/?q=:splat
+/tag/* https://blog.thegovlab.org/?q=:splat
 
 ### PDF and fiel redirects ###
 /wordpress/wp-content/uploads/* https://directus.thegovlab.com/uploads/thegovlab/blog_img_archive/:splat
@@ -6259,34 +6259,34 @@
 /why-policymakers-should-care-about-big-data-in-healthcare/* https://blog.thegovlab.org/archive/why-policymakers-should-care-about-big-data-in-healthcare
 
 ### Categories ###
-/bigdata https://blog.thegovlab.org/?q= :splat
+/bigdata/ https://blog.thegovlab.org/?q=:splat
 /crowdsourcing-govlab-digest https://thelivinglib.org
 /data-collaboratives https://datacollaboratives.org/
-/democracy-demos https://blog.thegovlab.org/?q= :splat
-/democracydemos https://blog.thegovlab.org/?q= :splat
+/democracy-demos/ https://blog.thegovlab.org/?q=:splat
+/democracydemos/ https://blog.thegovlab.org/?q=:splat
 /digest https://thelivinglib.org
-/ed-meeting-news https://blog.thegovlab.org/?q= :splat
-/events https://blog.thegovlab.org/?q= :splat
-/evidence https://blog.thegovlab.org/?q= :splat
-/experiment https://blog.thegovlab.org/?q= :splat
-/featured-noi https://blog.thegovlab.org/?q= :splat
+/ed-meeting-news/ https://blog.thegovlab.org/?q=:splat
+/events/ https://blog.thegovlab.org/?q=:splat
+/evidence/ https://blog.thegovlab.org/?q=:splat
+/experiment/ https://blog.thegovlab.org/?q=:splat
+/featured-noi/ https://blog.thegovlab.org/?q=:splat
 /govlab-academy https://govlabacademy.org/
 /govlab-academy/govlab-academy-guest-speakers-series https://govlabacademy.org/
-/blog https://blog.thegovlab.org/?q= :splat
+/blog/ https://blog.thegovlab.org/?q=:splat
 /govlab-digest https://thelivinglib.org
-/govlab-index https://blog.thegovlab.org/?q= :splat
-/ideas https://blog.thegovlab.org/?q= :splat
-/ideas-lunch https://blog.thegovlab.org/?q= :splat
-/ideas-lunch-page https://blog.thegovlab.org/?q= :splat
-/if-only-we-knew https://blog.thegovlab.org/?q= :splat
-/jobs https://thegovlab.org/jobs.html
-/media-library https://blog.thegovlab.org/?q= :splat
-/open-data https://blog.thegovlab.org/?q= :splat
-/open-data-500 https://blog.thegovlab.org/?q= :splat
-/publications https://blog.thegovlab.org/?q= :splat
-/research https://blog.thegovlab.org/?q= :splat
-/researchrepo https://blog.thegovlab.org/?q= :splat
-/scan https://blog.thegovlab.org/?q= :splat
+/govlab-index/ https://blog.thegovlab.org/?q=:splat
+/ideas/ https://blog.thegovlab.org/?q=:splat
+/ideas-lunch/ https://blog.thegovlab.org/?q=:splat
+/ideas-lunch-page/ https://blog.thegovlab.org/?q=:splat
+/if-only-we-knew/ https://blog.thegovlab.org/?q=:splat
+/jobs/ https://thegovlab.org/jobs.html
+/media-library/ https://blog.thegovlab.org/?q=:splat
+/open-data/ https://blog.thegovlab.org/?q=:splat
+/open-data-500/ https://blog.thegovlab.org/?q=:splat
+/publications/ https://blog.thegovlab.org/?q=:splat
+/research/ https://blog.thegovlab.org/?q=:splat
+/researchrepo/ https://blog.thegovlab.org/?q=:splat
+/scan/ https://blog.thegovlab.org/?q=:splat
 /selected-readings/behavioral-economics* https://thelivinglib.org/selected-readings/
 /selected-readings/civic-innovation* https://thelivinglib.org/selected-readings/
 /selected-readings/data-and-its-uses-for-governance* https://thelivinglib.org/selected-readings/
@@ -6294,11 +6294,11 @@
 /selected-readings/internet-governance-readings* https://thelivinglib.org/selected-readings/
 /selected-readings/solving-public-problems-with-crowdsourcing* https://thelivinglib.org/selected-readings/
 /selected-readings/technology* https://thelivinglib.org/selected-readings/
-/smarter-governance-2 https://blog.thegovlab.org/?q= :splat
-/tech https://blog.thegovlab.org/?q= :splat
-/uncategorized https://blog.thegovlab.org/?q= :splat
-/website-feature https://blog.thegovlab.org/?q= :splat
-/wiki-update https://blog.thegovlab.org/?q= :splat
+/smarter-governance-2/ https://blog.thegovlab.org/?q=:splat
+/tech/ https://blog.thegovlab.org/?q=:splat
+/uncategorized/ https://blog.thegovlab.org/?q=:splat
+/website-feature/ https://blog.thegovlab.org/?q=:splat
+/wiki-update/ https://blog.thegovlab.org/?q=:splat
 
 ### Pages to either be redirected or migrated ###
 
