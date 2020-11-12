@@ -6258,6 +6258,18 @@ selected-readings/* civic-innovation/
 /why-policymakers-should-care-about-big-data-in-healthcare/* https://blog.thegovlab.org/archive/why-policymakers-should-care-about-big-data-in-healthcare
 
 ### Pages to either be redirected or migrated ###
+
+/about_old/our-network* https://opening-governance.org
+/our-network* https://opening-governance.org
+/about-2/careers/ https://www.thegovlab.org/job-board.html
+
+https://www.thegovlab.org/contact-us.html
+http://datacollaboratives.org
+https://blog.thegovlab.org/list.html?q=demos%20for%20democracy
+ExpertNet
+http://odimpact.org
+https://blog.thegovlab.org/post/a-blueprint-for-the-open-data-era-in-health-and-social-care
+
 /academy/* http://archive.thegovlab.org/academy
 /academy/for-the-public/* http://archive.thegovlab.org/academy/for-the-public
 /academy/university-courses/* http://archive.thegovlab.org/academy/university-courses
