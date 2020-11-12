@@ -6261,46 +6261,47 @@
 
 ### Categories ###
 
-/crowdsourcing-govlab-digest https://thelivinglib.org
-/data-collaboratives https://datacollaboratives.org/
-/digest https://thelivinglib.org
-/events/* https://thegovlab.org/events.html
-/govlab-academy/ https://govlabacademy.org/
-/govlab-academy/govlab-academy-guest-speakers-series/ https://govlabacademy.org/
-/blog https://blog.thegovlab.org/
-/govlab-digest https://thelivinglib.org
-/jobs/ https://thegovlab.org/jobs.html
-/selected-readings/behavioral-economics* https://thelivinglib.org/selected-readings/
-/selected-readings/civic-innovation* https://thelivinglib.org/selected-readings/
-/selected-readings/data-and-its-uses-for-governance* https://thelivinglib.org/selected-readings/
-/selected-readings/internet-governance-selected-readings* https://thelivinglib.org/selected-readings/
-/selected-readings/internet-governance-readings* https://thelivinglib.org/selected-readings/
-/selected-readings/solving-public-problems-with-crowdsourcing* https://thelivinglib.org/selected-readings/
-/selected-readings/technology* https://thelivinglib.org/selected-readings/
-/wiki-update/  https://blog.thegovlab.org/?q=wiki-update
-/bigdata/ https://blog.thegovlab.org/?q=bigdata
-/democracy-demos/ https://blog.thegovlab.org/?q=democracy-demos
-/democracydemos/ https://blog.thegovlab.org/?q=democracydemos
-/ed-meeting-news/ https://blog.thegovlab.org/?q=ed-meeting-news
-/evidence/ https://blog.thegovlab.org/?q=evidence
-/experiment/ https://blog.thegovlab.org/?q=experiment
-/featured-noi/ https://blog.thegovlab.org/?q=featured-noi
-/govlab-index/ https://blog.thegovlab.org/?q=govlab-index
-/ideas/ https://blog.thegovlab.org/?q=ideas
-/ideas-lunch/ https://blog.thegovlab.org/?q=ideas-lunch
-/ideas-lunch-page/ https://blog.thegovlab.org/?q=ideas-lunch-page
-/if-only-we-knew/ https://blog.thegovlab.org/?q=if-only-we-knew
-/media-library/ https://blog.thegovlab.org/?q=media-library
-/open-data/ https://blog.thegovlab.org/?q=open-data
-/open-data-500/ https://blog.thegovlab.org/?q=open-data-500
-/publications/ https://blog.thegovlab.org/?q=publications
-/research/ https://blog.thegovlab.org/?q=research
-/researchrepo/ https://blog.thegovlab.org/?q=researchrepo
-/scan/ https://blog.thegovlab.org/?q=scan
-/smarter-governance-2/ https://blog.thegovlab.org/?q=smarter-governance-2
-/tech/ https://blog.thegovlab.org/?q=tech
-/uncategorized/ https://blog.thegovlab.org/?q=uncategorized
-/website-feature/ https://blog.thegovlab.org/?q=website-feature
+/crowdsourcing-govlab-digest	https://thelivinglib.org
+/data-collaboratives	https://datacollaboratives.org/
+/digest	https://thelivinglib.org
+/events/	https://thegovlab.org/events.html
+/govlab-academy/	https://govlabacademy.org/
+/govlab-academy/govlab-academy-guest-speakers-series/	https://govlabacademy.org/
+/blog	https://blog.thegovlab.org/
+/govlab-digest	https://thelivinglib.org
+/jobs/	https://thegovlab.org/jobs.html
+/selected-readings/behavioral-economics*	https://thelivinglib.org/selected readings/
+/selected-readings/civic-innovation*	https://thelivinglib.org/selected readings/
+/selected-readings/data-and-its-uses-for-governance*	https://thelivinglib.org/selected readings/
+/selected-readings/internet-governance-selected-readings*	https://thelivinglib.org/selected readings/
+/selected-readings/internet-governance-readings*	https://thelivinglib.org/selected readings/
+/selected-readings/solving-public-problems-with-crowdsourcing*	https://thelivinglib.org/selected readings/
+/selected-readings/technology*	https://thelivinglib.org/selected readings/
+/wiki-update/
+/bigdata/	https://blog.thegovlab.org/?q=bigdata
+/democracy-demos/	https://blog.thegovlab.org/?q=democracy demos
+/democracydemos/	https://blog.thegovlab.org/?q=democracydemos
+/ed-meeting-news/	https://blog.thegovlab.org/?q=ed meeting news
+/evidence/	https://blog.thegovlab.org/?q=evidence
+/experiment/	https://blog.thegovlab.org/?q=experiment
+/featured-noi/	https://blog.thegovlab.org/?q=featured noi
+/govlab-index/	https://blog.thegovlab.org/?q=govlab index
+/ideas/	https://blog.thegovlab.org/?q=ideas
+/ideas-lunch/	https://blog.thegovlab.org/?q=ideas lunch
+/ideas-lunch-page/	https://blog.thegovlab.org/?q=ideas lunch page
+/if-only-we-knew/	https://blog.thegovlab.org/?q=if Only we knew
+
+/media-library/	https://blog.thegovlab.org/?q=media
+/open-data/	https://blog.thegovlab.org/?q=open data
+/open-data-500/	https://blog.thegovlab.org/?q=open data 500
+/publications/	https://thegovlab.org/publications.html 
+/research/	https://blog.thegovlab.org/?q=research
+/researchrepo/	https://blog.thegovlab.org/?q=researchrepo
+/scan/	https://blog.thegovlab.org/?q=scan
+/smarter-governance-2/	https://blog.thegovlab.org/?q=smarter governance 2
+/tech/	https://blog.thegovlab.org/?q=tech
+/uncategorized/	https://blog.thegovlab.org/?q=uncategorized
+/website-feature/	https://blog.thegovlab.org/?q=website feature
 
 ### Pages to either be redirected or migrated ###
 
