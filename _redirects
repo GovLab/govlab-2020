@@ -6298,7 +6298,7 @@
 /tech/* https://blog.thegovlab.org/?q=:splat
 /uncategorized/* https://blog.thegovlab.org/?q=:splat
 /website-feature/* https://blog.thegovlab.org/?q=:splat
-/wiki-update/** https://blog.thegovlab.org/?q=:splat
+/wiki-update/* https://blog.thegovlab.org/?q=:splat
 
 ### Pages to either be redirected or migrated ###
 
