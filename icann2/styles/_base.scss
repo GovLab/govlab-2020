@@ -1,0 +1,39 @@
+body {
+	background-color: $background;
+}
+
+
+// Structure
+.page {
+	border-top: 1px solid $white;
+	border-bottom: 1px solid $chisel_gray;
+	padding: 30px 10px;
+	width: 960px;
+	margin-top: 0;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	left: 0;
+	@include slide;
+}
+
+header.page {
+	border-top: 0;
+	padding: 0 10px;
+
+	img {
+		width: 546px;
+	}
+}
+
+#overlay {
+	background-color: transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: $z-overlay;
+	display: none;
+	cursor: pointer;
+}

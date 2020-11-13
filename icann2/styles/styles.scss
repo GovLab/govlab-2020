@@ -1,0 +1,220 @@
+@import 'variables';
+@import 'base';
+@import 'typography';
+@import 'team';
+@import 'blog';
+
+
+// Header
+
+#wagner-logo {
+	float: right;
+	margin-top: 5px;
+	opacity: .8;
+}
+
+// Title Section
+
+.main-title {
+	text-align: center;
+	background: url('../images/living-labs-icon.png') no-repeat center 30px; 
+	padding: 100px 10px;
+
+	h1 {
+		font-size: 8em;
+		line-height: 1em;
+		margin: 0;
+		font-style: normal;
+	}
+
+	h2 {
+		font-size: 3em;
+		font-weight: 100;
+		line-height: 1em;
+		margin: 0;
+		font-style: italic;
+		color: $active;
+	}
+}
+
+
+// Tabs
+
+.tabs {
+}
+
+.tab-link {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	margin: 7px;
+}
+
+.tab-content {
+	display: none;
+	background-color: $background;
+	background-color: $chisel_gray;
+	box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+	padding: 1px 20px;
+	border-top: 3px solid $active;
+}
+
+.tab-link.active:after {
+	content:"";
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-bottom: 20px solid $active;
+	border-right: 24px solid transparent;
+	border-left: 24px solid transparent;
+	bottom: -7px;
+    left: 127px;
+}
+
+#stage3 {
+    display: block;
+}
+
+// Portfolio Structure
+.portfolio-item {
+	display: inline-block;
+	border: 2px solid $inactive;
+	width: 216px;
+	height: 200px;
+	vertical-align: top;
+	overflow: hidden;
+	margin-right: 6px;
+	position: relative;
+	margin-bottom: 11px;
+	background-color: $white;	
+}
+
+.portfolio-item:nth-of-type(4n) {
+	margin-right: 0;
+}
+
+.portfolio-item-description {
+	background-color: $inactive;
+	height: 100%;
+	width: 100%;
+	padding: 10px 0;
+	position: absolute;
+	top:200px;
+	opacity: .95;
+	-webkit-transition: top .4s ease-in;
+	-moz-transition: top .4s ease-in;
+	-ms-transition: top .4s ease-in;
+	-o-transition: top .4s ease-in;
+	transition: top .4s ease-in;
+}
+
+.portfolio-item h4 {
+	margin: 10px;
+	color: $inactive;
+}
+
+.portfolio-item p {
+	font-size: .8em;
+	line-height: 1.2em;
+	margin: 10px;
+	color: $white;
+	font-weight: 100;
+	font-style: italic;
+}
+
+.portfolio-item:hover {
+	border-color: $inactive;
+}
+
+.portfolio-item:hover .portfolio-item-description {
+	top:0;
+	-webkit-transition: top .3s ease-out;
+	-moz-transition: top .3s ease-out;
+	-ms-transition: top .3s ease-out;
+	-o-transition: top .3s ease-out;
+	transition: top .3s ease-out;
+}
+
+// Active Colors
+
+.portfolio-item.live {
+	border-color: $active;
+	cursor: pointer;
+
+	h4 {
+		color: $active;
+	}
+
+	.portfolio-item-description {
+		background-color: $active;
+
+		a {
+			color: $white;
+		}
+
+		a:hover {
+			color: $active;
+			background-color: $white;
+		}
+	}
+}
+
+#menu {
+	width: 160px;
+	background-color: #444;
+	box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
+	position: fixed;
+	margin: 0;
+	padding: 20px;
+	left: -200px;
+	top: 0;
+	@include slide;
+
+	.trigger {
+		position: absolute;
+		right: -70px;
+		top: 10px;
+		color: #aaa;
+		border: 0;
+		font-size: 1.2em;
+		cursor: pointer;
+	}
+
+	.trigger:hover {
+		color: $active;
+	}
+
+	li {
+		list-style: none;
+		border-top: 1px solid #555;
+		border-bottom: 1px solid #3d3d3d;
+		margin-right: 20px;
+
+	}
+
+	h3 {
+		margin: 0;
+		font-size: .8em;
+	}
+
+	a {
+		color: $white;
+		font-size: .7em;
+		font-style: italic;
+	}
+}
+
+#menu.s-active {
+	left: 0;
+	@include slide;
+	z-index: $z-modal;
+}
+
+.s-active > .trigger {
+	pointer-events: none;
+}
+
+.page.s-menu-active {
+	left: 200px;
+}
+

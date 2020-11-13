@@ -1,0 +1,25 @@
+// Colors
+
+$background: #f6f6f6;
+$active: #00aeef;
+$inactive: #999;
+$text_color: #414141;
+$title_color: #666;
+$chisel_gray: #e5e5e5;
+$white: #fff;
+
+// Z-index Variables
+
+$z-modal: 1000;
+$z-overlay: 999;
+
+
+// Mixins
+
+@mixin slide {
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}

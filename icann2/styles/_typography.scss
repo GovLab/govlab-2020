@@ -1,0 +1,86 @@
+// Typography
+
+body {
+	font-family: 'Exo',sans-serif;
+	color: $text_color;
+	font-size: 1.3em;
+	line-height: 1.5em;
+	font-weight: 100;
+	letter-spacing: .7px;
+}
+
+h1 {
+	font-weight: 100;
+	font-style: italic;
+	font-size: 48px;
+	color: $title_color;
+}
+
+.tagline {
+	font-weight: 100;
+	font-style: italic;
+	font-size: 1em;
+	margin: 0;
+}
+
+h3 {
+	font-weight: 300;
+	font-size: 1em;
+	color: $active;
+}
+
+strong {
+	font-weight: 300;
+}
+
+a {
+	color: $active;
+	text-decoration: none;
+}
+
+a:hover {
+	background-color: $active;
+	color: $white;
+}
+
+.bullets {
+	list-style: none;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.bullets:before {
+	position: absolute;
+	content:"";
+	width: 0;
+	height: 0;
+	border-left: 10px solid $active;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	left: -30px;
+	top: 4px;
+}
+
+.text-box {
+	background-color: $active;
+	text-align: center;
+	display: block;
+	padding: 5px;
+	// margin: 0 25%;
+	color: $white;
+	font-weight: 300;
+}
+
+.text-box:hover {
+	background-color: #444;
+	cursor: pointer;
+
+	a:hover {
+		background-color: transparent;
+	}
+}
+
+.text-box.disabled {
+	background-color: $inactive;
+	pointer-events: none;
+}
