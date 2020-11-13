@@ -6269,13 +6269,13 @@
 /blog	https://blog.thegovlab.org/
 /govlab-digest	https://thelivinglib.org
 /jobs/	https://thegovlab.org/jobs.html
-/selected-readings/behavioral-economics*	https://thelivinglib.org/selected readings/
-/selected-readings/civic-innovation*	https://thelivinglib.org/selected readings/
-/selected-readings/data-and-its-uses-for-governance*	https://thelivinglib.org/selected readings/
-/selected-readings/internet-governance-selected-readings*	https://thelivinglib.org/selected readings/
-/selected-readings/internet-governance-readings*	https://thelivinglib.org/selected readings/
-/selected-readings/solving-public-problems-with-crowdsourcing*	https://thelivinglib.org/selected readings/
-/selected-readings/technology*	https://thelivinglib.org/selected readings/
+/selected-readings/behavioral-economics/*	https://thelivinglib.org/selected-readings/
+/selected-readings/civic-innovation/*	https://thelivinglib.org/selected-readings/
+/selected-readings/data-and-its-uses-for-governance/*	https://thelivinglib.org/selected-readings/
+/selected-readings/internet-governance-selected-readings/*	https://thelivinglib.org/selected-readings/
+/selected-readings/internet-governance-readings/*	https://thelivinglib.org/selected-readings/
+/selected-readings/solving-public-problems-with-crowdsourcing/*	https://thelivinglib.org/selected-readings/
+/selected-readings/technology/*	https://thelivinglib.org/selected-readings/
 /publications/	https://thegovlab.org/publications.html
 
 /wiki-update/ 	https://blog.thegovlab.org/?q=wiki%20update
