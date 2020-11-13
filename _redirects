@@ -6303,25 +6303,20 @@
 /website-feature/	https://blog.thegovlab.org/?q=website%20feature
 
 
-
-
-
-
-
 ### Pages to either be redirected or migrated ###
 
 /about_old/our-network* https://opening-governance.org
 /our-network* https://opening-governance.org
 /about-2/careers/ https://www.thegovlab.org/job-board.html
 
-/academy/* http://archive.thegovlab.org/academy
-/academy/for-the-public/* http://archive.thegovlab.org/academy/for-the-public
-/academy/university-courses/* http://archive.thegovlab.org/academy/university-courses
-/academy/1-year-program/* http://archive.thegovlab.org/academy/1-year-program
-/observatory/* http://archive.thegovlab.org/observatory
-/design/* http://archive.thegovlab.org/design
-/about_old/* http://archive.thegovlab.org/about_old
-/about-2/careers/* http://archive.thegovlab.org/about-2/careers
+/academy/* http://govlabacademy.org
+/academy/for-the-public/* http://govlabacademy.org
+/academy/university-courses/* http://govlabacademy.org
+/academy/1-year-program/* http://govlabacademy.org
+/observatory/* https://thelivinglib.org
+/design/* https://thegovlab.org
+/about_old/* https://thegovlab.org/about.html
+/about-2/careers/* https://thegovlab.org/about.html
 /about/team/* http://archive.thegovlab.org/about/team
 /about_old/our-network/* http://archive.thegovlab.org/about_old/our-network
 /stefaan-verhulst-2/* http://archive.thegovlab.org/stefaan-verhulst-2
