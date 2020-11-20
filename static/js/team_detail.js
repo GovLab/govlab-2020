@@ -103,7 +103,7 @@ console.log(data.data[0]);
   self.memberData = data.data[0];
   self.meta_title = 'The Govlab | '+self.memberData.name;
   self.meta_content = self.memberData.bio_short;
-  self.meta_image = 'https://www.thegovlab.org/static/img/team/stefaan-verhulst.jpg';
+  self.meta_image = self.memberData.picture.data.full_url;
 })
 .catch(error => console.error(error));
     },
