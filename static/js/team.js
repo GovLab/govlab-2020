@@ -28,6 +28,7 @@ new Vue({
   data () {
     return {
       teamData: [],
+      iniLoad: 0,
       more_body: false,
       meta_title: 'The GovLab | Team',
       meta_content: 'Deepening our understanding of how to govern more effectively and legitimately through technology.',
@@ -46,11 +47,8 @@ new Vue({
   created: function created() {
     this.fetchTeam();
   },
-  mounted () {
-  this.scrollToAnchor();
-},
 updated () {
-  this.scrollToAnchor();
+this.scrollToAnchor();
 },
   methods: {
 
@@ -94,9 +92,10 @@ updated () {
     },
     scrollToAnchor () {
   this.$nextTick(() => {
-    if(window.location.hash) {
+    if(window.location.hash && this.iniLoad==0) {
       const $el = document.getElementById(window.location.hash.substring(1));
       $el && window.scrollTo(0, $el.offsetTop);
+       this.iniLoad = 1;
     }
   });
 }
