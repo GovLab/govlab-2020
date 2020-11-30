@@ -46,6 +46,12 @@ new Vue({
   created: function created() {
     this.fetchTeam();
   },
+  mounted () {
+  this.scrollToAnchor();
+},
+updated () {
+  this.scrollToAnchor();
+},
   methods: {
 
     fetchTeam() {
@@ -85,6 +91,14 @@ new Vue({
     },
     teamMore(slug) {
       window.location.href= slug+'.html';
+    },
+    scrollToAnchor () {
+  this.$nextTick(() => {
+    if(window.location.hash) {
+      const $el = document.getElementById(window.location.hash.substring(1));
+      $el && window.scrollTo(0, $el.offsetTop);
     }
+  });
+}
   }
 });
