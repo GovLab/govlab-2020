@@ -6032,7 +6032,6 @@
 /governing-open-data-platforms-to-cultivate-innovation-ecosystems-the-case-of-the-government-of-buenos-aires/* https://blog.thegovlab.org/archive/governing-open-data-platforms-to-cultivate-innovation-ecosystems-the-case-of-the-government-of-buenos-aires
 /governing-through-other-means-behavioral-economics-and-choice-architecture/* https://blog.thegovlab.org/archive/governing-through-other-means-behavioral-economics-and-choice-architecture
 /government-by-the-people-with-the-people/* https://blog.thegovlab.org/archive/government-by-the-people-with-the-people
-/govlab-digest/* https://blog.thegovlab.org/archive/govlab-digest
 /govlab-editorial-board-meeting-links-7113/* https://blog.thegovlab.org/archive/govlab-editorial-board-meeting-links-7113
 /govlab-editorial-board-meeting-links-81613/* https://blog.thegovlab.org/archive/govlab-editorial-board-meeting-links-81613
 /govlab-editorial-board-meeting-links-8813/* https://blog.thegovlab.org/archive/govlab-editorial-board-meeting-links-8813
@@ -6267,6 +6266,8 @@
 /govlab-academy/govlab-academy-guest-speakers-series/	https://govlabacademy.org/
 /blog	https://blog.thegovlab.org/
 /govlab-digest	https://thelivinglib.org
+/govlab-digest*	https://thelivinglib.org
+/govlab-digest/*	https://thelivinglib.org
 /jobs/	https://thegovlab.org/jobs.html
 /selected-readings/behavioral-economics/*	https://thelivinglib.org/selected-readings/
 /selected-readings/civic-innovation/*	https://thelivinglib.org/selected-readings/
