@@ -32,6 +32,7 @@ new Vue({
       news_toggle:false,
       publications_toggle:false,
       projects_toggle:false,
+      events_toggle:false,
       meta_title:'',
       meta_content:'',
       meta_image: '',
@@ -88,7 +89,7 @@ metaInfo () {
     filter: {
       slug: self.memberslug
     },
-    fields: ['*.*','books.books_id.*','videos.directus_files_id.*','books.books_id.picture.*','projects.projects_id.*']
+    fields: ['*.*','books.books_id.*','videos.directus_files_id.*','books.books_id.picture.*','projects.projects_id.*','bio_events.events_id.*','bio_courses.courses_id.*']
   }
 ).then(data => {
 
@@ -98,7 +99,7 @@ metaInfo () {
     var textB = b.books_id.title.toUpperCase();
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 });
-console.log(data.data[0]);
+console.log('data', data.data[0]);
 
   self.memberData = data.data[0];
   self.meta_title = 'The Govlab '+self.memberData.name;
