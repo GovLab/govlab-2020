@@ -29,6 +29,7 @@ new Vue({
     return {
       eventsData: [],
       currentDate: '',
+      iniLoad: 0,
       more_body: false,
       meta_title: 'The GovLab | Events',
       meta_content: 'Deepening our understanding of how to govern more effectively and legitimately through technology.',
@@ -47,6 +48,9 @@ new Vue({
   created: function created() {
     this.fetchEvents();
   },
+updated () {
+this.scrollToAnchor();
+},
   methods: {
 
     fetchEvents() {
@@ -59,7 +63,7 @@ new Vue({
 
       client.getItems(
   'events',
-  {   
+  {
   //   filter: {
   //   talk: true
   // },
@@ -70,6 +74,7 @@ new Vue({
 
   this.currentDate = moment().tz("America/Toronto").format('YYYY-MM-DD');
   self.eventsData = data.data;
+  console.log(self.eventsData);
 
 })
 .catch(error => console.error(error));
@@ -86,6 +91,15 @@ new Vue({
     eventMore(link) {
       window.open(link, '_blank');
 
+    },
+    scrollToAnchor () {
+  this.$nextTick(() => {
+    if(window.location.hash && this.iniLoad==0) {
+      const $el = document.getElementById(window.location.hash.substring(1));
+      $el && window.scrollTo(0, $el.offsetTop);
+       this.iniLoad = 1;
     }
+  });
+}
   }
 });
