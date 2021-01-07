@@ -81,7 +81,7 @@ new Vue({
       progessAr: ['m-define','m-prototype','m-test','m-complete'],
       progess:'',
       meta_title: 'The GovLab | Project',
-      meta_image: 'https://www.thegovlab.org/static/img/govlab-og.png',
+      meta_image: '',
       meta_content: '',
       projectslug:'',
       apiURL: 'https://directus.thegovlab.com/thegovlab/items/projects'
