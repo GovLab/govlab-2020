@@ -183,7 +183,7 @@ client.getItems(
 
 }).then(data2 => {
     self.progess = self.progessAr[data2.data[0].progress];
-
+    console.log(data2.data[0]);
     self.meta_title = 'The GovLab | '+data2.data[0].name;
     self.meta_content = data2.data[0].description;
     self.meta_image =  data2.data[0].main_picture.data.full_url;
