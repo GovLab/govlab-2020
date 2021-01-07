@@ -110,7 +110,7 @@ new Vue({
           {property: 'og:title', content: this.meta_title},
           {property: 'og:site_name', content: 'The Govlab Project'},
           {property: 'og:type', content: 'website'},
-          {property: 'og:image', content:  this.meta_image},
+          {property: 'og:image', content: this.meta_image},
           {property: 'og:description', content:  this.meta_content},
           { itemprop:'name', content: this.meta_title},
           { itemprop:'image', content: this.meta_image},
