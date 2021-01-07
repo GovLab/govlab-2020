@@ -175,7 +175,7 @@ client.getItems(
     filter: {
       slug: self.projectslug
     },
-    fields: ['*.*','project_team.team_id.*','gallery.directus_files_id.*','project_team.team_id.picture.*']
+    fields: ['*.*','main_picture.*','project_team.team_id.*','gallery.directus_files_id.*','project_team.team_id.picture.*']
   }
   ).then(data => {
 
@@ -186,6 +186,7 @@ client.getItems(
 
     self.meta_title = 'The GovLab | '+data2.data[0].name;
     self.meta_content = data2.data[0].description;
+    self.meta_image =  data2.data[0].main_picture.data.thumbnails[3].url;
     self.items = data2.data[0].gallery;
     self.projectData = data2.data[0];
 
