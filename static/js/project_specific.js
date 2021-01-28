@@ -81,17 +81,40 @@ new Vue({
       progessAr: ['m-define','m-prototype','m-test','m-complete'],
       progess:'',
       meta_title: 'The GovLab | Project',
+      meta_image: '',
       meta_content: '',
       projectslug:'',
       apiURL: 'https://directus.thegovlab.com/thegovlab/items/projects'
   },
 
+  // metaInfo () {
+  //       return {
+  //         title: this.meta_title,
+  //         meta: [
+  //           {title: this.meta_title, property:'og:title'},
+  //     {  name: 'description', content: this.meta_content, property:'og:description'}
+  //   ]
+  //   }
+  // },
   metaInfo () {
         return {
           title: this.meta_title,
           meta: [
-            {title: this.meta_title, property:'og:title'},
-      {  name: 'description', content: this.meta_content, property:'og:description'}
+
+         {name: 'twitter:card', content: 'summary_large_image'},
+          {name: 'twitter:title', content: this.meta_title},
+          {name: 'twitter:description', content: this.meta_content},
+          // image must be an absolute path
+          {name: 'twitter:image', content: this.meta_image},
+          // Facebook OpenGraph
+          {property: 'og:title', content: this.meta_title},
+          {property: 'og:site_name', content: 'The Govlab Project'},
+          {property: 'og:type', content: 'website'},
+          {property: 'og:image', content: this.meta_image},
+          {property: 'og:description', content:  this.meta_content},
+          { itemprop:'name', content: this.meta_title},
+          { itemprop:'image', content: this.meta_image},
+          { itemprop:'description', content: this.meta_content}
     ]
     }
   },
@@ -106,7 +129,7 @@ mounted() {
     console.log(this.gallerInit);
     console.log('this mounted',this);
     console.log('window mounted',window);
-	  
+
     setTimeout(function () {
       $('.b-project-slider').slick({
           arrows: false,
@@ -152,7 +175,7 @@ client.getItems(
     filter: {
       slug: self.projectslug
     },
-    fields: ['*.*','project_team.team_id.*','gallery.directus_files_id.*','project_team.team_id.picture.*']
+    fields: ['*.*','main_picture.*','project_team.team_id.*','gallery.directus_files_id.*','project_team.team_id.picture.*']
   }
   ).then(data => {
 
@@ -160,9 +183,9 @@ client.getItems(
 
 }).then(data2 => {
     self.progess = self.progessAr[data2.data[0].progress];
-
     self.meta_title = 'The GovLab | '+data2.data[0].name;
     self.meta_content = data2.data[0].description;
+    self.meta_image =  data2.data[0].main_picture.data.full_url;
     self.items = data2.data[0].gallery;
     self.projectData = data2.data[0];
 
