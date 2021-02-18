@@ -3,21 +3,21 @@
 <html lang="en">
 
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40012093-4"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40012093-4"></script>
 
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-40012093-4');
-</script>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-40012093-4');
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>The Governance Lab</title>
-  <meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image">
+    <title>The Governance Lab</title>
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image">
 
     <script src="../static/vendor/slick.min.js"></script>
 
@@ -116,43 +116,28 @@
                 <h2 class="e-project-name">{{projectData.name}}</h2>
                 <h3 class="e-question">{{projectData.description}}</h3>
             </div>
-            <div class="e-wrap">
-                <div class="e-half">
-                    <div class="e-content">
+            <div class="e-wrap e-wrap-menu">
+                <div class="e-half e-menu">
+                    <div class="e-content e-menu">
+  
+                        <a :href="projectData.project_link" target="_blank" class="e-project-link"><span class="e-project-link-bg">Project Website</span></a>
+                        <a href="#description" v-if="projectData.description_full" class="e-project-link"><span class="e-project-link-bg">Project Description</span></a>
+                        <a href="#results" v-if="projectData.results" class="e-project-link"><span class="e-project-link-bg">Results and Impact</span></a>
+                        <a href="#more-info" v-if="projectData.more_about" class="e-project-link"><span class="e-project-link-bg">Additional Resources</span></a>
+                        <a href="#team" v-if="projectData.project_team" class="e-project-link"><span class="e-project-link-bg">Team</span></a>
 
-                        <a :href="projectData.project_link" target="_blank" class="e-project-link">Project Website<i
-                                class="material-icons">link</i></a>
 
-                        <ul class="e-tags">
-                            <h5>Governance Area</h5>
-                            <li v-if="projectData.governance_area">
-                                <span class="e-tag" v-for="etag in projectData.governance_area">{{etag}}</span><br>
-                            </li>
-                            <h5>Institution Type</h5>
-                            <li>
-                            <li v-if="projectData.institution_type">
-                                <span class="e-tag" v-for="etag in projectData.institution_type">{{etag}}</span><br>
-                            </li>
-                            <h5>Innovative Capability</h5>
-                            <li v-if="projectData.innovative_capability">
-                                <span class="e-tag"
-                                    v-for="etag in projectData.innovative_capability">{{etag}}</span><br>
-                            </li>
-                            <h5>Product Category</h5>
-                            <li v-if="projectData.product_category">
-                                <span class="e-tag" v-for="etag in projectData.product_category">{{etag}}</span><br>
-                            </li>
-                        </ul>
+
                     </div>
                 </div>
-                <div class="e-half">
+                <div class="e-half e-background-size">
                     <div class="e-content e-background">
                         <h4>Background</h4>
                         <p v-html="projectData.background"></p>
-
+                        <h4><span style="background-color:#ffffff14;text-transform: uppercase; padding: 10px 10px">Read more below</span></h4>
                     </div>
                 </div>
-                <div class="e-half">
+                <div class="e-half e-menu">
                     <div class="e-content">
                         <div class="e-location">
                             <h4>Location</h4>
@@ -161,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="e-half">
+                <div class="e-half e-background-size">
                     <div class="e-content">
                         <div class="e-partners">
                             <h4>Partners</h4>
@@ -174,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="e-progress" :class="progess"><span></span><span></span><span></span><span></span></div>
+
 
             </div>
         </section>
@@ -182,7 +167,7 @@
 
 
 
-        <section class="b-single-description m-slider" v-if="projectData.description_full">
+        <section id="description" class="b-single-description m-slider" v-if="projectData.description_full">
             <div class="e-wrap">
                 <h2>Description</h2>
                 <div class="e-description">
@@ -205,7 +190,7 @@
 
         </section>
 
-        <section class="b-single-results" v-if="projectData.results">
+        <section id="results" class="b-single-results" v-if="projectData.results">
             <div class="e-wrap">
                 <h2 class="e-title">Results &amp; Impact</h2>
                 <p v-html="projectData.results"></p>
@@ -214,7 +199,7 @@
 
 
 
-        <section class="b-single-related-content" v-if="projectData.more_about">
+        <section id="more-info" class="b-single-related-content" v-if="projectData.more_about">
             <h2>More About {{projectData.name}}</h2>
             <div class="e-wrap">
 
@@ -226,7 +211,7 @@
 
 
 
-        <section class="b-project-team" v-if="projectData.project_team">
+        <section id="team" class="b-project-team" v-if="projectData.project_team">
             <h2>Team</h2>
             <div class="e-container">
 

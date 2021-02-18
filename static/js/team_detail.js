@@ -99,6 +99,12 @@ metaInfo () {
     var textB = b.books_id.title.toUpperCase();
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 });
+  // Sort talks
+  data.data[0].bio_events.sort(function(a, b) {
+    var textA = a.events_id.from;
+    var textB = b.events_id.from;
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+});
 console.log('data', data.data[0]);
 
   self.memberData = data.data[0];

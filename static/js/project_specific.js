@@ -119,8 +119,11 @@ new Vue({
     }
   },
   created: function created() {
-    this.projectslug=window.location.href.split('/');
+    this.projectslug=window.location.href.split('?');
     this.projectslug = this.projectslug[this.projectslug.length - 1];
+    this.projectslug=this.projectslug.split('#');
+    this.projectslug = this.projectslug[0];
+    console.log(this.projectslug);
     this.fetchProject();
   },
 mounted() {
