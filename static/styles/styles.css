@@ -907,6 +907,21 @@ button:focus {
       color: white; }
     .b-footer .e-content .e-partner-logo {
       display: block; }
+      .e-our-funders {
+        text-align: center;
+        margin-top: 40px;
+      }
+      .e-content a.e-our-funders {
+        font-size: 1.1rem;
+        background-color: #ffffff18;
+        color: white;
+        padding: 0.5rem 1rem;
+        display: block; }
+        .e-content a.e-our-funders:hover {
+
+          background-color: #ffffff2f;
+          transition: 0.3s ease-in-out;
+   }
       .b-footer .e-content .e-partner-logo > img {
         max-width: 90%;
         padding: 10px 0;
