@@ -101,11 +101,16 @@ metaInfo () {
 });
   // Sort talks
   data.data[0].bio_events.sort(function(a, b) {
-    var textA = a.events_id.from;
-    var textB = b.events_id.from;
+
+    var textA = moment(a.events_id.from).format('X');
+    var textB = moment(b.events_id.from).format('X');
+    if(textA == 'Invalid date')textA = '1357018200';
+    if(textB == 'Invalid date')textB = '1357018200';
+    console.log(textA, textB);
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 });
-console.log('data', data.data[0]);
+data.data[0].bio_events.reverse();
+console.log('data', data.data[0].bio_events);
 
   self.memberData = data.data[0];
   self.meta_title = 'The Govlab '+self.memberData.name;
