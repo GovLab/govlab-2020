@@ -156,9 +156,10 @@
                     <a v-if="teammember.projects!='' && !teammember.extended_project" @click="showProj(teammember)" class="b-button m-naked" target="_blank">Projects<i class="material-icons">keyboard_arrow_down</i></a>
                     <a v-if="teammember.projects!='' && teammember.extended_project" @click="hideProj(teammember)" class="b-button m-naked" target="_blank">Projects<i class="material-icons">keyboard_arrow_up</i></a>
 
+
                     <div v-if="teammember.extended_project">
                       <div class="e-project project_list" v-for="project in teammember.projects">
-                          <a :href="project.projects_id.project_link">{{project.projects_id.name}}</a>
+                        <a v-if="project.projects_id" target="_blank" :href="project.projects_id.project_link">{{project.projects_id.name}}</a>
                       </div>
                     </div>
 
