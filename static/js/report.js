@@ -110,7 +110,7 @@ new Vue({
       var reportsection4 = document.getElementById('section4');
       var reportsection5 = document.getElementById('section5');
       var reportsection6 = document.getElementById('section6');
-
+      var endnotes_section = document.getElementById('endnotes');
       var intro = document.getElementsByClassName('toc-1');
       var section1 = document.getElementsByClassName('toc-2');
       var section2 = document.getElementsByClassName('toc-3');
@@ -118,7 +118,7 @@ new Vue({
       var section4 = document.getElementsByClassName('toc-5');
       var section5 = document.getElementsByClassName('toc-6');
       var section6 = document.getElementsByClassName('toc-7');
-
+      var endnotes = document.getElementsByClassName('toc-8');
       if(intro_section.offsetTop - 10 <= $(window).scrollTop()) {
         intro[0].classList.add("active");
         section1[0].classList.remove("active");
@@ -151,6 +151,11 @@ new Vue({
       if(reportsection6.offsetTop - 10 <= $(window).scrollTop()) {
         section5[0].classList.remove("active");
         section6[0].classList.add("active");
+        endnotes[0].classList.remove("active");
+      }  
+      if(endnotes_section.offsetTop - 10 <= $(window).scrollTop()) {
+        section6[0].classList.remove("active");
+        endnotes[0].classList.add("active");
       }   
     }
   }

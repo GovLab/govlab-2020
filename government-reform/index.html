@@ -98,7 +98,8 @@
                 <a class="toc-4" v-on:click="smoothScroll('section3')">3. Will Americans support a bigger federal workforce? </a>
                 <a class="toc-5" v-on:click="smoothScroll('section4')">4. What kind of government reform will Americans support?  </a>
                 <a class="toc-6" v-on:click="smoothScroll('section5')">5. Do Americans trust Biden to fix government? </a>
-                <a class="toc-7" v-on:click="smoothScroll('section6')" >6. Can Biden stop the breakdowns? </a>
+                <a class="toc-7" v-on:click="smoothScroll('section6')">6. Can Biden stop the breakdowns? </a>
+                <a class="toc-8" v-on:click="smoothScroll('endnotes')">Endnotes </a>
             </div>
      
         
@@ -124,6 +125,12 @@
 
 
             <div class="report-body" v-html="reportData[0].report_sections">
+
+            </div>
+            <div class="report-body">
+                <h4 id="endnotes">Endnotes</h4>
+            </div>
+            <div class="report-body" v-html="reportData[0].end_notes">
 
             </div>
         </div>
