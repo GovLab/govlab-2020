@@ -31,7 +31,7 @@ new Vue({
       authorData:[],
       maintag:[],
       subtag:[],
-      meta_title: 'The GovLab | Projects',
+      meta_title: 'The GovLab | Government Reform',
       meta_content: 'Building new technology to solve public problems. Our projects try to answer the questions that stand between today and more effective and legitimate governance tomorrow.',
       apiURL: 'https://directus.thegovlab.com/thegovlab/items/paul_light_report'
     }

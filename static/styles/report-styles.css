@@ -95,6 +95,23 @@ body{
  padding: 1rem 0rem;
  border-bottom: 2px solid #523080;
 }
+.report-body h6{
+  text-transform: uppercase;
+  margin-bottom:0;
+  color: #3d3d3d;
+  font-size: 1.1rem;
+  padding: 1rem;
+  background-color: #3d3d3d0e;
+ }
+ p#caption{
+  margin-bottom:0;
+  color: #523080;
+  padding: 10pt;
+  background-color: #5230800e;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+ }
 .report-body img{
   height:100%;
   width:100%;
@@ -152,9 +169,10 @@ a.endnote-item-button {
 }
 table{
   width: 100%;
+  font-size: 0.9rem;
 }
 table.table-3-column tr > td:nth-of-type(1){
-  width:75% !important;
+  width:60% !important;
 }
 tr:nth-of-type(1){
   background-color: #333333;
@@ -167,7 +185,7 @@ tr:nth-of-type(even){
   color: #3d3d3d;
 }
 td{
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 1rem;
 }
 tr > td:nth-of-type(1){
   font-weight: 600;
