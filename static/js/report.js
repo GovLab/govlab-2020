@@ -101,6 +101,7 @@ new Vue({
   element.scrollIntoView({ behavior: 'smooth'});
   console.log("trigger");
 },
+
     scrollToAnchor () {
 
       var intro_section = document.getElementById('introduction');

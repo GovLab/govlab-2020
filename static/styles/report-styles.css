@@ -95,6 +95,14 @@ body{
  padding: 1rem 0rem;
  border-bottom: 2px solid #523080;
 }
+.report-body a{
+  cursor: pointer;
+}
+.report-body a#ref_return{
+padding: 0.5rem 1rem;
+margin:0;
+background-color: #3d3d3d0e;
+}
 .report-body h6{
   text-transform: uppercase;
   margin-bottom:0;
