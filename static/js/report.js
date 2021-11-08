@@ -123,38 +123,80 @@ new Vue({
       if(intro_section.offsetTop - 10 <= $(window).scrollTop()) {
         intro[0].classList.add("active");
         section1[0].classList.remove("active");
+        section2[0].classList.remove("active");
+        section3[0].classList.remove("active");
+        section4[0].classList.remove("active");
+        section5[0].classList.remove("active");
+        section6[0].classList.remove("active");
+        endnotes[0].classList.remove("active");
       }   
       if(reportsection1.offsetTop - 10 <= $(window).scrollTop()) {
         intro[0].classList.remove("active");
         section1[0].classList.add("active");
         section2[0].classList.remove("active");
+        section3[0].classList.remove("active");
+        section4[0].classList.remove("active");
+        section5[0].classList.remove("active");
+        section6[0].classList.remove("active");
+        endnotes[0].classList.remove("active");
       }   
       if(reportsection2.offsetTop - 10 <= $(window).scrollTop()) {
-        section2[0].classList.add("active");
+        intro[0].classList.remove("active");
         section1[0].classList.remove("active");
+        section2[0].classList.add("active");
         section3[0].classList.remove("active");
+        section4[0].classList.remove("active");
+        section5[0].classList.remove("active");
+        section6[0].classList.remove("active");
+        endnotes[0].classList.remove("active");
       }   
       if(reportsection3.offsetTop - 10 <= $(window).scrollTop()) {
-        section3[0].classList.add("active");
+        intro[0].classList.remove("active");
+        section1[0].classList.remove("active");
         section2[0].classList.remove("active");
+        section3[0].classList.add("active");
         section4[0].classList.remove("active");
+        section5[0].classList.remove("active");
+        section6[0].classList.remove("active");
+        endnotes[0].classList.remove("active");
       }   
       if(reportsection4.offsetTop - 10 <= $(window).scrollTop()) {
-        section4[0].classList.add("active");
+        intro[0].classList.remove("active");
+        section1[0].classList.remove("active");
+        section2[0].classList.remove("active");
         section3[0].classList.remove("active");
+        section4[0].classList.add("active");
         section5[0].classList.remove("active");
+        section6[0].classList.remove("active");
+        endnotes[0].classList.remove("active");
       }   
       if(reportsection5.offsetTop - 10 <= $(window).scrollTop()) {
-        section5[0].classList.add("active");
+        intro[0].classList.remove("active");
+        section1[0].classList.remove("active");
+        section2[0].classList.remove("active");
+        section3[0].classList.remove("active");
         section4[0].classList.remove("active");
+        section5[0].classList.add("active");
         section6[0].classList.remove("active");
+        endnotes[0].classList.remove("active");
       }   
       if(reportsection6.offsetTop - 10 <= $(window).scrollTop()) {
+        intro[0].classList.remove("active");
+        section1[0].classList.remove("active");
+        section2[0].classList.remove("active");
+        section3[0].classList.remove("active");
+        section4[0].classList.remove("active");
         section5[0].classList.remove("active");
         section6[0].classList.add("active");
         endnotes[0].classList.remove("active");
       }  
       if(endnotes_section.offsetTop - 10 <= $(window).scrollTop()) {
+        intro[0].classList.remove("active");
+        section1[0].classList.remove("active");
+        section2[0].classList.remove("active");
+        section3[0].classList.remove("active");
+        section4[0].classList.remove("active");
+        section5[0].classList.remove("active");
         section6[0].classList.remove("active");
         endnotes[0].classList.add("active");
       }   
