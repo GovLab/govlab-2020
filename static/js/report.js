@@ -111,6 +111,7 @@ new Vue({
       var reportsection4 = document.getElementById('section4');
       var reportsection5 = document.getElementById('section5');
       var reportsection6 = document.getElementById('section6');
+      var reportsection7 = document.getElementById('section7');
       var endnotes_section = document.getElementById('endnotes');
       var intro = document.getElementsByClassName('toc-1');
       var section1 = document.getElementsByClassName('toc-2');
@@ -119,7 +120,8 @@ new Vue({
       var section4 = document.getElementsByClassName('toc-5');
       var section5 = document.getElementsByClassName('toc-6');
       var section6 = document.getElementsByClassName('toc-7');
-      var endnotes = document.getElementsByClassName('toc-8');
+      var section7 = document.getElementsByClassName('toc-8');
+      var endnotes = document.getElementsByClassName('toc-9');
       if(intro_section.offsetTop - 10 <= $(window).scrollTop()) {
         intro[0].classList.add("active");
         section1[0].classList.remove("active");
@@ -128,6 +130,7 @@ new Vue({
         section4[0].classList.remove("active");
         section5[0].classList.remove("active");
         section6[0].classList.remove("active");
+        section7[0].classList.remove("active");
         endnotes[0].classList.remove("active");
       }   
       if(reportsection1.offsetTop - 10 <= $(window).scrollTop()) {
@@ -138,6 +141,7 @@ new Vue({
         section4[0].classList.remove("active");
         section5[0].classList.remove("active");
         section6[0].classList.remove("active");
+        section7[0].classList.remove("active");
         endnotes[0].classList.remove("active");
       }   
       if(reportsection2.offsetTop - 10 <= $(window).scrollTop()) {
@@ -148,6 +152,7 @@ new Vue({
         section4[0].classList.remove("active");
         section5[0].classList.remove("active");
         section6[0].classList.remove("active");
+        section7[0].classList.remove("active");
         endnotes[0].classList.remove("active");
       }   
       if(reportsection3.offsetTop - 10 <= $(window).scrollTop()) {
@@ -158,6 +163,7 @@ new Vue({
         section4[0].classList.remove("active");
         section5[0].classList.remove("active");
         section6[0].classList.remove("active");
+        section7[0].classList.remove("active");
         endnotes[0].classList.remove("active");
       }   
       if(reportsection4.offsetTop - 10 <= $(window).scrollTop()) {
@@ -168,6 +174,7 @@ new Vue({
         section4[0].classList.add("active");
         section5[0].classList.remove("active");
         section6[0].classList.remove("active");
+        section7[0].classList.remove("active");
         endnotes[0].classList.remove("active");
       }   
       if(reportsection5.offsetTop - 10 <= $(window).scrollTop()) {
@@ -178,6 +185,7 @@ new Vue({
         section4[0].classList.remove("active");
         section5[0].classList.add("active");
         section6[0].classList.remove("active");
+        section7[0].classList.remove("active");
         endnotes[0].classList.remove("active");
       }   
       if(reportsection6.offsetTop - 10 <= $(window).scrollTop()) {
@@ -188,6 +196,18 @@ new Vue({
         section4[0].classList.remove("active");
         section5[0].classList.remove("active");
         section6[0].classList.add("active");
+        section7[0].classList.remove("active");
+        endnotes[0].classList.remove("active");
+      } 
+      if(reportsection7.offsetTop - 10 <= $(window).scrollTop()) {
+        intro[0].classList.remove("active");
+        section1[0].classList.remove("active");
+        section2[0].classList.remove("active");
+        section3[0].classList.remove("active");
+        section4[0].classList.remove("active");
+        section5[0].classList.remove("active");
+        section6[0].classList.remove("active");
+        section7[0].classList.add("active");
         endnotes[0].classList.remove("active");
       }  
       if(endnotes_section.offsetTop - 10 <= $(window).scrollTop()) {
@@ -198,6 +218,7 @@ new Vue({
         section4[0].classList.remove("active");
         section5[0].classList.remove("active");
         section6[0].classList.remove("active");
+        section7[0].classList.remove("active");
         endnotes[0].classList.add("active");
       }   
     }
