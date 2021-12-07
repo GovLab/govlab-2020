@@ -1,0 +1,250 @@
+body{
+  background-color: #ffffff;
+}
+.b-top-nav.report-page{
+
+
+}
+
+.report-sections{
+  top:0px;
+  height:400px;
+  width: 250px;
+  position: -webkit-sticky; /* for Safari users */
+  position: sticky;
+  float: left;
+  padding: 1rem 0.5rem;
+ display:flex;
+ flex-direction: column;
+}
+
+.report-sections a {
+  padding: 4px;
+  font-size: 14px;
+  color: #3d3d3dc5;
+  display: block;
+}
+.report-sections a:hover {
+  cursor: pointer;
+}
+.report-sections a.active {
+  padding: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3d3d3d;
+  display: block;
+}
+.report-sections p{
+  margin-bottom:0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #523080;
+  display: block;
+}
+
+.report-image{
+  background: linear-gradient(#00000000, #000000ef), url("../img/report-hero.jpg") no-repeat center; 
+  height:100vh;
+  z-index: -100;
+  position: relative;
+  background-size: cover;
+  background-position: top top;
+  background-blend-mode: multiply;
+  color: #3d3d3d;
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.title-box{
+  background-color: #ffffff;
+  margin: -17rem 15rem 0rem 15rem;
+  padding-bottom: 2rem;
+  /* border-top: 10px solid #F8A500; */
+}
+.report-title{
+ 
+  padding: 2rem 5rem 0rem 5rem;
+  text-align: left;
+  line-height: 1.5;
+
+}
+.report-title h1{
+  color: #333333;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding-bottom: 1rem;
+  font-size: 1.8rem;
+  border-bottom: 0.25px solid #3d3d3d9f;
+}
+.report-body{
+  padding: 0rem 5rem 0rem 5rem;
+  margin: 0rem 15rem 0 15rem;
+  text-align: left;
+  line-height: 1.5;
+
+}
+.report-body p{
+  margin-top:0;
+  padding-top:1rem;
+}
+.report-body h4{
+ text-transform: uppercase;
+ color: #3d3d3d;
+ font-size: 1.4rem;
+ padding: 1rem 0rem;
+ border-bottom: 2px solid #523080;
+}
+.report-body a{
+  cursor: pointer;
+}
+.report-body a#ref_return{
+padding: 0.5rem 1rem;
+margin:0;
+background-color: #3d3d3d0e;
+}
+.report-body h6{
+  text-transform: uppercase;
+  margin-bottom:0;
+  color: #3d3d3d;
+  font-size: 1.1rem;
+  padding: 1rem;
+  background-color: #3d3d3d0e;
+ }
+ p#caption{
+  margin-bottom:0;
+  color: #523080;
+  padding: 10pt;
+  background-color: #5230800e;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+ }
+.report-body img{
+  height:100%;
+  width:100%;
+}
+.row-wrap.authors{
+  display:flex;
+  flex-direction: row; 
+
+  padding: 0rem 5rem 4rem 5rem;
+  text-align: left;
+  line-height: 1.5;
+
+}
+.authors{
+  margin-right:20px; 
+  margin-top: 20px;
+
+  height: 10vh;
+  text-align: left;
+}
+.author-thumb{
+  width:60px;
+  height:60px; 
+  background-size: cover; 
+  background-repeat: no-repeat;
+  border-radius:60px;
+}
+.row-wrap.left-pad{
+  padding-left:5rem;
+}
+.author-name{
+  padding:10px; 
+  text-decoration: none; 
+  color: #3d3d3d;
+  font-weight: 500; 
+  font-size: 12pt;
+  font-weight: 400;
+  /* text-transform: uppercase; */
+  max-width:300px;
+}
+.author-title{
+  color: #3d3d3d;
+}
+.endnote-item{
+  background-color: #3d3d3d0a;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+a.endnote-item-button {
+  background-color: #3d3d3d;
+  font-size: 10pt;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+}
+table{
+  width: 100%;
+  font-size: 0.9rem;
+}
+table.table-3-column tr > td:nth-of-type(1){
+  width:60% !important;
+}
+tr:nth-of-type(1){
+  background-color: #333333;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+tr:nth-of-type(even){
+  background-color: #33333310;
+  color: #3d3d3d;
+}
+td{
+  padding: 0.25rem 1rem;
+}
+tr > td:nth-of-type(1){
+  font-weight: 600;
+}
+@media screen and (min-width: 769px) and (max-width: 1100px){
+  .author-name {
+    max-width:180px;
+  }
+  .title-box{
+    margin: -15rem 2rem 0rem 10rem;
+  }
+  .report-title{
+    padding: 2rem 5em 0rem 5rem;
+  }
+  .report-body{
+    padding: 0rem 5rem 0rem 5rem;
+    margin: 0rem 2rem 0 10rem;
+  }
+  .report-sections{
+    width:250px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+  .author-name {
+    max-width:180px;
+  }
+  table{
+    table-layout:fixed;
+    font-size: 0.9rem;
+  }
+  table.table-3-column{
+    table-layout: unset !important;
+  }
+  table.table-3-column tbody > tr > td:nth-of-type(1){
+    width:75% !important;
+  }
+  td{
+    padding: 0.1rem 0.5rem;
+  }
+  .title-box{
+    margin: -20rem 0rem 0rem 0rem;
+  }
+  .report-title{
+    padding: 2rem 1rem 0rem 1rem;
+  }
+  .report-body{
+    padding: 0rem 1rem 0rem 1rem;
+    margin: 0rem 0rem 0 0rem;
+  }
+  .report-sections{
+    display:none;
+  }
+}
