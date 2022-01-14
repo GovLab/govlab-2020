@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
+
 <title>The GovLab | Projects</title>
     <meta content="The GovLab | Projects" property="og:title"/>
     <meta content="Building new technology to solve public problems. Our projects try to answer the questions that stand between today and more effective and legitimate governance tomorrow." property="og:description">
@@ -14,7 +14,7 @@
     <script src="https://use.typekit.net/zez3buj.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
     <link href="static/img/favicon-transparent.png" rel="shortcut icon">
-    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="static/vendor/slick.css">
     <script src='https://www.thegovlab.org/static/vendor/slick.min.js'></script>
     <link rel="stylesheet" href="static/styles/styles.css">
-    
+
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <script>
@@ -40,7 +40,7 @@
         window.hdlh = {
           widget_key: "8bi8g1ygumkphadqnumx",
           primary_color: '#C1D37F',
-          logo: 'https://newjersey.github.io/cv/img/fas_logo.png', 
+          logo: 'https://newjersey.github.io/cv/img/fas_logo.png',
           brand: '',
           color_mode: 'dark',
           disable_authorship: true,
@@ -59,7 +59,7 @@
         ready_alert();
     }
     });
-    //The following code is to show the text box descring the widget. 
+    //The following code is to show the text box descring the widget.
     function ready_alert(){
         //delay text box to compensate for widget loading time
         setTimeout(function() {
@@ -73,17 +73,17 @@
     setTimeout(function() {
     document.getElementById("covid-19").style.display="none";
     }, 12000);
-    
-    
+
+
     };
       </script>
 
       <script src="https://momentjs.com/downloads/moment.js"></script>
 
-<script src="https://unpkg.com/@directus/sdk-js@5.3.4/dist/directus-sdk.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@directus/sdk-js@5.3.4/dist/directus-sdk.umd.min.js"></script>
 </head>
 <body id="" data-feedly-mini="yes">
-    
+
     <!-- Class for google material icons ".material-icons" -->
     <header class="b-top-nav ">
         <div class="e-nav-group">
@@ -125,9 +125,9 @@
         <a href="./job-board.html">Job Board</a>
         <a href="./contact.html">Contact</a>
     </nav>
-    
 
-    
+
+
 
 <div id='projectlist'>
     <section class="b-projects-landing b-top-section" >
@@ -149,15 +149,15 @@
                 <!-- <div :class="[listview ? ' e-project-group-list' : 'e-project-group']"> -->
                   <div class="e-project-group">
         <div class="e-project-item"  v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='How to open up government data for solving problems?'">
-    
+
             <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
             <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
             <div class="e-project-blurb">
                 <p>{{project.description}}</p>        </div>
         </div>
         </div>
-    
-    
+
+
             <h3 class="e-project-question"><strong>Data Collaboratives:</strong> How to create public value by exchanging data across sectors?</h3>
             <div class="e-project-group">
     <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='Data Collaboratives: How to create public value by exchanging data across sectors?'">
@@ -167,8 +167,8 @@
             <p>{{project.description}}</p>        </div>
     </div>
     </div>
-    
-    
+
+
         <h3 class="e-project-question">How to create an inter-disciplinary knowledge base of governance innovation?</h3>
         <div class="e-project-group">
     <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='How to create an inter-disciplinary knowledge base of governance innovation?'">
@@ -178,7 +178,7 @@
         <p>{{project.description}}</p>        </div>
     </div>
     </div>
-    
+
     <h3 class="e-project-question">How to leverage distributed ledger technologies to improve people's lives?</h3>
     <div class="e-project-group">
     <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='How to leverage distributed ledger technologies to improve people`s lives?'">
@@ -189,9 +189,9 @@
     </div>
     </div>
     </div>
-    
+
         </div>
-    
+
       </section>
       <section class="b-projects-list-wrapper m-collective-intelligence">
           <div class="e-project-type">
@@ -208,8 +208,8 @@
               <p>{{project.description}}</p>        </div>
       </div>
       </div>
-    
-    
+
+
     <h3 class="e-project-question"><b>CrowdLaw:</b> What is tech-enabled civic engagement in law and policymaking?</h3>
           <div class="e-project-group">
     <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='CrowdLaw: What is tech-enabled civic engagement in law and policymaking?'">
@@ -219,8 +219,8 @@
           <p>{{project.description}}</p>        </div>
     </div>
     </div>
-    
-    
+
+
       <h3 class="e-project-question"><b>Smarter Crowdsourcing:</b> How do we curate and tap global expertise to develop implementable solutions to intractable problems?</h3>
       <div class="e-project-group">
     <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='Smarter Crowdsourcing: How do we curate and tap global expertise to develop implementable solutions to intractable problems?'">
@@ -230,7 +230,7 @@
       <p>{{project.description}}</p>        </div>
     </div>
     </div>
-    
+
     <h3 class="e-project-question"><b>Public Entrepreneurship:</b> How can we enable the public and government officials to equip themselves with the skillset and mindset needed to solve complex public problems?</h3>
     <div class="e-project-group">
     <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='Public Entrepreneurship: How can we enable the public and government officials to equip themselves with the skillset and mindset needed to solve complex public problems?'">
@@ -241,16 +241,16 @@
     </div>
     </div>
     </div>
-    
+
       </div>
-    
+
     </section>
     <section class="b-projects-list-wrapper m-design-thinking">
         <div class="e-project-type">
             <!-- <h4>Smarter Governance Through</h4> -->
             <h2>Archives</h2>
     </div>
-    
+
     <div class="e-project-list">
       <h3 class="e-project-question"></h3>
       <div class="e-project-group">
@@ -265,12 +265,12 @@
     </div>
     </section>
     </div>
-    
-    </div>   
-    <script src='https://unpkg.com/vue@2.0.3/dist/vue.js'></script>
-    <script src="https://unpkg.com/vue-meta/dist/vue-meta.min.js"></script>
+
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/vue@2.0.3/dist/vue.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-meta/dist/vue-meta.min.js"></script>
     <script src="static/js/projects.js"></script>
-    
+
 
 
     <footer class='b-footer'>
@@ -313,13 +313,13 @@
         </div>
     </div>
     <div id="overlay"></div>
-    
+
     <script src="static/js/scripts.js"></script>
     <script src="static/vendor/slick.min.js"></script>
     <script src="static/vendor/EasePack.min.js"></script>
     <script src="static/vendor/rAF.js"></script>
     <script src="static/vendor/TweenLite.min.js"></script>
-    
+
 
 </body>
 </html>
