@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
+
 <title>The GovLab | Job Board</title>
 <meta content="The GovLab | Job Board" property="og:title" />
 <meta content="Current job openings at The Governance Lab at NYU Tandon School of Engineering."
@@ -15,7 +15,7 @@
     <script src="https://use.typekit.net/zez3buj.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
     <link href="static/img/favicon-transparent.png" rel="shortcut icon">
-    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="static/vendor/slick.css">
     <script src='https://www.thegovlab.org/static/vendor/slick.min.js'></script>
     <link rel="stylesheet" href="static/styles/styles.css">
-    
+
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <script>
@@ -41,7 +41,7 @@
         window.hdlh = {
           widget_key: "8bi8g1ygumkphadqnumx",
           primary_color: '#C1D37F',
-          logo: 'https://newjersey.github.io/cv/img/fas_logo.png', 
+          logo: 'https://newjersey.github.io/cv/img/fas_logo.png',
           brand: '',
           color_mode: 'dark',
           disable_authorship: true,
@@ -60,7 +60,7 @@
         ready_alert();
     }
     });
-    //The following code is to show the text box descring the widget. 
+    //The following code is to show the text box descring the widget.
     function ready_alert(){
         //delay text box to compensate for widget loading time
         setTimeout(function() {
@@ -74,17 +74,17 @@
     setTimeout(function() {
     document.getElementById("covid-19").style.display="none";
     }, 12000);
-    
-    
+
+
     };
       </script>
 
       <script src="https://momentjs.com/downloads/moment.js"></script>
 
-<script src="https://unpkg.com/@directus/sdk-js@5.3.4/dist/directus-sdk.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@directus/sdk-js@5.3.4/dist/directus-sdk.umd.min.js"></script>
 </head>
 <body id="" data-feedly-mini="yes">
-    
+
     <!-- Class for google material icons ".material-icons" -->
     <header class="b-top-nav ">
         <div class="e-nav-group">
@@ -126,9 +126,9 @@
         <a href="./job-board.html">Job Board</a>
         <a href="./contact.html">Contact</a>
     </nav>
-    
 
-    
+
+
 
 <div id="job-board" class="b-job-board" v-cloak >
     <section class="b-top-section">
@@ -143,26 +143,26 @@
             with partners in city, state, and national governments and other public interest organizations in the United
             States and around the world.</p>
 
-        
+
         <div class="" >
             <h2>Current Openings</h2>
             <!-- <p>There are currently no openings. Please check again soon.</p> -->
             <div v-for='(jobs, index) in jobData'>
-    
-        <p v-if="!jobs_toggle"><span class="b-button  m-naked" @click="toggle('jobs', index)">{{jobs.job_title}} <i
+
+        <p v-if="!jobs.toggle"><span class="b-button  m-naked" @click="toggle(index)">{{jobs.job_title}} <i
             class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i></span></p>
-        <p v-if="jobs_toggle"> <span class="b-button  m-naked"  @click="toggle('jobs', index)">{{jobs.job_title}}<i
+        <p v-if="jobs.toggle"> <span class="b-button  m-naked"  @click="toggle(index)">{{jobs.job_title}}<i
             class="material-icons"><i class="material-icons">keyboard_arrow_up</i></i></span></p>
         <section class="">
-            <div v-if="jobs_toggle==true && index_val==index" v-html="jobs.job_description"></div>
+            <div v-if="jobs.toggle" v-html="jobs.job_description"></div>
         </section>
 
         </div>
         </div>
     </div>
 </div>
-<script src='https://unpkg.com/vue@2.0.3/dist/vue.js'></script>
-<script src="https://unpkg.com/vue-meta/dist/vue-meta.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/vue@2.0.3/dist/vue.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-meta/dist/vue-meta.min.js"></script>
 <script src="static/js/jobs.js"></script>
 
 
@@ -207,13 +207,13 @@
         </div>
     </div>
     <div id="overlay"></div>
-    
+
     <script src="static/js/scripts.js"></script>
     <script src="static/vendor/slick.min.js"></script>
     <script src="static/vendor/EasePack.min.js"></script>
     <script src="static/vendor/rAF.js"></script>
     <script src="static/vendor/TweenLite.min.js"></script>
-    
+
 
 </body>
 </html>

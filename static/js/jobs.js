@@ -54,15 +54,18 @@ new Vue({
   }
 ).then(data => {
   console.log(data);
+  data.data.map(function(a,b){ a["toggle"] = false})
   self.jobData = data.data;
+
 
 })
 .catch(error => console.error(error));
     },
-    toggle(key, index) {
-      if(this[key+'_toggle'] == false) { this[key+'_toggle'] = true; this.index_val=index;}
-      else {this[key+'_toggle'] = false; this.index_val=1000;}
-      console.log(this[key+'_toggle']);
+    toggle(index) {
+      console.log(this.jobData[index]);
+      if(!this.jobData[index].toggle) { this.jobData[index].toggle = true;}
+      else {this.jobData[index].toggle = false;}
+      console.log(this.jobData[index].toggle);
     }
   }
 });
