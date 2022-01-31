@@ -3681,7 +3681,7 @@ button:focus {
     text-align: center; } }
 
 .b-report .b-top-section {
-  position: relative;
+  position: unset;
   background-color: #523080;
   padding-bottom: 80px; }
   .b-report .b-top-section h1, .b-report .b-top-section h2, .b-report .b-top-section h3 {
@@ -3781,6 +3781,11 @@ button:focus {
   margin-left: auto;
   margin-right: auto;
   padding-top: 60px; }
+  .b-report.b-workshop .e-wrap-col {
+    max-width: 1025px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 00px; }
   .b-report .e-wrap-col > div {
     max-width: 900px;
     margin: 0 auto; }
