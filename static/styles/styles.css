@@ -3714,6 +3714,16 @@ button:focus {
     bottom: -27px;
     text-align: center;
     width: 100%; }
+    .b-fold.b-workshop {
+      padding: 1rem 0;
+      text-align: center;
+      width: 100%; }
+      .b-fold.b-workshop .b-button {
+        
+        color: white;
+        background-color: #008ab3; }
+       .b-fold.b-workshop .b-button:hover {
+          background-color: #00769a; }
     .b-report .b-top-section .b-fold .b-button {
       color: white;
       background-color: #008ab3; }
