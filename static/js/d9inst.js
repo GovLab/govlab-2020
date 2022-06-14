@@ -40,8 +40,9 @@ new Vue({
     fetchD9Inst() {
       self = this;
       axios.get(this.apiURLD9+"items/thegovlab_directus9_instances").then(data => {
-
-        self.D9InsttData = data.data.data;
+        
+        self.D9InsttData = data.data.data.sort( function(a,b){  return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0});
+        
 
       }).catch(error => console.error(error));
     }
