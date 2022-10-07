@@ -123,6 +123,8 @@ new Vue({
     this.projectslug = this.projectslug[this.projectslug.length - 1];
     this.projectslug=this.projectslug.split('#');
     this.projectslug = this.projectslug[0];
+    this.projectslug = "project-open-data-demand";
+    
     console.log(this.projectslug);
     this.fetchProject();
   },

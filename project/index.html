@@ -214,15 +214,18 @@
         <section id="team" class="b-project-team" v-if="projectData.project_team">
             <h2>Team</h2>
             <div class="e-container">
-
-                <a v-for="member in projectData.project_team" class="e-person"
-                    :href="'http://www.thegovlab.org/team.html#' + member.team_id.slug">
-                    <div class="e-person-pic"
+                <template v-for="member in projectData.project_team">
+                    
+                <a   v-if="member.team_id" class="e-person"
+                    :href="'http://www.thegovlab.org/team.html#' + member.team_id.slug"> 
+             
+                   <div class="e-person-pic"
                         :style="{ backgroundImage: 'url(' + member.team_id.picture.data.thumbnails[3].url+ ')' }"></div>
                     <div class="e-team-info">
                         <h3 class="e-team-name">{{member.team_id.name}}</h3>
                     </div>
                 </a>
+                </template>
             </div>
         </section>
     </div>
