@@ -123,7 +123,7 @@ new Vue({
     this.projectslug = this.projectslug[this.projectslug.length - 1];
     this.projectslug=this.projectslug.split('#');
     this.projectslug = this.projectslug[0];
-  
+    this.projectslug = "project-open-data-demand";
     
     console.log(this.projectslug);
     this.fetchProject();
@@ -193,6 +193,8 @@ client.getItems(
     self.meta_image =  data2.data[0].main_picture.data.full_url;
     self.items = data2.data[0].gallery;
     self.projectData = data2.data[0];
+    console.log(self.projectData )
+    
 
 
 })

@@ -215,7 +215,7 @@
             <h2>Team</h2>
             <div class="e-container">
                 <template v-for="member in projectData.project_team">
-                    
+                    <!-- {{member}} -->
                 <a   v-if="member.team_id" class="e-person"
                     :href="'http://www.thegovlab.org/team.html#' + member.team_id.slug"> 
              
@@ -278,7 +278,8 @@
     </div>
     <div id="overlay"></div>
     <script src='https://unpkg.com/vue@2.0.3/dist/vue.js'></script>
-    <script src="https://unpkg.com/vue-meta/dist/vue-meta.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-meta@2.4.0/dist/vue-meta.min.js"></script>
+
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/project_specific.js"></script>
 
