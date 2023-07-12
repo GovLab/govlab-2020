@@ -30,6 +30,7 @@ new Vue({
       memberData: [],
       more_body: false,
       news_toggle:false,
+      awards_toggle:false,
       publications_toggle:false,
       projects_toggle:false,
       events_toggle:false,

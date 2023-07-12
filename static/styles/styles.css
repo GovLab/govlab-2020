@@ -3003,6 +3003,12 @@ button:focus {
           list-style-type: none;
           border-bottom: 1px solid rgba(0, 0, 0, 0.1);
           font-size: 14px; }
+          .b-fancy-bio .e-bio-section .e-main-content .e-collapsed .e-projects li li, .b-fancy-bio .e-bio-section .e-main-content .e-collapsed .e-additional-resources li li, .b-fancy-bio .e-bio-section .e-main-content .e-collapsed .e-selected-articles li li {
+            padding: 10px 0;
+            list-style-type: none;
+            border-bottom: none;
+            font-size: 14px; }
+
           .b-fancy-bio .e-bio-section .e-main-content .e-collapsed .e-projects li.m-borderless, .b-fancy-bio .e-bio-section .e-main-content .e-collapsed .e-additional-resources li.m-borderless, .b-fancy-bio .e-bio-section .e-main-content .e-collapsed .e-selected-articles li.m-borderless {
             border-bottom: none; }
       .b-fancy-bio .e-bio-section .e-main-content .e-collapsed.m-show {
