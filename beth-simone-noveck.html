@@ -208,9 +208,9 @@
                             <p v-if="event.events_id.talk" style="color: #888888; margin:0">{{event.events_id.desc_short}}</p></li>
                         
                         </div>
-                        <p v-if="!news_toggle"><span class="b-button  m-naked js-resources-toggle" @click="toggle('awards')">Awards <i
+                        <p v-if="!awards_toggle"><span class="b-button  m-naked js-resources-toggle" @click="toggle('awards')">Awards <i
                             class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i></span></p>
-                <p v-if="news_toggle"> <span class="b-button  m-naked js-resources-toggle"  @click="toggle('awards')">Awards<i
+                <p v-if="awards_toggle"> <span class="b-button  m-naked js-resources-toggle"  @click="toggle('awards')">Awards<i
                             class="material-icons"><i class="material-icons">keyboard_arrow_up</i></i></span></p>
                   <div class="e-additional-resources project_list" v-if="awards_toggle==true" v-html="memberData.awards"></div>
 
