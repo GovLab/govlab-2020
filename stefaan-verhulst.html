@@ -134,7 +134,12 @@
 <div class="b-fancy-bio" id="teamdetail" v-cloak>
     <div class="b-top-section">
         <div class="e-wrap">
-            <div class="e-pic" :style="{ backgroundImage: 'url(' + memberData.picture.data.thumbnails[3].url+ ')' }">
+            <div v-if="memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' +client.url+'/assets/'+  memberData.picture.id+ ')' }">
+                
+
+            </div>
+                        <div v-if="!memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' + memberData.picture_blog2020+ ')' }">
+                
 
             </div>
             <div class="e-info">
@@ -172,25 +177,35 @@
                         </li>
                     </ul>
                 </section>
-                <section class="e-section" v-if="memberData.videos != ''">
+                <section class="e-section" v-if="memberData.videos">
                     <h3>Videos</h3>
+                    
                     <ul>
-                          <li class="embed-container" v-for= "(video, index) in memberData.videos"  v-html='video.directus_files_id.data.embed.html'></li>
+                        <li v-for="video in memberData.videos">
+                            
+                            <div v-if="video.type[0]=='Vimeo'" class="embed-container"><iframe :src="'//player.vimeo.com/video/'+video.id+'?title=false&amp;byline=false&amp;portrait=false&amp;color=FFFFFF'" width="1920" height="1080" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>                    
+                        </li>
                     </ul>
 
                 </section>
                 <section class="e-section">
                     <h3>By {{memberData.name}}</h3>
 
-                    <ul class="e-books"  v-for= "(book, index) in memberData.books">
 
+                    <ul class="e-books"  v-for= "(book, index) in memberData.books">
                         <li>
+                            
                             <figure>
-                                <div class="e-image"
-                                    :style="{ backgroundImage: 'url(' + book.books_id.picture.data.thumbnails[3].url+ ')' }">
+                                <div v-if="book.books_id.picture" class="e-image"
+                                    :style="{ backgroundImage: 'url(' + client.url+'/assets/'+book.books_id.picture.id+ ')' }">
                                     <a :href="book.books_id.link"
                                         class="e-dark-panel">{{book.books_id.title}}</a>
                                 </div>
+                                <div v-if="!book.books_id.picture" class="e-image"
+                                :style="{ backgroundImage: 'url(' + book.books_id.picture_2020+ ')' }">
+                                <a :href="book.books_id.link"
+                                    class="e-dark-panel">{{book.books_id.title}}</a>
+                            </div>
                             </figure>
                         </li>
                     </ul>
@@ -198,9 +213,11 @@
                 <section class="e-section">
                     <h3>Downloads</h3>
                     <ul>
-                        <li><a :href="memberData.picture.data.thumbnails[5].url" target="_blank"
-                                class="file-beth-simone-noveck-1">{{memberData.name}}'s Photo <i
-                                    class="e-social-media-item fa fa-download"></i></a></li>
+                        <!-- <li><a :href="memberData.picture.data.thumbnails[5].url" target="_blank"
+                                class="file-beth-simone-noveck-1">Beth Simone Noveck's Photo <i
+                                    class="e-social-media-item fa fa-download"></i></a></li> -->
+                        <li><a :href="memberData.picture?client.url+'/assets/'+memberData.picture:memberData.picture_blog2020" target="_blank"
+                                class="file-beth-simone-noveck-2">{{memberData.name}}'s Photo in High Res <i class="e-social-media-item fa fa-download"></i></a></li>
                     </ul>
                 </section>
 
