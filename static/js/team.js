@@ -30,9 +30,11 @@ new Vue({
       teamData: [],
       iniLoad: 0,
       more_body: false,
+      client:'',
       meta_title: 'The GovLab | Team',
       meta_content: 'Deepening our understanding of how to govern more effectively and legitimately through technology.',
-      apiURL: 'https://directus.thegovlab.com/thegovlab/items/team?sort=order&fields=*,picture.*'
+      // apiURL: 'https://directus.thegovlab.com/thegovlab/items/team?sort=order&fields=*,picture.*'
+      apiURL: 'https://content.thegovlab.com/thegovlab/items/team?sort=order&fields=*,picture.*'
     }
   },
   metaInfo () {
@@ -54,15 +56,15 @@ this.scrollToAnchor();
 
     fetchTeam() {
       self = this;
-      const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
+      this.client = new DirectusSDK({
+        url: "https://content.thegovlab.com",
+        project: "/",
         storage: window.localStorage
       });
-
-      client.getItems(
+      this.client.getItems(
   'team',
   {
+    limit: '-1',
     sort: 'name',
     fields: ['*.*','picture.*','projects.projects_id.*']
   }

@@ -3860,3 +3860,9 @@ button:focus {
   font-feature-settings: 'liga'; }
 
 /*# sourceMappingURL=styles.css.map */
+#teamdetail .e-social-media
+{
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

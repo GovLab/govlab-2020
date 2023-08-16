@@ -28,6 +28,7 @@ new Vue({
   data () {
     return {
       memberData: [],
+      client:[],
       more_body: false,
       news_toggle:false,
       awards_toggle:false,
@@ -40,7 +41,8 @@ new Vue({
       twitter_title:'',
       twitter_image:'',
       twitter_desc:'',
-      apiURL: 'https://directus.thegovlab.com/thegovlab/items/team?filter[slug][like]=',
+      // apiURL: 'https://directus.thegovlab.com/thegovlab/items/team?filter[slug][like]=',
+      apiURL: 'https://content.thegovlab.com/items/team?filter[slug][like]=',
       apiApp: '&fields=*.*,books.books_id.*,videos.directus_files_id.*,projects.projects_id.*'
 
     }
@@ -78,13 +80,13 @@ metaInfo () {
 
     fetchTeamDetail() {
       self = this;
-      const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
+      this.client = new DirectusSDK({
+        url: "https://content.thegovlab.com/",
+        project: "/",
         storage: window.localStorage
       });
 
-      client.getItems(
+      this.client.getItems(
   'team',
   {
     filter: {
@@ -93,7 +95,7 @@ metaInfo () {
     fields: ['*.*','books.books_id.*','videos.directus_files_id.*','books.books_id.picture.*','projects.projects_id.*','bio_events.events_id.*','bio_courses.courses_id.*']
   }
 ).then(data => {
-
+  console.log(data)
   // Sort books
   data.data[0].books.sort(function(a, b) {
     var textA = a.books_id.title.toUpperCase();
@@ -107,7 +109,7 @@ metaInfo () {
     var textB = moment(b.events_id.from).format('X');
     if(textA == 'Invalid date')textA = '1357018200';
     if(textB == 'Invalid date')textB = '1357018200';
-    console.log(textA, textB);
+    
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 });
 data.data[0].bio_events.reverse();
@@ -116,7 +118,7 @@ console.log('data', data.data[0].bio_events);
   self.memberData = data.data[0];
   self.meta_title = 'The Govlab '+self.memberData.name;
   self.meta_content = self.memberData.bio_short;
-  self.meta_image = self.memberData.picture.data.full_url;
+  self.meta_image = self.memberData.picture;
 })
 .catch(error => console.error(error));
     },

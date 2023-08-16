@@ -92,7 +92,12 @@
 <div class="b-fancy-bio" id="teamdetail">
     <div class="b-top-section">
         <div class="e-wrap">
-            <div v-if="memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' + memberData.picture.data.thumbnails[3].url+ ')' }">
+            <div v-if="memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' +client.url+'/assets/'+  memberData.picture.id+ ')' }">
+                
+
+            </div>
+                        <div v-if="!memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' + memberData.picture_blog2020+ ')' }">
+                
 
             </div>
             <div class="e-info">
@@ -100,10 +105,12 @@
                 <div class="e-names">
                     <h1>{{memberData.name}}</h1>
                     <h2>{{memberData.title}}</h2>
-                    <div class="e-social-media e-nav-group">
-                        <a v-if="memberData.resources.Twitter != null" :href="memberData.resources.Twitter" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-twitter" aria-hidden="true"></i></a>
-                        <a v-if="memberData.resources.LinkedIn" :href="memberData.resources.LinkedIn" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-linkedIn" aria-hidden="true"></i></a>
-                        <a :href="memberData.resources.Medium" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-medium" aria-hidden="true"></i></a>
+                    <div class="e-social-media e-nav-group" >
+                        <div v-for="sm in memberData.resources">
+                        <a v-if="sm.name === 'Twitter'" :href=sm.link class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-twitter" aria-hidden="true"></i></a>
+                        <a  v-if="sm.name === 'LinkedIn'" :href=sm.link class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a v-if="sm.name === 'Medium'" :href=sm.link  class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-medium" aria-hidden="true"></i></a>
+                    </div>
                     </div>
                 </div>
 
@@ -136,14 +143,18 @@
                     <h3>Resources</h3>
                     <ul>
                         <li v-if="memberData.resources != null" v-for= "(ressources, index) in memberData.resources">
-                            <a :href="ressources" target="_blank">{{index}}</a>
+                            <a :href="ressources.link" target="_blank">{{ressources.name}}</a>
                         </li>
                     </ul>
                 </section>
-                <section class="e-section" v-if="memberData.videos != ''">
+                <section class="e-section" >
                     <h3>Videos</h3>
+                    
                     <ul>
-                        <li class="embed-container" v-for= "(video, index) in memberData.videos" v-if="video.directus_files_id.data" v-html='video.directus_files_id.data.embed.html'></li>
+                        <li v-for="video in memberData.videos">
+                            
+                            <div v-if="video.type[0]=='Vimeo'" class="embed-container"><iframe :src="'//player.vimeo.com/video/'+video.id+'?title=false&amp;byline=false&amp;portrait=false&amp;color=FFFFFF'" width="1920" height="1080" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>                    
+                        </li>
                     </ul>
 
                 </section>
@@ -154,11 +165,16 @@
                         <li>
                             
                             <figure>
-                                <div class="e-image"
-                                    :style="{ backgroundImage: 'url(' + book.books_id.picture.data.thumbnails[3].url+ ')' }">
+                                <div v-if="book.books_id.picture" class="e-image"
+                                    :style="{ backgroundImage: 'url(' + client.url+'/assets/'+book.books_id.picture.id+ ')' }">
                                     <a :href="book.books_id.link"
                                         class="e-dark-panel">{{book.books_id.title}}</a>
                                 </div>
+                                <div v-if="!book.books_id.picture" class="e-image"
+                                :style="{ backgroundImage: 'url(' + book.books_id.picture_2020+ ')' }">
+                                <a :href="book.books_id.link"
+                                    class="e-dark-panel">{{book.books_id.title}}</a>
+                            </div>
                             </figure>
                         </li>
                         <p v-if="book.books_id.title == 'Smart Citizens, Smarter State'" style="font-size:0.8rem">A Tech Republic Best Book of 2015<br>
@@ -168,12 +184,11 @@
                 <section class="e-section">
                     <h3>Downloads</h3>
                     <ul>
-                        <li><a :href="memberData.picture.data.thumbnails[5].url" target="_blank"
+                        <!-- <li><a :href="memberData.picture.data.thumbnails[5].url" target="_blank"
                                 class="file-beth-simone-noveck-1">Beth Simone Noveck's Photo <i
-                                    class="e-social-media-item fa fa-download"></i></a></li>
-                        <li><a href="https://directus.thegovlab.com/uploads/thegovlab/originals/f168cb90-ea46-4695-b6fe-7b6995b9a369.png" target="_blank"
-                                class="file-beth-simone-noveck-2">Beth Simone Noveck's Photo in High Res <i
-                                    class="e-social-media-item fa fa-download"></i></a></li>
+                                    class="e-social-media-item fa fa-download"></i></a></li> -->
+                        <li><a :href="memberData.picture?client.url+'/assets/'+memberData.picture:memberData.picture_blog2020" target="_blank"
+                                class="file-beth-simone-noveck-2">{{memberData.name}}'s Photo in High Res <i class="e-social-media-item fa fa-download"></i></a></li>
                     </ul>
                 </section>
 
@@ -192,9 +207,9 @@
                             <p v-if="event.events_id.talk" style="color: #888888; margin:0">{{event.events_id.desc_short}}</p></li>
                         
                         </div>
-                        <p v-if="!news_toggle"><span class="b-button  m-naked js-resources-toggle" @click="toggle('awards')">Awards <i
+                        <p v-if="!awards_toggle"><span class="b-button  m-naked js-resources-toggle" @click="toggle('awards')">Awards <i
                             class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i></span></p>
-                <p v-if="news_toggle"> <span class="b-button  m-naked js-resources-toggle"  @click="toggle('awards')">Awards<i
+                <p v-if="awards_toggle"> <span class="b-button  m-naked js-resources-toggle"  @click="toggle('awards')">Awards<i
                             class="material-icons"><i class="material-icons">keyboard_arrow_up</i></i></span></p>
                   <div class="e-additional-resources project_list" v-if="awards_toggle==true" v-html="memberData.awards"></div>
 
