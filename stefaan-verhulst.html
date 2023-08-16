@@ -171,9 +171,9 @@
             <aside class="b-sidebar">
                 <section class="e-section">
                     <h3>Resources</h3>
-                    <ul >
-                        <li v-for= "(ressources, index) in memberData.resources">
-                            <a :href="ressources" target="_blank">{{index}}</a>
+                    <ul>
+                        <li v-if="memberData.resources != null" v-for= "(ressources, index) in memberData.resources">
+                            <a :href="ressources.link" target="_blank">{{ressources.name}}</a>
                         </li>
                     </ul>
                 </section>
