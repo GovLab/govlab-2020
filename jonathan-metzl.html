@@ -92,7 +92,12 @@
 <div class="b-fancy-bio" id="teamdetail">
     <div class="b-top-section">
         <div class="e-wrap">
-            <div v-if="memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' + memberData.picture.data.thumbnails[3].url+ ')' }">
+            <div v-if="memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' +client.url+'/assets/'+  memberData.picture.id+ ')' }">
+                
+
+            </div>
+                        <div v-if="!memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' + memberData.picture_blog2020+ ')' }">
+                
 
             </div>
             <div class="e-info">
@@ -132,30 +137,56 @@
         <div class="e-wrap">
 
             <aside class="b-sidebar">
+                <!-- <section class="e-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li v-if="memberData.resources != null" v-for= "(ressources, index) in memberData.resources">
+                            <a :href="ressources.link" target="_blank">{{ressources.name}}</a>
+                        </li>
+                    </ul>
+                </section> -->
+                <!-- <section class="e-section" >
+                    <h3>Videos</h3>
+                    
+                    <ul>
+                        <li v-for="video in memberData.videos">
+                            
+                            <div v-if="video.type[0]=='Vimeo'" class="embed-container"><iframe :src="'//player.vimeo.com/video/'+video.id+'?title=false&amp;byline=false&amp;portrait=false&amp;color=FFFFFF'" width="1920" height="1080" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>                    
+                        </li>
+                    </ul>
 
-                <section class="e-section">
-                    <h3 v-if="memberData.books != ''">By {{memberData.name}}</h3>
+                </section> -->
+                <!-- <section class="e-section">
+                    <h3>By {{memberData.name}}</h3>
 
                     <ul class="e-books"  v-for= "(book, index) in memberData.books">
                         <li>
-
+                            
                             <figure>
-                                <div class="e-image"
-                                    :style="{ backgroundImage: 'url(' + book.books_id.picture.data.thumbnails[3].url+ ')' }">
+                                <div v-if="book.books_id.picture" class="e-image"
+                                    :style="{ backgroundImage: 'url(' + client.url+'/assets/'+book.books_id.picture.id+ ')' }">
                                     <a :href="book.books_id.link"
                                         class="e-dark-panel">{{book.books_id.title}}</a>
                                 </div>
+                                <div v-if="!book.books_id.picture" class="e-image"
+                                :style="{ backgroundImage: 'url(' + book.books_id.picture_2020+ ')' }">
+                                <a :href="book.books_id.link"
+                                    class="e-dark-panel">{{book.books_id.title}}</a>
+                            </div>
                             </figure>
                         </li>
-            
+                        <p v-if="book.books_id.title == 'Smart Citizens, Smarter State'" style="font-size:0.8rem">A Tech Republic Best Book of 2015<br>
+                            A Guardian Top Ten Book about Building Cities, 2019</p>
                     </ul>
-                </section>
+                </section> -->
                 <section class="e-section">
                     <h3>Downloads</h3>
                     <ul>
-                        <li><a :href="memberData.picture.data.thumbnails[5].url" target="_blank"
-                                class="file-beth-simone-noveck-1">{{memberData.name}}'s Photo <i
-                                    class="e-social-media-item fa fa-download"></i></a></li>
+                        <!-- <li><a :href="memberData.picture.data.thumbnails[5].url" target="_blank"
+                                class="file-beth-simone-noveck-1">Beth Simone Noveck's Photo <i
+                                    class="e-social-media-item fa fa-download"></i></a></li> -->
+                        <li><a href="https://thegovlab-files.nyc3.cdn.digitaloceanspaces.com/thegovlab-directus/uploads/thegovlab/originals/2f3a0585-9976-44f7-a9e8-d987c947256b.jpg" target="_blank"
+                                class="file-beth-simone-noveck-2">{{memberData.name}}'s Photo in High Res <i class="e-social-media-item fa fa-download"></i></a></li>
                     </ul>
                 </section>
 
@@ -172,10 +203,15 @@
                       <div class="e-additional-resources project_list" v-if="events_toggle==true" v-for="event in memberData.bio_events">
                           <li><a :href="event.events_id.link" v-if="event.events_id.talk" target="_blank">{{event.events_id.title}}</a><br>
                             <p v-if="event.events_id.talk" style="color: #888888; margin:0">{{event.events_id.desc_short}}</p></li>
-
+                        
                         </div>
+                        <!-- <p v-if="!awards_toggle"><span class="b-button  m-naked js-resources-toggle" @click="toggle('awards')">Awards <i
+                            class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i></span></p>
+                <p v-if="awards_toggle"> <span class="b-button  m-naked js-resources-toggle"  @click="toggle('awards')">Awards<i
+                            class="material-icons"><i class="material-icons">keyboard_arrow_up</i></i></span></p>
+                  <div class="e-additional-resources project_list" v-if="awards_toggle==true" v-html="memberData.awards"></div> -->
 
-
+                      
                       <p v-if="!news_toggle"><span class="b-button  m-naked js-resources-toggle" @click="toggle('news')">In the Media <i
                         class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i></span></p>
             <p v-if="news_toggle"> <span class="b-button  m-naked js-resources-toggle"  @click="toggle('news')">In the Media <i
@@ -187,8 +223,14 @@
                     <p v-if="publications_toggle"><span class="b-button m-naked js-articles-toggle" @click="toggle('publications')">Selected Publications <i
                                 class="material-icons"><i class="material-icons">keyboard_arrow_up</i></i></span></p>
                     <div class="e-selected-articles project_list" v-if="publications_toggle==true" v-html="memberData.publications"></div>
+                    <!-- <div v-if="!projects_toggle" class="b-button m-naked js-project-toggle"  @click="toggle('projects')">Recent Courses<i class="material-icons"><i
+                        class="material-icons">keyboard_arrow_down</i></i></div> -->
+            <!-- <div v-if="projects_toggle" class="b-button m-naked js-project-toggle" @click="toggle('projects')">Recent Courses<i class="material-icons"><i
+                        class="material-icons">keyboard_arrow_up</i></i></div> -->
+                        <!-- <div class="e-additional-resources project_list" v-if="projects_toggle==true" v-for="course in memberData.bio_courses">
 
-
+                            <li><a :href="course.courses_id.link" target="_blank">{{course.courses_id.title}}</a></li>
+                        </div> -->
 
                     <!-- <div v-if="!projects_toggle" class="b-button m-naked js-project-toggle"  @click="toggle('projects')">Beth's Projects <i class="material-icons"><i
                                 class="material-icons">keyboard_arrow_down</i></i></div>
@@ -202,7 +244,7 @@
                         <li v-for="project in memberData.projects" v-if="project.projects_id.past"><a :href="project.projects_id.link">{{project.projects_id.name}}</a></li>
                       </ul>
                     </div> -->
-                </div>
+                <!-- </div> -->
 
                 <!-- <div class="e-twitter">
                     <a class="twitter-timeline" href="https://twitter.com/bethnoveck"
