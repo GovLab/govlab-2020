@@ -151,11 +151,12 @@
                 <div class="e-names">
                     <h1>{{memberData.name}}</h1>
                     <h2>{{memberData.title}}</h2>
-                    <div class="e-social-media e-nav-group" v-if="memberData.resources">
-                        <a v-if="memberData.resources.Twitter != null" :href="memberData.resources.Twitter" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-twitter" aria-hidden="true"></i></a>
-                        <a v-if="memberData.resources.LinkedIn != null" :href="memberData.resources.LinkedIn" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-linkedin" aria-hidden="true"></i></a>
-                        <a v-if="memberData.resources.Medium" :href="memberData.resources.Medium" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-medium" aria-hidden="true"></i></a>
-
+                    <div class="e-social-media e-nav-group" >
+                        <div v-for="sm in memberData.resources">
+                        <a v-if="sm.name === 'Twitter'" :href=sm.link class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-twitter" aria-hidden="true"></i></a>
+                        <a  v-if="sm.name === 'LinkedIn'" :href=sm.link class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a v-if="sm.name === 'Medium'" :href=sm.link  class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-medium" aria-hidden="true"></i></a>
+                    </div>
                     </div>
                 </div>
 
