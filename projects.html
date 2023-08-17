@@ -148,9 +148,12 @@
                 <h3 class="e-project-question">How to open up <strong>government data</strong> for solving problems?</h3>
                 <!-- <div :class="[listview ? ' e-project-group-list' : 'e-project-group']"> -->
                   <div class="e-project-group">
-        <div class="e-project-item"  v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='How to open up government data for solving problems?'">
+        <div class="e-project-item"  v-for="project in projectsData" v-if="subtag[subtag.findIndex(s=>{return s.value==project.subtag})]  && subtag[subtag.findIndex(s=>{return s.value==project.subtag})].text=='How to open up government data for solving problems?'">
 
-            <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+            <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+
+
             <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
             <div class="e-project-blurb">
                 <p>{{project.description}}</p>        </div>
@@ -160,8 +163,10 @@
 
             <h3 class="e-project-question"><strong>Data Collaboratives:</strong> How to create public value by exchanging data across sectors?</h3>
             <div class="e-project-group">
-    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='Data Collaboratives: How to create public value by exchanging data across sectors?'">
-        <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag[subtag.findIndex(s=>{return s.value==project.subtag})]  && subtag[subtag.findIndex(s=>{return s.value==project.subtag})].text=='Data Collaboratives: How to create public value by exchanging data across sectors?'">
+          <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+
         <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
         <div class="e-project-blurb">
             <p>{{project.description}}</p>        </div>
@@ -171,8 +176,10 @@
 
         <h3 class="e-project-question">How to create an inter-disciplinary knowledge base of governance innovation?</h3>
         <div class="e-project-group">
-    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='How to create an inter-disciplinary knowledge base of governance innovation?'">
-    <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag[subtag.findIndex(s=>{return s.value==project.subtag})]  && subtag[subtag.findIndex(s=>{return s.value==project.subtag})].text=='How to create an inter-disciplinary knowledge base of governance innovation?'">
+      <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+
     <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
     <div class="e-project-blurb">
         <p>{{project.description}}</p>        </div>
@@ -181,8 +188,10 @@
 
     <h3 class="e-project-question">How to leverage distributed ledger technologies to improve people's lives?</h3>
     <div class="e-project-group">
-    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='How to leverage distributed ledger technologies to improve people`s lives?'">
-    <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag[subtag.findIndex(s=>{return s.value==project.subtag})]  && subtag[subtag.findIndex(s=>{return s.value==project.subtag})].text=='How to leverage distributed ledger technologies to improve people`s lives?'">
+      <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+
     <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
     <div class="e-project-blurb">
     <p>{{project.description}}</p>
@@ -201,8 +210,10 @@
           <div class="e-project-list">
               <h3 class="e-project-question">How do we build legitimacy and grow capacity by empowering local experts to solve public problems?</h3>
               <div class="e-project-group">
-      <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='How do we build legitimacy and grow capacity by empowering local experts to solve public problems?'">
-          <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+      <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag[subtag.findIndex(s=>{return s.value==project.subtag})]  && subtag[subtag.findIndex(s=>{return s.value==project.subtag})].text=='How do we build legitimacy and grow capacity by empowering local experts to solve public problems?'">
+            <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+
           <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
           <div class="e-project-blurb">
               <p>{{project.description}}</p>        </div>
@@ -212,8 +223,10 @@
 
     <h3 class="e-project-question"><b>CrowdLaw:</b> What is tech-enabled civic engagement in law and policymaking?</h3>
           <div class="e-project-group">
-    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='CrowdLaw: What is tech-enabled civic engagement in law and policymaking?'">
-      <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag[subtag.findIndex(s=>{return s.value==project.subtag})]  && subtag[subtag.findIndex(s=>{return s.value==project.subtag})].text=='CrowdLaw: What is tech-enabled civic engagement in law and policymaking?'">
+        <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+
       <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
       <div class="e-project-blurb">
           <p>{{project.description}}</p>        </div>
@@ -224,8 +237,10 @@
 
       <h3 class="e-project-question"><b>Smarter Crowdsourcing:</b> How do we curate and tap global expertise to develop implementable solutions to intractable problems?</h3>
       <div class="e-project-group">
-    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='Smarter Crowdsourcing: How do we curate and tap global expertise to develop implementable solutions to intractable problems?'">
-    <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag[subtag.findIndex(s=>{return s.value==project.subtag})]  && subtag[subtag.findIndex(s=>{return s.value==project.subtag})].text=='Smarter Crowdsourcing: How do we curate and tap global expertise to develop implementable solutions to intractable problems?'">
+      <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+
     <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
     <div class="e-project-blurb">
       <p>{{project.description}}</p>        </div>
@@ -234,8 +249,12 @@
 
     <h3 class="e-project-question"><b>Public Entrepreneurship:</b> How can we enable the public and government officials to equip themselves with the skillset and mindset needed to solve complex public problems?</h3>
     <div class="e-project-group">
-    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag.options.choices[project.subtag]=='Public Entrepreneurship: How can we enable the public and government officials to equip themselves with the skillset and mindset needed to solve complex public problems?'">
-    <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+    <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="subtag[subtag.findIndex(s=>{return s.value==project.subtag})]  && subtag[subtag.findIndex(s=>{return s.value==project.subtag})].text=='Public Entrepreneurship: How can we enable the public and government officials to equip themselves with the skillset and mindset needed to solve complex public problems?'">
+  
+        <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+        <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            
+
     <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
     <div class="e-project-blurb">
     <p>{{project.description}}</p>
@@ -255,8 +274,10 @@
     <div class="e-project-list">
       <h3 class="e-project-question"></h3>
       <div class="e-project-group">
-      <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="maintag.options.choices[project.maintag] == 'archives'">
-      <a :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture.data.thumbnails[3].url+ ')' }"></div></a>
+      <div class="e-project-item m-active-True" v-for="project in projectsData" v-if="maintag[maintag.findIndex(s=>{return s.value==project.maintag})]  && maintag[maintag.findIndex(s=>{return s.value==project.maintag})].text == 'archives'">
+        <a  v-if="!project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + project.main_picture_2020+ ')' }"></div></a>
+            <a v-if="project.picture" :href="'./project/'+project.slug"><div class="e-card-image " :style="{ backgroundImage: 'url(' + client.url+'assets/'+project.picture.id+ ')' }"></div></a>
+
       <h2><a :href="'./project/'+project.slug">{{project.name}}</a></h2>
       <div class="e-project-blurb">
       <p>{{project.description}}</p>

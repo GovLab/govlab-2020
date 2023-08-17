@@ -30,10 +30,11 @@ new Vue({
       projectsData: [],
       maintag:[],
       subtag:[],
+      client:[],
       listview: false,
       meta_title: 'The GovLab | Projects',
       meta_content: 'Building new technology to solve public problems. Our projects try to answer the questions that stand between today and more effective and legitimate governance tomorrow.',
-      apiURL: 'https://directus.thegovlab.com/thegovlab/items/projects'
+      apiURL: 'https://content.thegovlab.com/'
     }
   },
   metaInfo () {
@@ -52,24 +53,36 @@ new Vue({
 
     fetchProjects() {
       self = this;
-      const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
+      this.client= new DirectusSDK({
+        url: "https://content.thegovlab.com/",
+        project: "/",
         storage: window.localStorage
       });
 
-      client.getItems(
+      this.client.getItems(
   'projects',
   {
     sort: '-order',
-    fields: ['*.*','main_picture.*','subtag.*']
+    fields: ['*.*','main_picture.*','subtag.*'],
+    filter: {    status: {
+      _eq: "published"
+      
+    }},
+
   }
 ).then(data => {
+ console.log(data)
+ this.client.get('https://content.thegovlab.com/flows/trigger/75e27ce9-84a5-4c8b-bdf0-214126bce0b4').then(tags =>{
+  
+ self.maintag = tags.maintags
+ self.subtag = tags.subtags
+ var test = self.subtag[self.subtag.findIndex(s=>{returns.value==0})]
+ console.log(self.maintag, self.subtag, test);
+ })
 
-  client.getField("projects", "maintag").then(field => {self.maintag =field.data });
-  client.getField("projects", "subtag").then(field => {self.subtag =field.data });
 
-  console.log(self.maintag, self.subtag);
+
+  
   return data;
 
 }).then(data2 => {
