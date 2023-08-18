@@ -122,7 +122,7 @@
   
                         <a :href="projectData.project_link" target="_blank" class="e-project-link"><span class="e-project-link-bg">Project Website</span></a>
                         <a href="#description" v-if="projectData.description_full" class="e-project-link"><span class="e-project-link-bg">Project Description</span></a>
-                        <a href="#results" v-if="projectData.results" class="e-project-link"><span class="e-project-link-bg">Results and Impact</span></a>
+                        <a href="#results" v-if="projectData.results && projectData.results!= 'NULL'" class="e-project-link"><span class="e-project-link-bg">Results and Impact</span></a>
                         <a href="#more-info" v-if="projectData.more_about" class="e-project-link"><span class="e-project-link-bg">Additional Resources</span></a>
                         <a href="#team" v-if="projectData.project_team" class="e-project-link"><span class="e-project-link-bg">Team</span></a>
 
@@ -142,7 +142,7 @@
                         <div class="e-location">
                             <h4>Location</h4>
                             <div class="e-place" v-if="projectData.location" v-for="eplace in projectData.location">
-                                {{eplace}}</div>
+                                {{eplace.loc}}</div>
                         </div>
                     </div>
                 </div>
@@ -152,7 +152,7 @@
                             <h4>Partners</h4>
 
                             <div class="e-partner" v-if="projectData.partners" v-for="epartner in projectData.partners">
-                                {{epartner}}</div>
+                                {{epartner.partner}}</div>
 
 
 
@@ -176,10 +176,16 @@
 
                 </div>
             </div>
-
+            {{projectData.gallery_2020}}
             <div class="b-project-slider slick">
-                <div v-for="(pic, index) in items">
-                    <span><img class="e-project-image" :src="pic.directus_files_id.data.full_url" alt=""></span>
+                
+                <div v-if="projectData.gallery.length>0" v-for="pic in projectData.gallery">
+                    
+                    <span>
+                        <img class="e-project-image" :src="apiURL+'/assets/'+pic.directus_files_id" alt=""></span>
+                </div>
+                <div v-if="projectData.gallery.length<=0" v-for="pic  in projectData.gallery_2020">
+                    <span><img class="e-project-image" :src="picURL2020+pic.picture" alt=""></span>
                 </div>
             </div>
 
@@ -190,7 +196,7 @@
 
         </section>
 
-        <section id="results" class="b-single-results" v-if="projectData.results">
+        <section id="results" class="b-single-results" v-if="projectData.results && projectData.results!='NULL'">
             <div class="e-wrap">
                 <h2 class="e-title">Results &amp; Impact</h2>
                 <p v-html="projectData.results"></p>
@@ -199,29 +205,32 @@
 
 
 
-        <section id="more-info" class="b-single-related-content" v-if="projectData.more_about">
+        <section id="more-info" class="b-single-related-content" v-if="projectData.more_about && projectData.more_about!='NULL'">
             <h2>More About {{projectData.name}}</h2>
             <div class="e-wrap">
 
-                <div class="e-article" v-for="(link, name) in projectData.more_about"><a :href="link"
-                        target="_blank">{{name}}</a></div>
+                <div class="e-article" v-for="item in projectData.more_about"><a :href="item.link"
+                        target="_blank">{{item.title}}</a></div>
 
             </div>
         </section>
 
 
 
-        <section id="team" class="b-project-team" v-if="projectData.project_team">
+        <section id="team" class="b-project-team" v-if="projectData.project_team ">
             <h2>Team</h2>
             <div class="e-container">
-                <template v-for="member in projectData.project_team">
-                    <!-- {{member}} -->
+                <template v-for="member in projectData.project_team" v-if=" member.team_id.status != 'deleted'">
+                    
                 <a   v-if="member.team_id" class="e-person"
                     :href="'http://www.thegovlab.org/team.html#' + member.team_id.slug"> 
-             
-                   <div class="e-person-pic"
-                        :style="{ backgroundImage: 'url(' + member.team_id.picture.data.thumbnails[3].url+ ')' }"></div>
+                    
+                   <div v-if="!member.team_id.picture" class="e-person-pic"
+                        :style="{ backgroundImage: 'url(' +member.team_id.picture_blog2020+ ')' }"></div>
+                   <div v-if="member.team_id.picture" class="e-person-pic"
+                        :style="{ backgroundImage: 'url(' + apiURL+'/assets/'+member.team_id.picture.id+ ')' }"></div>
                     <div class="e-team-info">
+                        {{member.team_id.status}}
                         <h3 class="e-team-name">{{member.team_id.name}}</h3>
                     </div>
                 </a>
