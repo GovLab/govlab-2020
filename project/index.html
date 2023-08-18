@@ -220,7 +220,7 @@
         <section id="team" class="b-project-team" v-if="projectData.project_team ">
             <h2>Team</h2>
             <div class="e-container">
-                <template v-for="member in projectData.project_team" v-if=" member.team_id.status != 'deleted'">
+                <template v-for="member in projectData.project_team" v-if=" member.team_id && member.team_id.status && member.team_id.status != 'deleted'">
                     
                 <a   v-if="member.team_id" class="e-person"
                     :href="'http://www.thegovlab.org/team.html#' + member.team_id.slug"> 
@@ -230,7 +230,7 @@
                    <div v-if="member.team_id.picture" class="e-person-pic"
                         :style="{ backgroundImage: 'url(' + apiURL+'/assets/'+member.team_id.picture.id+ ')' }"></div>
                     <div class="e-team-info">
-                        {{member.team_id.status}}
+                        
                         <h3 class="e-team-name">{{member.team_id.name}}</h3>
                     </div>
                 </a>

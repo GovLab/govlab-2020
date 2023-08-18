@@ -85,7 +85,7 @@ new Vue({
       meta_image: '',
       meta_content: '',
       projectslug:'',
-      apiURL: 'https://content.thegovlab.com',
+      apiURL: 'https://content.thegovlab.com/',
       picURL2020: 'https://thegovlab-files.nyc3.cdn.digitaloceanspaces.com/thegovlab-directus/uploads/thegovlab/originals/'
   },
 
@@ -125,7 +125,7 @@ new Vue({
     this.projectslug = this.projectslug[this.projectslug.length - 1];
     this.projectslug=this.projectslug.split('#');
     this.projectslug = this.projectslug[0];
-    this.projectslug = "ai-ethics";
+    this.projectslug = "project-network-of-innovators";
     
     console.log(this.projectslug);
     this.fetchProject();
@@ -194,10 +194,11 @@ client.getItems(
     self.meta_title = 'The GovLab | '+data2.data[0].name;
     self.meta_content = data2.data[0].description;
     self.meta_image =  data2.data[0].picture ? data2.data[0].picture.id : data2.data[0].main_picture_2020
-    self.items = data2.data[0].gallery_2020;
-    console.log(data2.data[0].gallery);
+    self.items = data2.data[0].gallery? data2.data[0].gallery:data2.data[0].gallery_2020;
+    
     self.projectData = data2.data[0];
-    self.projectData.project_team.sort((a, b) => b.team_id.slug === 'stefaan-verhulst' || b.team_id.slug === 'beth-simone-noveck' ? 1 : -1);
+    // self.projectData.project_team.map(b=>{console.log(b.)})
+    self.projectData.project_team.sort((a, b) =>  b.team_id && b.team_id.slug && (b.team_id.slug == 'stefaan-verhulst' || b.team_id.slug == 'beth-simone-noveck') ? 1 : -1);
     // console.log(self.projectData )
     
 
