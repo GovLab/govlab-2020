@@ -204,8 +204,8 @@
         </section>
 
 
-
-        <section id="more-info" class="b-single-related-content" v-if="projectData.more_about && projectData.more_about!='NULL'">
+        
+        <section id="more-info" class="b-single-related-content" v-if="projectData.more_about && projectData.more_about.lenght <=0 && projectData.more_about!='NULL'">
             <h2>More About {{projectData.name}}</h2>
             <div class="e-wrap">
 
@@ -224,11 +224,11 @@
                     
                 <a   v-if="member.team_id" class="e-person"
                     :href="'http://www.thegovlab.org/team.html#' + member.team_id.slug"> 
-                    
+
                    <div v-if="!member.team_id.picture" class="e-person-pic"
                         :style="{ backgroundImage: 'url(' +member.team_id.picture_blog2020+ ')' }"></div>
                    <div v-if="member.team_id.picture" class="e-person-pic"
-                        :style="{ backgroundImage: 'url(' + apiURL+'/assets/'+member.team_id.picture.id+ ')' }"></div>
+                        :style="{ backgroundImage: 'url(' + apiURL+'assets/'+member.team_id.picture.id+ ')' }"></div>
                     <div class="e-team-info">
                         
                         <h3 class="e-team-name">{{member.team_id.name}}</h3>

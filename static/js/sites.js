@@ -28,7 +28,10 @@ new Vue({
   data () {
     return {
       sitesData: [],
-      apiURL: 'https://directus.thegovlab.com/thegovlab/items/sites'
+      client:[],
+      apiURL: 'https://content.thegovlab.com/',
+      picURL2020: 'https://thegovlab-files.nyc3.cdn.digitaloceanspaces.com/thegovlab-directus/uploads/thegovlab/originals/'
+
     }
   },
   created: function created() {
@@ -38,13 +41,13 @@ new Vue({
 
     fetchSites() {
       self = this;
-      const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
+      this.client = new DirectusSDK({
+        url: "https://content.thegovlab.com/",
+        project: "/",
         storage: window.localStorage
       });
 
-      client.getItems(
+      this.client.getItems(
   'sites',
   {
     fields: ['*.*','thumbnail.*']

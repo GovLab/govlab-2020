@@ -95,7 +95,8 @@
 <div class="b-events" id="event-page" v-cloak>
     <div class="e-wrap e-event-list">
         <h5>Upcoming Events</h5>
-        <div class="e-event-item" v-for="event in eventsData" :id="event.slug" v-if="event.status =='published' && event.from >= currentDate && event.talk == false">
+        
+        <div class="e-event-item" v-for="event in eventsData" :id="event.slug" v-if="event.status =='published' && event.from >= currentDate ">
             <div class="e-wrap">
                 <div class="e-event"  style="padding-bottom:20px">
                      <h5>{{event.title}}</h5>
@@ -114,7 +115,7 @@
         </div>
         <h5>Past Events</h5>
 
-        <div class="e-team-member" v-for="event in eventsData" :id="event.slug"  v-if="event.status =='published' && event.from <= currentDate && event.talk == false">
+        <div class="e-team-member" v-for="event in eventsData" :id="event.slug"  v-if="event.status =='published' && event.from <= currentDate && (event.talk == 0 || !event.talk)">
             <div class="e-wrap" >
                 <div class="e-event" style="padding-bottom:20px" >
                 </br>

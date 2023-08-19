@@ -31,12 +31,14 @@ new Vue({
   data () {
     return {
       pubData: [],
+      client:[],
       pubtitle:'',
       puburl:'',
       pub_date_order: 'asc',
       title_order: 'asc',
       meta_title: 'The GovLab | Publications',
-      meta_content: 'Deepening our understanding of how to govern more effectively and legitimately through technology.'
+      meta_content: 'Deepening our understanding of how to govern more effectively and legitimately through technology.',
+      picURL2020: 'https://thegovlab-files.nyc3.cdn.digitaloceanspaces.com/thegovlab-directus/uploads/thegovlab/originals/'
     }
   },
   metaInfo () {
@@ -55,15 +57,16 @@ new Vue({
 
     fetchPubs() {
       self = this;
-      const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
+      this.client = new DirectusSDK({
+        url: "https://content.thegovlab.com/",
+        project: "/",
         storage: window.localStorage
       });
 
-      client.getItems(
+      this.client.getItems(
   'publications',
   {
+    limit: '-1',
     sort: 'pub_date',
     fields: ['*.*','picture.*']
   }
@@ -78,7 +81,6 @@ new Vue({
     self = this;
     self.pubtitle = title;
     self.puburl = url;
-    console.log(self.pubtitle +' - '+self.puburl);
     this.$gtag.event('publication', {
     'event_category':'Publications',
     'event_label': self.pubtitle,

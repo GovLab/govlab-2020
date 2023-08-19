@@ -33,7 +33,7 @@ new Vue({
       more_body: false,
       meta_title: 'The GovLab | Events',
       meta_content: 'Deepening our understanding of how to govern more effectively and legitimately through technology.',
-      apiURL: 'https://directus.thegovlab.com/thegovlab/items/events?sort=from'
+      apiURL: 'https://content.thegovlab.com/thegovlab/items/events?sort=from'
     }
   },
   metaInfo () {
@@ -56,8 +56,8 @@ this.scrollToAnchor();
     fetchEvents() {
       self = this;
       const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
+        url: "https://content.thegovlab.com/",
+        project: "/",
         storage: window.localStorage
       });
 

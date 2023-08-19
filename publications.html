@@ -104,8 +104,10 @@
       </div>
 
       <div class="list">
-        <section class="b-page-section" v-for='pub in pubData'>
-        <div class="row" @click="accessPub(pub.title, pub.url)">
+
+        <section class="b-page-section" v-for='(pub,i) in pubData' v-if="pub.status=='published'">
+
+            <div class="row" @click="accessPub(pub.title, pub.url)">
           <div class="columns large-7 large-offset-1" >
 
               <a :href="pub.url"  class="" target="_blank">
@@ -125,7 +127,8 @@
 
           <a class="th " :href="pub.url" target="_blank">
 
-          <img :src="pub.picture.data.thumbnails[3].url">
+          <img v-if="pub.picture" :src="client.url+'assets/'+pub.picture.id">
+          <img v-if="!pub.picture" :src="picURL2020+pub.picture_2020">
           </a>
 
           </div>
