@@ -147,7 +147,7 @@
         <div class="" >
             <h2>Current Openings</h2>
             <!-- <p>There are currently no openings. Please check again soon.</p> -->
-            <div v-for='(jobs, index) in jobData'>
+            <div v-for='(jobs, index) in jobData' v-if="jobs.status == 'published'">
 
         <p v-if="!jobs.toggle"><span class="b-button  m-naked" @click="toggle(index)">{{jobs.job_title}} <i
             class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i></span></p>

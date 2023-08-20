@@ -31,7 +31,7 @@ new Vue({
       more_body: false,
       meta_title: 'The GovLab | Our Transparency',
       meta_content: 'GovLab Grants and Contracts since 2013.',
-      apiURL: 'https://directus.thegovlab.com/'
+      apiURL: 'https://content.thegovlab.com/'
     }
   },
   metaInfo () {
@@ -51,8 +51,8 @@ new Vue({
     fetchTeam() {
       self = this;
       const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
+        url: "https://content.thegovlab.com/",
+        project: "/",
         storage: window.localStorage
       });
 
