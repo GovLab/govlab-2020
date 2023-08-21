@@ -30,7 +30,7 @@ new Vue({
       jobData: [],
       jobs_toggle:false,
       index_val:1000,
-      apiURL: 'https://directus.thegovlab.com/'
+      apiURL: 'https://content.thegovlab.com/'
     }
   },
 
@@ -42,8 +42,8 @@ new Vue({
     fetchTeam() {
       self = this;
       const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
+        url: "https://content.thegovlab.com/",
+        project: "/",
         storage: window.localStorage
       });
 

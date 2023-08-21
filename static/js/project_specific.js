@@ -43,8 +43,8 @@ main();
 
 
 const client=  new DirectusSDK({
-  url: "https://directus.thegovlab.com/",
-  project: "thegovlab",
+  url: "https://content.thegovlab.com/",
+  project: "/",
   storage: window.localStorage
 })
 
@@ -75,6 +75,7 @@ new Vue({
     prevEl: '.swiper-button-prev'
   }
 },
+
       projectData: [],
       items: [],
       gallerInit: false,
@@ -84,7 +85,8 @@ new Vue({
       meta_image: '',
       meta_content: '',
       projectslug:'',
-      apiURL: 'https://directus.thegovlab.com/thegovlab/items/projects'
+      apiURL: 'https://content.thegovlab.com/',
+      picURL2020: 'https://thegovlab-files.nyc3.cdn.digitaloceanspaces.com/thegovlab-directus/uploads/thegovlab/originals/'
   },
 
   // metaInfo () {
@@ -123,7 +125,7 @@ new Vue({
     this.projectslug = this.projectslug[this.projectslug.length - 1];
     this.projectslug=this.projectslug.split('#');
     this.projectslug = this.projectslug[0];
-    //this.projectslug = "project-open-data-demand";
+    // this.projectslug = "project-data-assembly";
     
     console.log(this.projectslug);
     this.fetchProject();
@@ -180,20 +182,24 @@ client.getItems(
     filter: {
       slug: self.projectslug
     },
-    fields: ['*.*','main_picture.*','project_team.team_id.*','gallery.directus_files_id.*','project_team.team_id.picture.*']
+    fields: ['*.*','picture.*','project_team.team_id.*','gallery.*','project_team.team_id.picture.*']
   }
   ).then(data => {
 
   return data;
 
 }).then(data2 => {
+    console.log(data2)
     self.progess = self.progessAr[data2.data[0].progress];
     self.meta_title = 'The GovLab | '+data2.data[0].name;
     self.meta_content = data2.data[0].description;
-    self.meta_image =  data2.data[0].main_picture.data.full_url;
-    self.items = data2.data[0].gallery;
+    self.meta_image =  data2.data[0].picture ? data2.data[0].picture.id : data2.data[0].main_picture_2020
+    self.items = data2.data[0].gallery? data2.data[0].gallery:data2.data[0].gallery_2020;
+    
     self.projectData = data2.data[0];
-    console.log(self.projectData )
+    // self.projectData.project_team.map(b=>{console.log(b.)})
+    self.projectData.project_team.sort((a, b) =>  b.team_id && b.team_id.slug && (b.team_id.slug == 'stefaan-verhulst' || b.team_id.slug == 'beth-simone-noveck') ? 1 : -1);
+    // console.log(self.projectData )
     
 
 
