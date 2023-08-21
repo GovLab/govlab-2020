@@ -125,7 +125,7 @@ new Vue({
     this.projectslug = this.projectslug[this.projectslug.length - 1];
     this.projectslug=this.projectslug.split('#');
     this.projectslug = this.projectslug[0];
-    this.projectslug = "collective-intelligence";
+    // this.projectslug = "project-data-assembly";
     
     console.log(this.projectslug);
     this.fetchProject();
