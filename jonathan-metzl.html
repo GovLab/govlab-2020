@@ -92,7 +92,7 @@
 <div class="b-fancy-bio" id="teamdetail">
     <div class="b-top-section">
         <div class="e-wrap">
-            <div v-if="memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' +client.url+'/assets/'+  memberData.picture.id+ ')' }">
+            <div v-if="memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' +client.url+'assets/'+  memberData.picture.id+ ')' }">
                 
 
             </div>
@@ -164,7 +164,7 @@
                             
                             <figure>
                                 <div v-if="book.books_id.picture" class="e-image"
-                                    :style="{ backgroundImage: 'url(' + client.url+'/assets/'+book.books_id.picture.id+ ')' }">
+                                    :style="{ backgroundImage: 'url(' + client.url+'assets/'+book.books_id.picture.id+ ')' }">
                                     <a :href="book.books_id.link"
                                         class="e-dark-panel">{{book.books_id.title}}</a>
                                 </div>
@@ -185,7 +185,7 @@
                         <!-- <li><a :href="memberData.picture.data.thumbnails[5].url" target="_blank"
                                 class="file-beth-simone-noveck-1">Beth Simone Noveck's Photo <i
                                     class="e-social-media-item fa fa-download"></i></a></li> -->
-                        <li><a :href="memberData.picture?client.url+'/assets/'+memberData.picture:memberData.picture_blog2020" target="_blank"
+                        <li><a :href="memberData.picture?client.url+'assets/'+memberData.picture:memberData.picture_blog2020" target="_blank"
                                 class="file-beth-simone-noveck-2">{{memberData.name}}'s Photo in High Res <i class="e-social-media-item fa fa-download"></i></a></li>
                     </ul>
                 </section>
