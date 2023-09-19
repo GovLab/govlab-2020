@@ -167,7 +167,7 @@
                             <figure>
                                 <div v-if="book.books_id.picture" class="e-image"
                                     :style="{ backgroundImage: 'url(' + client.url+'assets/'+book.books_id.picture.id+ ')' }">
-                                    <a :href="book.books_id.link"
+                                    <a :href="book.books_id.link && book.books_id.link!= 'NULL'?book.books_id.link:'#'"
                                         class="e-dark-panel">{{book.books_id.title}}</a>
                                 </div>
                                 <div v-if="!book.books_id.picture" class="e-image"
