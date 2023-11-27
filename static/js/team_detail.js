@@ -89,10 +89,16 @@ metaInfo () {
       this.client.getItems(
   'team',
   {
+    limit: -1,
     filter: {
       slug: self.memberslug
     },
-    fields: ['*.*','books.books_id.*','videos.directus_files_id.*','books.books_id.picture.*','projects.projects_id.*','bio_events.events_id.*','bio_courses.courses_id.*']
+    fields: ['*.*','books.books_id.*','videos.directus_files_id.*','books.books_id.picture.*','projects.projects_id.*','bio_events.events_id.*','bio_courses.courses_id.*',],
+    deep: {
+      bio_events: {
+        _limit: -1
+      }
+    }
   }
 ).then(data => {
   console.log(data)
@@ -112,6 +118,7 @@ metaInfo () {
     
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 });
+console.log(data.data[0].bio_events);
 data.data[0].bio_events.reverse();
 console.log('data', data.data[0].bio_events);
 
