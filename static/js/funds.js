@@ -60,6 +60,7 @@ new Vue({
   'funders',
   {
     sort: 'name',
+    limit: -1,
     fields: ['*.*']
   }
 ).then(data => {
