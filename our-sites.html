@@ -101,7 +101,7 @@
     <div class="site-row">
         <div v-for="site in sitesData" class="site-column">
             <div class="site-item">
-                {{site.thumbnail}}
+
                 <a v-if="!site.thumbnail_2020" :href="site.url" class="thumb"
                     :style="{ backgroundImage: 'url(' + client.url +'assets/'+ site.thumbnail.id+ ')' }"></a>
                     <a v-if="site.thumbnail_2020" :href="site.url" class="thumb"
