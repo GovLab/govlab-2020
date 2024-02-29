@@ -3132,6 +3132,7 @@ button:focus {
 #beth-page-temp .e-section .embed-container {
   position: relative;
   padding-bottom: 56.25%;
+  margin-bottom: 20px;
   height: 0;
   overflow: hidden;
   max-width: 100%; }

@@ -152,8 +152,8 @@
                     
                     <ul>
                         <li v-for="video in memberData.videos">
-                            
                             <div v-if="video.type[0]=='Vimeo'" class="embed-container"><iframe :src="'//player.vimeo.com/video/'+video.id+'?title=false&amp;byline=false&amp;portrait=false&amp;color=FFFFFF'" width="1920" height="1080" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>                    
+                            <div v-if="video.type=='Youtube'" class="embed-container"><iframe :src="'https://www.youtube.com/embed/'+video.id" width="1920" height="1080" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div> 
                         </li>
                     </ul>
 
