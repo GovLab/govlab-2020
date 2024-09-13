@@ -161,7 +161,7 @@
                 <section class="e-section">
                     <h3>By {{memberData.name}}</h3>
 
-                    <ul class="e-books"  v-for= "(book, index) in memberData.books">
+                    <ul class="e-books"  v-for= "(book, index) in memberData.books.slice().sort((a, b) => a._ - b._)">
                         <li>
                             
                             <figure>
