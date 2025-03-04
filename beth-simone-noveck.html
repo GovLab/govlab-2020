@@ -19,7 +19,7 @@
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="static/vendor/normalize.css">
     <link rel="stylesheet" href="static/vendor/slick.css">
@@ -101,16 +101,14 @@
 
             </div>
             <div class="e-info">
-
                 <div class="e-names">
                     <h1>{{memberData.name}}</h1>
                     <h2>{{memberData.title}}</h2>
+         
                     <div class="e-social-media e-nav-group" >
-                        <div v-for="sm in memberData.resources">
-                        <a v-if="sm.name === 'Twitter'" :href=sm.link class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-twitter" aria-hidden="true"></i></a>
-                        <a  v-if="sm.name === 'LinkedIn'" :href=sm.link class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-linkedin" aria-hidden="true"></i></a>
-                        <a v-if="sm.name === 'Medium'" :href=sm.link  class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-medium" aria-hidden="true"></i></a>
-                    </div>
+                        <a href="https://www.linkedin.com/in/bethnoveck/" class="e-nav-item" target="_blank"><i class="e-social-media-item fa-brands  fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="https://bsky.app/profile/bethnoveck.bsky.social"  class="e-nav-item" target="_blank"><i class="e-social-media-item fa-brands fa-bluesky" aria-hidden="true"></i></a>
+                        <a href="http://rebootdemocracy.ai"  class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-rss" aria-hidden="true"></i></a>
                     </div>
                 </div>
 
@@ -137,7 +135,6 @@
 
     <div class="e-bio-section">
         <div class="e-wrap">
-
             <aside class="b-sidebar">
                 <section class="e-section">
                     <h3>Resources</h3>
@@ -208,8 +205,11 @@
                     <p v-if="events_toggle"> <span class="b-button  m-naked js-events-toggle"  @click="toggle('events')">Recent Talks <i
                                 class="material-icons"><i class="material-icons">keyboard_arrow_up</i></i></span></p>
                       <div class="e-additional-resources project_list" v-if="events_toggle==true" v-for="event in memberData.bio_events">
-                          <li><a :href="event.events_id.link" v-if="event.events_id.talk" target="_blank">{{event.events_id.title}}</a><br>
-                            <p v-if="event.events_id.talk" style="color: #888888; margin:0">{{event.events_id.desc_short}}</p></li>
+                          <li>
+                            {{event}}
+                            <a :href="event.events_id.link" v-if="event.events_id.talk" target="_blank">{{event.events_id.title}}</a><br>
+                            <p v-if="event.events_id.talk" style="color: #888888; margin:0">{{event.events_id.desc_short}}</p>
+                        </li>
                         
                         </div>
                         <p v-if="!awards_toggle"><span class="b-button  m-naked js-resources-toggle" @click="toggle('awards')">Awards <i
