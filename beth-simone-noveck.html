@@ -206,9 +206,9 @@
                                 class="material-icons"><i class="material-icons">keyboard_arrow_up</i></i></span></p>
                       <div class="e-additional-resources project_list" v-if="events_toggle==true" v-for="event in memberData.bio_events">
                           <li>
-                            {{event}}
-                            <a :href="event.events_id.link" v-if="event.events_id.talk" target="_blank">{{event.events_id.title}}</a><br>
-                            <p v-if="event.events_id.talk" style="color: #888888; margin:0">{{event.events_id.desc_short}}</p>
+                  
+                            <a :href="event.events_id.link" target="_blank">{{event.events_id.title}}</a><br>
+                            <p style="color: #888888; margin:0">{{event.events_id.desc_short}}</p>
                         </li>
                         
                         </div>
