@@ -29,7 +29,7 @@ new Vue({
     return {
       sitesData: [],
       client:[],
-      apiURL: 'https://content.thegovlab.com/',
+      apiURL: 'https://directus.theburnescenter.org/',
       picURL2020: 'https://thegovlab-files.nyc3.cdn.digitaloceanspaces.com/thegovlab-directus/uploads/thegovlab/originals/'
 
     }
@@ -42,7 +42,7 @@ new Vue({
     fetchSites() {
       self = this;
       this.client = new DirectusSDK({
-        url: "https://content.thegovlab.com/",
+        url: "https://directus.theburnescenter.org/",
         project: "/",
         storage: window.localStorage
       });

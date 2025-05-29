@@ -34,7 +34,7 @@ new Vue({
       listview: false,
       meta_title: 'The GovLab | Projects',
       meta_content: 'Building new technology to solve public problems. Our projects try to answer the questions that stand between today and more effective and legitimate governance tomorrow.',
-      apiURL: 'https://content.thegovlab.com/'
+      apiURL: 'https://directus.theburnescenter.org/'
     }
   },
   metaInfo () {
@@ -54,7 +54,7 @@ new Vue({
     fetchProjects() {
       self = this;
       this.client= new DirectusSDK({
-        url: "https://content.thegovlab.com/",
+        url: "https://directus.theburnescenter.org/",
         project: "/",
         storage: window.localStorage
       });
@@ -72,7 +72,7 @@ new Vue({
   }
 ).then(data => {
  console.log(data)
- this.client.get('https://content.thegovlab.com/flows/trigger/75e27ce9-84a5-4c8b-bdf0-214126bce0b4').then(tags =>{
+ this.client.get('https://directus.theburnescenter.org/flows/trigger/75e27ce9-84a5-4c8b-bdf0-214126bce0b4').then(tags =>{
   
  self.maintag = tags.maintags
  self.subtag = tags.subtags
