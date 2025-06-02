@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../static/vendor/slick.css">
     <link rel="stylesheet" href="../static/styles/styles.css">
     <link rel="stylesheet" href="../static/styles/report-styles.css">
-    </script>
+    <!-- Removed closing </script> tag here, it was misplaced -->
     <script src="https://unpkg.com/@directus/sdk-js@5.3.4/dist/directus-sdk.umd.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script>
@@ -38,9 +38,8 @@
         ga('create', 'UA-40012093-4', 'auto');
         ga('send', 'pageview');
     </script>
-
-
 </head>
+
 <!-- Class for google material icons ".material-icons" -->
 <header class="b-top-nav report-page">
     <div class="e-nav-group">
@@ -66,7 +65,6 @@
             href="./our-sites.html">OUR SITES</a>
         <a href="https://twitter.com/TheGovLab" class="e-nav-item" target="_blank"><i
                 class="e-social-media-item fa fa-twitter"></i></a>
-        <!-- <a href="#" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-facebook"></i></a> -->
         <a href="https://www.youtube.com/user/TheGovLab" class="e-nav-item" target="_blank"><i
                 class="e-social-media-item fa fa-youtube-play"></i></a>
     </div>
@@ -78,7 +76,6 @@
     <a href="./about.html">About</a>
     <a href="./projects.html">Projects</a>
     <a href="./events.html">Events</a>
-    <!-- <a href="./events.html">Events</a> -->
     <a href="./publications.html">Publications</a>
     <a href="./team.html">Team</a>
     <a href="./global-advisory-council.html">Global Advisory Council</a>
@@ -88,53 +85,66 @@
 </nav>
 
 <body>
-    <div class="report-row" id="reportpage" v-on:scroll="scrollToAnchor">
+    <!--
+        Note: The v-on:scroll="scrollToAnchor" was on the #reportpage div.
+        However, the actual scroll event that matters for page position is usually on `window`.
+        The Vue component's created hook already adds a window scroll listener.
+        If #reportpage itself is a scrollable container, then v-on:scroll here is fine.
+        Assuming window scroll for now based on the JS.
+    -->
+    <div class="report-row" id="reportpage">
         <div class="report-image"></div>
         <div class="report-sections">
             <p>TABLE OF CONTENTS</p>
-            <a class="toc-1" v-on:click="smoothScroll('introduction')">Introduction</a>
-            <a class="toc-2" v-on:click="smoothScroll('section1')">1. Do Americans still favor very major reform? </a>
-            <a class="toc-3" v-on:click="smoothScroll('section2')">2. Do Americans still favor a bigger government that provides more services? </a>
-            <a class="toc-4" v-on:click="smoothScroll('section3')">3. How big is the federal government’s blended workforce?
-            </a>
-            <a class="toc-5" v-on:click="smoothScroll('section4')">4. What kind of government reform will Americans
-                support? </a>
-            <a class="toc-6" v-on:click="smoothScroll('section5')">5. Do Americans trust Biden to fix government? </a>
-            <a class="toc-7" v-on:click="smoothScroll('section6')">6. Can Biden stop the breakdowns? </a>
-            <a class="toc-8" v-on:click="smoothScroll('section7')">A simple recommendation </a>
-            <a class="toc-9" v-on:click="smoothScroll('endnotes')">Endnotes </a>
+            <!-- Only show TOC links if report data is available to ensure section IDs exist -->
+            <template v-if="reportData.length > 0 && reportData[0]">
+                <a class="toc-1" v-on:click="smoothScroll('introduction')">Introduction</a>
+                <a class="toc-2" v-on:click="smoothScroll('section1')">1. Do Americans still favor very major reform? </a>
+                <a class="toc-3" v-on:click="smoothScroll('section2')">2. Do Americans still favor a bigger government that provides more services? </a>
+                <a class="toc-4" v-on:click="smoothScroll('section3')">3. How big is the federal government’s blended workforce?</a>
+                <a class="toc-5" v-on:click="smoothScroll('section4')">4. What kind of government reform will Americans support? </a>
+                <a class="toc-6" v-on:click="smoothScroll('section5')">5. Do Americans trust Biden to fix government? </a>
+                <a class="toc-7" v-on:click="smoothScroll('section6')">6. Can Biden stop the breakdowns? </a>
+                <a class="toc-8" v-on:click="smoothScroll('section7')">A simple recommendation </a>
+                <a class="toc-9" v-on:click="smoothScroll('endnotes')">Endnotes </a>
+            </template>
+            <p v-else>Loading table of contents...</p>
         </div>
 
 
         <div class="report">
+            <!-- v-if condition to wait for data -->
+            <template v-if="reportData.length > 0 && reportData[0] && authorData.length > 0 && authorData[0]">
+                <div class="title-box">
+                    <div class="report-title">
+                        <h1>{{reportData[0].title}}</h1>
+                    </div>
+                    <div class="report-author">
+                        <div class="row-wrap center authors">
+                            <!-- Add v-if for potentially missing nested properties for robustness -->
+                            <div class="author-thumb"
+                                v-if="authorData[0].picture"
+                                :style="{ backgroundImage: 'url( https://directus.theburnescenter.org/assets/'+ authorData[0].picture.filename_disk + ')' }">
+                            </div>
+                            <div v-else class="author-thumb"> <!-- Placeholder or empty style --> </div>
 
-            <div class="title-box">
-                <div class="report-title">
-                    <h1>{{reportData[0].title}}</h1>
-                </div>
-                <div class="report-author">
-
-                    <div class="row-wrap center authors">
-                        <div class="author-thumb"
-                            :style="{ backgroundImage: 'url(' + authorData[0].picture.data.thumbnails[3].url+ ')' }">
+                            <a class="author-name" href="http://www.thegovlab.org/team.html#paul-light" target="_blank">
+                                Paul C. Light<br><span class="author-title">Senior Fellow</span>
+                                <!-- You could also dynamically load author name if it comes from API: {{ authorData[0].name }} -->
+                            </a>
                         </div>
-
-                        <a class="author-name" href="http://www.thegovlab.org/team.html#paul-light" target="_blank">Paul
-                            C. Light<br><span class="author-title">Senior Fellow</span></a>
                     </div>
                 </div>
 
-            </div>
-
-
-            <div class="report-body" v-html="reportData[0].report_sections">
-
-            </div>
-            <div class="report-body">
-                <h4 id="endnotes">Endnotes</h4>
-            </div>
-            <div class="report-body" v-html="reportData[0].end_notes">
-
+                <div class="report-body" v-html="reportData[0].report_sections"></div>
+                <div class="report-body">
+                    <h4 id="endnotes">Endnotes</h4> <!-- Ensure this ID matches if used by smoothScroll -->
+                </div>
+                <div class="report-body" v-html="reportData[0].end_notes"></div>
+            </template>
+            <!-- Optional: Add a loading indicator -->
+            <div v-else>
+                <p>Loading report content...</p>
             </div>
         </div>
     </div>
@@ -146,7 +156,6 @@
             <a href="./">Home</a>
             <a href="./about.html">About</a>
             <a href="./projects.html">Projects</a>
-            <!-- <a href="./events.html">Events</a> -->
             <a href="./events.html">Events</a>
             <a href="./publications.html">Publications</a>
             <a href="./team.html">Team</a>
@@ -174,7 +183,7 @@
 <script src='https://unpkg.com/vue@2.0.3/dist/vue.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-meta@2.4.0/dist/vue-meta.min.js"></script>
 <script src="../static/js/report.js"></script>
-<script src="../static/js/scripts.js"></script>
+<script src="../static/js/scripts.js"></script> <!-- Make sure this doesn't interfere or try to manipulate DOM before Vue -->
 <script src="../static/vendor/slick.min.js"></script>
 <script src="../static/vendor/EasePack.min.js"></script>
 <script src="../static/vendor/rAF.js"></script>

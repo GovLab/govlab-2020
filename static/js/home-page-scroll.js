@@ -1,5 +1,5 @@
 const client=  new DirectusSDK({
-  url: "https://directus.thegovlab.com/",
+  url: "https://directus.theburnescenter.org/",
   project: "thegovlab",
   storage: window.localStorage
 })

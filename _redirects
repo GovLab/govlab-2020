@@ -7,7 +7,7 @@
 /tag/ https://blog.thegovlab.org/?q=tag
 
 ### PDF and fiel redirects ###
-/wordpress/wp-content/uploads/* https://directus.thegovlab.com/uploads/thegovlab/blog_img_archive/:splat
+/wordpress/wp-content/uploads/* https://directus.theburnescenter.org/uploads/thegovlab/blog_img_archive/:splat
 
 ### Project Redirect ###
 /project/*  /project/index.html?:splat  200
@@ -6330,8 +6330,8 @@
 /what-we-are-inspired-by/* https://thelivinglib.org
 /about/team/beth-simone-noveck/* https://thegovlab.org/beth-simone-noveck
 /contact-us/* https://thegovlab.org/contact.html
-/observatory/re-imagining-governance-map/* https://directus.thegovlab.com/uploads/thegovlab/blog_img_archive/2013/06/GovLabMapDocument.pdf
-/observatory/toward-metrics/* https://directus.thegovlab.com/uploads/thegovlab/blog_img_archive/2013/06/GovLabMapDocument.pdf
+/observatory/re-imagining-governance-map/* https://directus.theburnescenter.org/uploads/thegovlab/blog_img_archive/2013/06/GovLabMapDocument.pdf
+/observatory/toward-metrics/* https://directus.theburnescenter.org/uploads/thegovlab/blog_img_archive/2013/06/GovLabMapDocument.pdf
 /videos/* https://www.youtube.com/user/TheGovLab
 /downloads/* https://thegovlab.org/
 /my-account/* https://thegovlab.org/

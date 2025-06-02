@@ -5,7 +5,17 @@
 const TYPE_BACK_FORWARD = 2;
 
 function isReloadedPage() {
-  return performance.navigation.type === TYPE_BACK_FORWARD;
+  // performance.navigation is deprecated.
+  // Use PerformanceNavigationTiming for modern browsers.
+  const navEntries = performance.getEntriesByType("navigation");
+  if (navEntries.length > 0 && navEntries[0].type) {
+    return navEntries[0].type === 'back_forward';
+  }
+  // Fallback for older browsers (though it's deprecated)
+  if (performance.navigation) {
+    return performance.navigation.type === TYPE_BACK_FORWARD;
+  }
+  return false;
 }
 
 function main() {
@@ -16,211 +26,199 @@ function main() {
 main();
 
 ////////////////////////////////////////////////////////////
-///// TEAM  API REQUEST ` `
+///// TEAM  API REQUEST
 ////////////////////////////////////////////////////////////
 
 
 Vue.use(VueMeta);
 new Vue({
-
   el: '#reportpage',
-
   data () {
     return {
-      reportData: [],
-      authorData:[],
-      maintag:[],
-      subtag:[],
+      reportData: [], // Initialize as an empty array
+      authorData: [], // Initialize as an empty array
+      // maintag:[], // Not used in the provided code
+      // subtag:[], // Not used in the provided code
       meta_title: 'The GovLab | Government Reform',
       meta_content: 'Building new technology to solve public problems. Our projects try to answer the questions that stand between today and more effective and legitimate governance tomorrow.',
-      apiURL: 'https://directus.thegovlab.com/thegovlab/items/paul_light_report'
+      // apiURL is defined but not used by DirectusSDK in methods.
+      // The SDK client is hardcoded with "https://directus.theburnescenter.org/"
+      // apiURL: 'https://directus.thegovlab.com/thegovlab/items/paul_light_report'
     }
   },
   metaInfo () {
-        return {
-          title: this.meta_title,
-          meta: [
-            {title: this.meta_title, property:'og:title'},
-      {  name: 'description', content: this.meta_content, property:'og:description'}
-    ]
+    return {
+      title: this.meta_title,
+      meta: [
+        {title: this.meta_title, property:'og:title'},
+        {name: 'description', content: this.meta_content, property:'og:description'}
+      ]
     }
   },
-
-
   created: function created() {
     this.fetchReport();
     this.fetchAuthor();
     window.addEventListener('scroll', this.scrollToAnchor);
-    
   },
-  methods: {
+  // Optional: Good practice to remove listener when component is destroyed
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.scrollToAnchor);
+  },
+  // In your report.js Vue instance methods:
 
-    fetchReport() {
-      self = this;
-      const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
-        storage: window.localStorage
-      });
+methods: {
+  fetchReport() {
+    const client = new DirectusSDK({
+      url: "https://directus.theburnescenter.org/",
+      project: "/",
+      // storage: window.localStorage // Usually not needed for GET requests
+    });
 
-      client.getItems(
-  'paul_light_report',
-  {
+    client.getItems(
+      'paul_light_report',
+      {
+        fields: ['*.*']
+      }
+    ).then(response => { // Changed 'data' to 'response' for clarity with response.data
+      console.log('Raw API response for report:', response); // For debugging the whole response
+      if (response && response.data) {
+        // CRUCIAL FIX: Ensure reportData is an array
+        if (!Array.isArray(response.data)) {
+          // If response.data is a single object, wrap it in an array
+          this.reportData = [response.data];
+          console.log('Report data (single object) wrapped in array:', JSON.parse(JSON.stringify(this.reportData)));
+        } else {
+          // If response.data is already an array
+          this.reportData = response.data;
+          console.log('Report data (already array):', JSON.parse(JSON.stringify(this.reportData)));
+        }
+      } else {
+        console.error('Report data received is not in expected format or is empty:', response);
+        this.reportData = []; // Fallback to empty array
+      }
+    })
+    .catch(error => {
+        console.error('Error fetching report:', error);
+        this.reportData = []; // Set to empty array on error to satisfy v-if checks
+    });
+  },
 
-    fields: ['*.*']
-  }
-).then(data => {
-  self.reportData = data.data;
-})
-.catch(error => console.error(error));
-    },
-    fetchAuthor() {
-      self = this;
-      const client = new DirectusSDK({
-        url: "https://directus.thegovlab.com/",
-        project: "thegovlab",
-        storage: window.localStorage
-      });
+  fetchAuthor() {
+    const client = new DirectusSDK({
+      url: "https://directus.theburnescenter.org/",
+      project: "/",
+      // storage: window.localStorage
+    });
 
-      client.getItems(
-  'team',
-  {
-    fields: ['*.*'],
-    filter: {
-      slug: 'paul-light'
-    },
-  }
-).then(data => {
-  self.authorData = data.data;
-})
-.catch(error => console.error(error));
-    },
+    client.getItems(
+      'team',
+      {
+        fields: ['*.*'],
+        filter: {
+          slug: 'paul-light'
+        },
+      }
+    ).then(response => { // Changed 'data' to 'response'
+      console.log('Raw API response for author:', response);
+      if (response && response.data) {
+        // Directus usually returns an array for filtered items, but good to be safe
+        if (!Array.isArray(response.data)) {
+            this.authorData = [response.data];
+            console.log('Author data (single object) wrapped in array:', JSON.parse(JSON.stringify(this.authorData)));
+        } else {
+            this.authorData = response.data;
+            console.log('Author data (already array):', JSON.parse(JSON.stringify(this.authorData)));
+        }
 
+        // Add detailed logging for the problematic path in the template
+        if (this.authorData.length > 0 && this.authorData[0]) {
+            console.log('Checking authorData[0].picture:', this.authorData[0].picture);
+            if (this.authorData[0].picture && this.authorData[0].picture.data) {
+                console.log('Checking authorData[0].picture.data.thumbnails:', this.authorData[0].picture.data.thumbnails);
+                 if (this.authorData[0].picture.data.thumbnails && this.authorData[0].picture.data.thumbnails[3]) {
+                    console.log('Author thumbnail URL should be accessible.');
+                 } else {
+                    console.warn('Author thumbnail path missing thumbnails[3]');
+                 }
+            } else {
+                console.warn('Author thumbnail path missing picture.data');
+            }
+        }
+
+      } else {
+        console.error('Author data received is not in expected format or is empty:', response);
+        this.authorData = []; // Fallback to empty array
+      }
+    })
+    .catch(error => {
+        console.error('Error fetching author:', error);
+        this.authorData = []; // Set to empty array on error
+    });
+  },
+
+  // ... your other methods (smoothScroll, scrollToAnchor)
   smoothScroll (section_var) {
-  var element = document.getElementById(section_var);
-  element.scrollIntoView({ behavior: 'smooth'});
-  console.log("trigger");
-},
+    var element = document.getElementById(section_var);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth'});
+      console.log("smoothScroll triggered for:", section_var);
+    } else {
+      console.warn("smoothScroll: Element not found -", section_var);
+    }
+  },
 
-    scrollToAnchor () {
+  scrollToAnchor () {
+    if (!this.reportData || this.reportData.length === 0) { // Check if reportData is populated
+      return;
+    }
 
-      var intro_section = document.getElementById('introduction');
-      var reportsection1 = document.getElementById('section1');
-      var reportsection2 = document.getElementById('section2');
-      var reportsection3 = document.getElementById('section3');
-      var reportsection4 = document.getElementById('section4');
-      var reportsection5 = document.getElementById('section5');
-      var reportsection6 = document.getElementById('section6');
-      var reportsection7 = document.getElementById('section7');
-      var endnotes_section = document.getElementById('endnotes');
-      var intro = document.getElementsByClassName('toc-1');
-      var section1 = document.getElementsByClassName('toc-2');
-      var section2 = document.getElementsByClassName('toc-3');
-      var section3 = document.getElementsByClassName('toc-4');
-      var section4 = document.getElementsByClassName('toc-5');
-      var section5 = document.getElementsByClassName('toc-6');
-      var section6 = document.getElementsByClassName('toc-7');
-      var section7 = document.getElementsByClassName('toc-8');
-      var endnotes = document.getElementsByClassName('toc-9');
-      if(intro_section.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.add("active");
-        section1[0].classList.remove("active");
-        section2[0].classList.remove("active");
-        section3[0].classList.remove("active");
-        section4[0].classList.remove("active");
-        section5[0].classList.remove("active");
-        section6[0].classList.remove("active");
-        section7[0].classList.remove("active");
-        endnotes[0].classList.remove("active");
-      }   
-      if(reportsection1.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.remove("active");
-        section1[0].classList.add("active");
-        section2[0].classList.remove("active");
-        section3[0].classList.remove("active");
-        section4[0].classList.remove("active");
-        section5[0].classList.remove("active");
-        section6[0].classList.remove("active");
-        section7[0].classList.remove("active");
-        endnotes[0].classList.remove("active");
-      }   
-      if(reportsection2.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.remove("active");
-        section1[0].classList.remove("active");
-        section2[0].classList.add("active");
-        section3[0].classList.remove("active");
-        section4[0].classList.remove("active");
-        section5[0].classList.remove("active");
-        section6[0].classList.remove("active");
-        section7[0].classList.remove("active");
-        endnotes[0].classList.remove("active");
-      }   
-      if(reportsection3.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.remove("active");
-        section1[0].classList.remove("active");
-        section2[0].classList.remove("active");
-        section3[0].classList.add("active");
-        section4[0].classList.remove("active");
-        section5[0].classList.remove("active");
-        section6[0].classList.remove("active");
-        section7[0].classList.remove("active");
-        endnotes[0].classList.remove("active");
-      }   
-      if(reportsection4.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.remove("active");
-        section1[0].classList.remove("active");
-        section2[0].classList.remove("active");
-        section3[0].classList.remove("active");
-        section4[0].classList.add("active");
-        section5[0].classList.remove("active");
-        section6[0].classList.remove("active");
-        section7[0].classList.remove("active");
-        endnotes[0].classList.remove("active");
-      }   
-      if(reportsection5.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.remove("active");
-        section1[0].classList.remove("active");
-        section2[0].classList.remove("active");
-        section3[0].classList.remove("active");
-        section4[0].classList.remove("active");
-        section5[0].classList.add("active");
-        section6[0].classList.remove("active");
-        section7[0].classList.remove("active");
-        endnotes[0].classList.remove("active");
-      }   
-      if(reportsection6.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.remove("active");
-        section1[0].classList.remove("active");
-        section2[0].classList.remove("active");
-        section3[0].classList.remove("active");
-        section4[0].classList.remove("active");
-        section5[0].classList.remove("active");
-        section6[0].classList.add("active");
-        section7[0].classList.remove("active");
-        endnotes[0].classList.remove("active");
-      } 
-      if(reportsection7.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.remove("active");
-        section1[0].classList.remove("active");
-        section2[0].classList.remove("active");
-        section3[0].classList.remove("active");
-        section4[0].classList.remove("active");
-        section5[0].classList.remove("active");
-        section6[0].classList.remove("active");
-        section7[0].classList.add("active");
-        endnotes[0].classList.remove("active");
-      }  
-      if(endnotes_section.offsetTop - 10 <= $(window).scrollTop()) {
-        intro[0].classList.remove("active");
-        section1[0].classList.remove("active");
-        section2[0].classList.remove("active");
-        section3[0].classList.remove("active");
-        section4[0].classList.remove("active");
-        section5[0].classList.remove("active");
-        section6[0].classList.remove("active");
-        section7[0].classList.remove("active");
-        endnotes[0].classList.add("active");
-      }   
+    const getElementAndToc = (id, tocClass) => {
+      const section = document.getElementById(id);
+      const tocLinks = document.getElementsByClassName(tocClass);
+      return { section, tocLink: tocLinks.length > 0 ? tocLinks[0] : null };
+    };
+
+    const sections = [
+      getElementAndToc('introduction', 'toc-1'),
+      getElementAndToc('section1', 'toc-2'),
+      getElementAndToc('section2', 'toc-3'),
+      getElementAndToc('section3', 'toc-4'),
+      getElementAndToc('section4', 'toc-5'),
+      getElementAndToc('section5', 'toc-6'),
+      getElementAndToc('section6', 'toc-7'),
+      getElementAndToc('section7', 'toc-8'),
+      getElementAndToc('endnotes', 'toc-9'),
+    ];
+
+    let activeFound = false;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const offset = 150; // How many pixels before the top of the section it becomes active
+
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const current = sections[i];
+      if (current.section && current.tocLink) {
+        // Check if section exists and its offsetTop is a valid number
+        if (typeof current.section.offsetTop === 'number' && (current.section.offsetTop - offset) <= scrollTop) {
+          if (!activeFound) {
+            current.tocLink.classList.add("active");
+            activeFound = true;
+          } else {
+            current.tocLink.classList.remove("active");
+          }
+        } else {
+          current.tocLink.classList.remove("active");
+        }
+      } else {
+        // console.warn(`Section or TOC link not found for ID: ${sections[i].id_placeholder} or class: ${sections[i].toc_placeholder}`);
+      }
+    }
+    if (!activeFound && sections[0] && sections[0].section && sections[0].tocLink && typeof sections[0].section.offsetTop === 'number') {
+        if ((sections[0].section.offsetTop - offset) <= scrollTop) {
+             sections[0].tocLink.classList.add("active");
+        } else {
+             sections[0].tocLink.classList.remove("active");
+        }
     }
   }
+}
 });

@@ -41,7 +41,7 @@ new Vue({
       twitter_title:'',
       twitter_image:'',
       twitter_desc:'',
-      // apiURL: 'https://directus.thegovlab.com/thegovlab/items/team?filter[slug][like]=',
+      // apiURL: 'https://directus.theburnescenter.org/items/team?filter[slug][like]=',
       apiURL: 'https://directus.theburnescenter.org/items/team?filter[slug][like]=',
       apiApp: '&fields=*.*,books.books_id.*,videos.directus_files_id.*,projects.projects_id.*'
 

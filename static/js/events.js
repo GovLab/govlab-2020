@@ -33,7 +33,7 @@ new Vue({
       more_body: false,
       meta_title: 'The GovLab | Events',
       meta_content: 'Deepening our understanding of how to govern more effectively and legitimately through technology.',
-      apiURL: 'https://directus.theburnescenter.org/thegovlab/items/events?sort=from'
+      apiURL: 'https://directus.theburnescenter.org/items/events?sort=from'
     }
   },
   metaInfo () {
