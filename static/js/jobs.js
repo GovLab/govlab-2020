@@ -30,7 +30,7 @@ new Vue({
       jobData: [],
       jobs_toggle:false,
       index_val:1000,
-      apiURL: 'https://directus.theburnescenter.org/'
+      apiURL: 'https://burnes-center.directus.app/'
     }
   },
 
@@ -42,7 +42,7 @@ new Vue({
     fetchTeam() {
       self = this;
       const client = new DirectusSDK({
-        url: "https://directus.theburnescenter.org/",
+        url: "https://burnes-center.directus.app/",
         project: "/",
         storage: window.localStorage
       });

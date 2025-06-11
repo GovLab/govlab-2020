@@ -42,7 +42,7 @@ new Vue({
       meta_title: 'The GovLab | Government Reform',
       meta_content: 'Building new technology to solve public problems. Our projects try to answer the questions that stand between today and more effective and legitimate governance tomorrow.',
       // apiURL is defined but not used by DirectusSDK in methods.
-      // The SDK client is hardcoded with "https://directus.theburnescenter.org/"
+      // The SDK client is hardcoded with "https://burnes-center.directus.app/"
       // apiURL: 'https://directus.thegovlab.com/thegovlab/items/paul_light_report'
     }
   },
@@ -69,7 +69,7 @@ new Vue({
 methods: {
   fetchReport() {
     const client = new DirectusSDK({
-      url: "https://directus.theburnescenter.org/",
+      url: "https://burnes-center.directus.app/",
       project: "/",
       // storage: window.localStorage // Usually not needed for GET requests
     });
@@ -105,7 +105,7 @@ methods: {
 
   fetchAuthor() {
     const client = new DirectusSDK({
-      url: "https://directus.theburnescenter.org/",
+      url: "https://burnes-center.directus.app/",
       project: "/",
       // storage: window.localStorage
     });

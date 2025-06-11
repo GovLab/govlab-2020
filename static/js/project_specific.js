@@ -43,7 +43,7 @@ main();
 
 
 const client=  new DirectusSDK({
-  url: "https://directus.theburnescenter.org/",
+  url: "https://burnes-center.directus.app/",
   project: "/",
   storage: window.localStorage
 })
@@ -85,7 +85,7 @@ new Vue({
       meta_image: '',
       meta_content: '',
       projectslug:'',
-      apiURL: 'https://directus.theburnescenter.org/',
+      apiURL: 'https://burnes-center.directus.app/',
       picURL2020: 'https://thegovlab-files.nyc3.cdn.digitaloceanspaces.com/thegovlab-directus/uploads/thegovlab/originals/'
   },
 

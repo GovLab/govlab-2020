@@ -124,7 +124,7 @@
                             <!-- Add v-if for potentially missing nested properties for robustness -->
                             <div class="author-thumb"
                                 v-if="authorData[0].picture"
-                                :style="{ backgroundImage: 'url( https://directus.theburnescenter.org/assets/'+ authorData[0].picture.filename_disk + ')' }">
+                                :style="{ backgroundImage: 'url( https://burnes-center.directus.app/assets/'+ authorData[0].picture.filename_disk + ')' }">
                             </div>
                             <div v-else class="author-thumb"> <!-- Placeholder or empty style --> </div>
 

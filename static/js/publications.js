@@ -58,7 +58,7 @@ new Vue({
     fetchPubs() {
       self = this;
       this.client = new DirectusSDK({
-        url: "https://directus.theburnescenter.org/",
+        url: "https://burnes-center.directus.app/",
         project: "/",
         storage: window.localStorage
       });
