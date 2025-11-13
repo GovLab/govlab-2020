@@ -156,30 +156,6 @@
 
                 </section>
                 <section class="e-section">
-                    <h3>By {{memberData.name}}</h3>
-
-                    <ul class="e-books"  v-for= "(book, index) in memberData.books.slice().sort((a, b) => a._ - b._)">
-                        <li>
-                            
-                            <figure>
-                                <div v-if="book.books_id.picture" class="e-image"
-                                    :style="{ backgroundImage: 'url(' + client.url+'assets/'+book.books_id.picture.id+ ')' }">
-                                    <a :href="book.books_id.link && book.books_id.link!= 'NULL'?book.books_id.link:'#'"
-                                        class="e-dark-panel">{{book.books_id.title}}</a>
-                                </div>
-                                <div v-if="!book.books_id.picture" class="e-image"
-                                :style="{ backgroundImage: 'url(' + book.books_id.picture_2020+ ')' }">
-                                <a :href="book.books_id.link"
-                                    class="e-dark-panel">{{book.books_id.title}}</a>
-                            </div>
-                            </figure>
-                        </li>
-                        <p v-if="book.books_id.title == 'Smart Citizens, Smarter State'" style="font-size:0.8rem">A Tech Republic Best Book of 2015<br>
-                            A Guardian Top Ten Book about Building Cities, 2019</p>
-                        <p v-if="book.books_id.title == 'Solving Public Problems'" style="font-size:0.8rem">A Stanford Social Innovation<br>Review Best Book, 2021</p>
-                    </ul>
-                </section>
-                <section class="e-section">
                     <h3>Downloads</h3>
                     <ul>
                         <!-- <li><a :href="memberData.picture.data.thumbnails[5].url" target="_blank"
@@ -252,7 +228,28 @@
                     </div> -->
                 </div>
 
-
+                <section class="e-books-section" v-if="memberData.books && memberData.books.length > 0">
+                    <h3>By {{memberData.name}}</h3>
+                    <div class="e-books-grid">
+                        <div class="e-book-item" v-for="(book, index) in memberData.books.slice().sort((a, b) => a._ - b._)">
+                            <figure>
+                                <div v-if="book.books_id.picture" class="e-image"
+                                    :style="{ backgroundImage: 'url(' + client.url+'assets/'+book.books_id.picture.id+ ')' }">
+                                    <a :href="book.books_id.link && book.books_id.link!= 'NULL'?book.books_id.link:'#'"
+                                        class="e-dark-panel">{{book.books_id.title}}</a>
+                                </div>
+                                <div v-if="!book.books_id.picture" class="e-image"
+                                :style="{ backgroundImage: 'url(' + book.books_id.picture_2020+ ')' }">
+                                <a :href="book.books_id.link"
+                                    class="e-dark-panel">{{book.books_id.title}}</a>
+                            </div>
+                            </figure>
+                            <p v-if="book.books_id.title == 'Smart Citizens, Smarter State'" class="e-book-award">A Tech Republic Best Book of 2015<br>
+                                A Guardian Top Ten Book about Building Cities, 2019</p>
+                            <p v-if="book.books_id.title == 'Solving Public Problems'" class="e-book-award">A Stanford Social Innovation<br>Review Best Book, 2021</p>
+                        </div>
+                    </div>
+                </section>
 
             </div>
         </div>

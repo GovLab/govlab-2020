@@ -3089,6 +3089,72 @@ button:focus {
             opacity: 1;
             transition: all .4s ease; }
 
+/* Books Grid in Main Content */
+.b-fancy-bio .e-bio-section .e-main-content .e-books-section {
+  margin: 40px 0; }
+  .b-fancy-bio .e-bio-section .e-main-content .e-books-section h3 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333; }
+  .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 20px; }
+    @media (max-width: 800px) {
+      .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px; } }
+    .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid .e-book-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid .e-book-item figure {
+        color: white;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        margin: 0 0 15px 0;
+        width: 100%;
+        max-width: 200px;
+        background: transparent;
+        overflow: hidden; }
+        .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid .e-book-item figure .e-image {
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          height: 300px;
+          width: 100%;
+          transition: all .4s ease;
+          position: relative;
+          background-color: transparent;
+          display: block; }
+          .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid .e-book-item figure .e-image:hover {
+            transform: scale(1.05, 1.05);
+            transition: all .4s ease; }
+        .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid .e-book-item figure .e-dark-panel {
+          text-align: left;
+          display: block;
+          padding: 10px;
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 999;
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-sizing: border-box; }
+          .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid .e-book-item figure .e-dark-panel:hover {
+            color: white;
+            opacity: 1;
+            transition: all .4s ease; }
+      .b-fancy-bio .e-bio-section .e-main-content .e-books-section .e-books-grid .e-book-item .e-book-award {
+        font-size: 0.8rem;
+        text-align: center;
+        color: #666;
+        margin-top: 10px;
+        line-height: 1.4; }
+
 #beth-page-temp .b-sidebar {
   max-width: 350px; }
   #beth-page-temp .b-sidebar .e-books {
