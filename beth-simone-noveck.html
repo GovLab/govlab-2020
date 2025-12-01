@@ -229,7 +229,7 @@
                 </div>
 
                 <section class="e-books-section" v-if="memberData.books && memberData.books.length > 0">
-                    <h3>By {{memberData.name}}</h3>
+                    <h3>Books by {{memberData.name}}</h3>
                     <div class="e-books-grid">
                         <div class="e-book-item" v-for="(book, index) in memberData.books.slice().sort((a, b) => a._ - b._)">
                             <figure>
