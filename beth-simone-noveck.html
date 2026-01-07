@@ -205,7 +205,7 @@
                                 class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i></span></p>
                     <p v-if="publications_toggle"><span class="b-button m-naked js-articles-toggle" @click="toggle('publications')">Selected Publications <i
                                 class="material-icons"><i class="material-icons">keyboard_arrow_up</i></i></span></p>
-                    <div class="e-selected-articles project_list" v-if="publications_toggle==true" v-html="memberData.publications"></div>
+                    <div class="e-selected-articles project_list" v-if="publications_toggle==true" v-html="combinedPublications"></div>
                     <div v-if="!projects_toggle" class="b-button m-naked js-project-toggle"  @click="toggle('projects')">Recent Courses<i class="material-icons"><i
                         class="material-icons">keyboard_arrow_down</i></i></div>
             <div v-if="projects_toggle" class="b-button m-naked js-project-toggle" @click="toggle('projects')">Recent Courses<i class="material-icons"><i
