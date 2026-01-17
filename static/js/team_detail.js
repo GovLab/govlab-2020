@@ -250,7 +250,7 @@ console.log('data', data.data[0].bio_events);
       console.log(this[key+'_toggle']);
     },
     teamMore(slug) {
-      window.location.href= slug+'.html';
+      window.location.href= './' + slug+'.html';
     }
   }
 });
