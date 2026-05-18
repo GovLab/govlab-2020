@@ -41,10 +41,10 @@ new Vue({
       twitter_title:'',
       twitter_image:'',
       twitter_desc:'',
-      // apiURL: 'https://directus.thegovlab.com/thegovlab/items/team?filter[slug][like]=',
       apiURL: 'https://burnes-center.directus.app/items/team?filter[slug][like]=',
       apiApp: '&fields=*.*,books.books_id.*,videos.directus_files_id.*,projects.projects_id.*',
-      combinedPublications: '' // Store combined publications + blogs
+      combinedPublications: '',
+      rebootTeamId: null
 
     }
   },
@@ -56,9 +56,7 @@ metaInfo () {
       {name: 'twitter:card', content: 'summary_large_image'},
        {name: 'twitter:title', content: this.meta_title},
        {name: 'twitter:description', content: this.meta_content},
-       // image must be an absolute path
        {name: 'twitter:image', content: this.meta_image},
-       // Facebook OpenGraph
        {property: 'og:title', content: this.meta_title},
        {property: 'og:site_name', content: this.meta_title},
        {property: 'og:type', content: 'website'},
@@ -102,152 +100,256 @@ metaInfo () {
     }
   }
 ).then(data => {
-  console.log(data)
-  // Sort books
-  data.data[0].books.sort(function(a, b) {
-    var textA = a.books_id.title.toUpperCase();
-    var textB = b.books_id.title.toUpperCase();
-    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-});
-  // Sort talks
-  data.data[0].bio_events.sort(function(a, b) {
-
-    var textA = moment(a.events_id.from).format('X');
-    var textB = moment(b.events_id.from).format('X');
-    if(textA == 'Invalid date')textA = '1357018200';
-    if(textB == 'Invalid date')textB = '1357018200';
-    
-    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-});
-console.log(data.data[0].bio_events);
-data.data[0].bio_events.reverse();
-console.log('data', data.data[0].bio_events);
+  if (!data.data || !data.data[0]) {
+    return;
+  }
+  if (data.data[0].books) {
+    data.data[0].books.sort(function(a, b) {
+      var textA = a.books_id.title.toUpperCase();
+      var textB = b.books_id.title.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+  }
+  if (data.data[0].bio_events) {
+    data.data[0].bio_events.sort(function(a, b) {
+      var textA = moment(a.events_id.from).format('X');
+      var textB = moment(b.events_id.from).format('X');
+      if(textA == 'Invalid date')textA = '1357018200';
+      if(textB == 'Invalid date')textB = '1357018200';
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+    data.data[0].bio_events.reverse();
+  }
 
   self.memberData = data.data[0];
   self.meta_title = 'The Govlab '+self.memberData.name;
   self.meta_content = self.memberData.bio_short;
   self.meta_image = self.memberData.picture;
-  
-  // Fetch blogs for this team member and combine with publications
+
   self.fetchBlogsAndCombine();
 })
 .catch(error => console.error(error));
     },
-    
-    fetchBlogsAndCombine() {
-      self = this;
-    
-      this.client.getItems(
-        'reboot_democracy_blog',
-        {
-          limit: -1,
-          sort: '-date',
-          fields: ['*.*', 'authors.*']
+
+    hasTeamPublicationsHtml() {
+      const pubs = this.memberData.publications;
+      return pubs && pubs !== 'NULL' && String(pubs).trim().length > 0;
+    },
+
+    parseNameParts(fullName) {
+      const parts = (fullName || '').trim().split(/\s+/).filter(Boolean);
+      if (parts.length < 2) {
+        return { firstName: parts[0] || '', lastName: parts[0] || '' };
+      }
+      return {
+        firstName: parts.slice(0, -1).join(' '),
+        lastName: parts[parts.length - 1]
+      };
+    },
+
+    resolveRebootTeamId() {
+      const self = this;
+      const nameParts = this.parseNameParts(this.memberData.name);
+
+      return this.client.getItems('Reboot_Democracy_team', {
+        limit: 1,
+        fields: ['id', 'First_Name', 'Last_Name'],
+        filter: {
+          First_Name: { _eq: nameParts.firstName },
+          Last_Name: { _eq: nameParts.lastName }
         }
-      ).then(blogData => {
-        const cutoffDate = new Date('2025-10-07');
-        const today = new Date();
-        today.setHours(23, 59, 59, 999); // End of today
-        
-        const filteredBlogs = blogData.data.filter(blog => {
-          if (!blog.authors || !Array.isArray(blog.authors)) {
-            return false;
-          }
-          
-          // Check if author has team_id === 1
-          const hasTeamId1 = blog.authors.some(author => author.team_id === 1);
-          if (!hasTeamId1) {
-            return false;
-          }
-          
-          const blogDate = blog.date || blog.date2;
-          if (!blogDate) {
-            return false;
-          }
-          
-          const blogDateObj = new Date(blogDate);
-          return blogDateObj > cutoffDate && blogDateObj <= today;
-        });
-        
-        const publicationsHTML = self.memberData.publications || '';
-        const allItems = [];
-        
-        // Parse publications from HTML
-        if (publicationsHTML) {
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = publicationsHTML;
-          const pubListItems = tempDiv.querySelectorAll('li');
-          
-          pubListItems.forEach(li => {
-            const html = li.outerHTML;
-            const text = li.textContent || li.innerText || '';
-            
-            let date = null;
-            const dateMatch = text.match(/(\d{4})/);
-            if (dateMatch) {
-              const year = parseInt(dateMatch[1]);
-              const fullDateMatch = text.match(/(\w+\s+\d{1,2},?\s+\d{4})/i) || text.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
-              if (fullDateMatch) {
-                date = moment(fullDateMatch[1]).toDate();
-              } else {
-                date = new Date(year, 0, 1);
-              }
-            }
-            
-            allItems.push({
-              html: html,
-              date: date,
-              type: 'publication'
-            });
-          });
-        }
-        
-        // Add blogs to the items array
-        filteredBlogs.forEach(blog => {
-          const blogTitle = blog.title || 'Untitled';
-          const blogLink = blog.fullURL || blog.external_link || (blog.slug ? `https://rebootdemocracy.ai/blog/${blog.slug}` : '#');
-          const blogSource = 'Reboot Democracy';
-          const blogDate = blog.date || blog.date2;
-          const formattedDate = blogDate ? moment(blogDate).format('MMMM D, YYYY') : '';
-          const date = blogDate ? new Date(blogDate) : null;
-          
-          allItems.push({
-            html: `<li><a href="${blogLink}" target="_blank">${blogTitle}</a>, ${blogSource}${formattedDate ? `, ${formattedDate}` : ''}</li>`,
-            date: date,
-            type: 'blog'
-          });
-        });
-        
-        // Sort all items by date (most recent first)
-        allItems.sort((a, b) => {
-          // Items without dates go to the end
-          if (!a.date && !b.date) return 0;
-          if (!a.date) return 1;
-          if (!b.date) return -1;
-          return new Date(b.date) - new Date(a.date);
-        });
-        
-        // Generate combined HTML
-        let combinedHTML = '';
-        allItems.forEach(item => {
-          combinedHTML += item.html;
-        });
-        
-        if (combinedHTML && !combinedHTML.trim().startsWith('<ul')) {
-          self.combinedPublications = `<ul>${combinedHTML}</ul>`;
-        } else {
-          self.combinedPublications = combinedHTML || publicationsHTML;
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching Reboot Democracy Blog:', error);
-        self.combinedPublications = self.memberData.publications || '';
+      }).then(function (data) {
+        self.rebootTeamId = data.data && data.data[0] ? data.data[0].id : null;
+        return self.rebootTeamId;
+      }).catch(function () {
+        self.rebootTeamId = null;
+        return null;
       });
     },
+
+    fetchPublicationsFromCollection() {
+      const self = this;
+      const memberName = (self.memberData.name || '').trim();
+      if (!memberName) {
+        return Promise.resolve([]);
+      }
+
+      return this.client.getItems('publications', {
+        limit: -1,
+        sort: '-pub_date',
+        fields: ['id', 'title', 'authors', 'pub_date', 'url', 'status'],
+        filter: {
+          authors: { _icontains: memberName },
+          status: { _eq: 'published' }
+        }
+      }).then(function (data) {
+        return data.data || [];
+      }).catch(function (error) {
+        console.error('Error fetching publications collection:', error);
+        return [];
+      });
+    },
+
+    publicationItemsFromHtml(publicationsHTML) {
+      const allItems = [];
+      if (!publicationsHTML) {
+        return allItems;
+      }
+
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = publicationsHTML;
+      const pubListItems = tempDiv.querySelectorAll('li');
+
+      pubListItems.forEach(function (li) {
+        const html = li.outerHTML;
+        const text = li.textContent || li.innerText || '';
+        let date = null;
+        const dateMatch = text.match(/(\d{4})/);
+        if (dateMatch) {
+          const year = parseInt(dateMatch[1], 10);
+          const fullDateMatch = text.match(/(\w+\s+\d{1,2},?\s+\d{4})/i) || text.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+          if (fullDateMatch) {
+            date = moment(fullDateMatch[1]).toDate();
+          } else {
+            date = new Date(year, 0, 1);
+          }
+        }
+        allItems.push({ html: html, date: date, type: 'publication' });
+      });
+
+      return allItems;
+    },
+
+    publicationItemsFromCollection(pubs) {
+      return pubs.map(function (pub) {
+        const title = pub.title || 'Untitled';
+        const url = pub.url || '#';
+        const authors = pub.authors ? ', ' + pub.authors : '';
+        const formattedDate = pub.pub_date ? moment(pub.pub_date).format('MMMM D, YYYY') : '';
+        const date = pub.pub_date ? new Date(pub.pub_date) : null;
+        return {
+          html: '<li><a href="' + url + '" target="_blank">' + title + '</a>' + authors + (formattedDate ? ', ' + formattedDate : '') + '</li>',
+          date: date,
+          type: 'publication'
+        };
+      });
+    },
+
+    blogItemsFromPosts(blogs) {
+      return blogs.map(function (blog) {
+        const blogTitle = blog.title || 'Untitled';
+        const blogLink = blog.fullURL || blog.external_link || (blog.slug ? 'https://rebootdemocracy.ai/blog/' + blog.slug : '#');
+        const blogSource = 'Reboot Democracy';
+        const blogDate = blog.date || blog.date2;
+        const formattedDate = blogDate ? moment(blogDate).format('MMMM D, YYYY') : '';
+        const date = blogDate ? new Date(blogDate) : null;
+        return {
+          html: '<li><a href="' + blogLink + '" target="_blank">' + blogTitle + '</a>, ' + blogSource + (formattedDate ? ', ' + formattedDate : '') + '</li>',
+          date: date,
+          type: 'blog'
+        };
+      });
+    },
+
+    buildCombinedPublicationsHtml(allItems, fallbackHtml) {
+      allItems.sort(function (a, b) {
+        if (!a.date && !b.date) return 0;
+        if (!a.date) return 1;
+        if (!b.date) return -1;
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      let combinedHTML = '';
+      allItems.forEach(function (item) {
+        combinedHTML += item.html;
+      });
+
+      if (combinedHTML && !combinedHTML.trim().startsWith('<ul')) {
+        return '<ul>' + combinedHTML + '</ul>';
+      }
+      return combinedHTML || fallbackHtml || '';
+    },
+
+    fetchBlogsAndCombine() {
+      const self = this;
+      self.resolveRebootTeamId().then(function (rebootTeamId) {
+        const blogPromise = self.client.getItems('reboot_democracy_blog', {
+          limit: -1,
+          sort: '-date',
+          fields: ['*', 'authors.*'],
+          filter: {
+            status: { _eq: 'published' }
+          }
+        });
+
+        const pubsPromise = self.hasTeamPublicationsHtml()
+          ? Promise.resolve([])
+          : self.fetchPublicationsFromCollection();
+
+        return Promise.all([blogPromise, pubsPromise]).then(function (results) {
+          const blogData = results[0];
+          const collectionPubs = results[1];
+          const allItems = [];
+
+          if (self.hasTeamPublicationsHtml()) {
+            allItems.push.apply(allItems, self.publicationItemsFromHtml(self.memberData.publications));
+          } else {
+            allItems.push.apply(allItems, self.publicationItemsFromCollection(collectionPubs));
+          }
+
+          const filteredBlogs = (blogData.data || []).filter(function (blog) {
+            if (!blog.authors || !Array.isArray(blog.authors) || !rebootTeamId) {
+              return false;
+            }
+            if ((blog.status || '').toLowerCase() !== 'published') {
+              return false;
+            }
+            return blog.authors.some(function (author) {
+              return author.team_id === rebootTeamId;
+            });
+          });
+
+          allItems.push.apply(allItems, self.blogItemsFromPosts(filteredBlogs));
+
+          const fallback = self.hasTeamPublicationsHtml() ? self.memberData.publications : '';
+          self.combinedPublications = self.buildCombinedPublicationsHtml(allItems, fallback);
+        });
+      }).catch(function (error) {
+        console.error('Error fetching publications and Reboot blog posts:', error);
+        self.combinedPublications = self.hasTeamPublicationsHtml() ? self.memberData.publications : '';
+      });
+    },
+
+    assetUrl(file) {
+      if (!file || file === 'NULL') {
+        return null;
+      }
+      const id = typeof file === 'object' && file.id ? file.id : file;
+      if (!id || !this.client || !this.client.url) {
+        return null;
+      }
+      return this.client.url + 'assets/' + id;
+    },
+
+    highResPhotoUrl() {
+      return this.assetUrl(this.memberData.high_resolution_photo);
+    },
+
+    hasHighResPhoto() {
+      return !!this.highResPhotoUrl();
+    },
+
+    projectHref(project) {
+      if (!project || !project.projects_id) {
+        return '#';
+      }
+      const p = project.projects_id;
+      return p.project_link || p.link || (p.slug ? './' + p.slug + '.html' : '#');
+    },
+
     toggle(key) {
       if(this[key+'_toggle'] == false) this[key+'_toggle'] = true;
       else this[key+'_toggle'] = false;
-      console.log(this[key+'_toggle']);
     },
     teamMore(slug) {
       window.location.href= './' + slug+'.html';
