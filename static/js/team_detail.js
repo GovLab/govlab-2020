@@ -44,7 +44,10 @@ new Vue({
       apiURL: 'https://burnes-center.directus.app/items/team?filter[slug][like]=',
       apiApp: '&fields=*.*,books.books_id.*,videos.directus_files_id.*,projects.projects_id.*',
       combinedPublications: '',
-      rebootTeamId: null
+      otherWorks: '',
+      rebootTeamId: null,
+      pawTeamId: null,
+      other_works_toggle: false
 
     }
   },
@@ -120,6 +123,32 @@ metaInfo () {
     });
     data.data[0].bio_events.reverse();
   }
+  if (data.data[0].projects) {
+    data.data[0].projects.sort(function(a, b) {
+      var textA = moment(a.projects_id.created_on).format('X');
+      var textB = moment(b.projects_id.created_on).format('X');
+      if(textA == 'Invalid date') textA = '0';
+      if(textB == 'Invalid date') textB = '0';
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+    data.data[0].projects.reverse();
+
+    var seenProjectIds = {};
+    var seenProjectNames = {};
+    data.data[0].projects = data.data[0].projects.filter(function(project) {
+      if (!project.projects_id) {
+        return false;
+      }
+      var projectId = project.projects_id.id;
+      var projectName = (project.projects_id.name || '').trim().toLowerCase();
+      if (seenProjectIds[projectId] || seenProjectNames[projectName]) {
+        return false;
+      }
+      seenProjectIds[projectId] = true;
+      seenProjectNames[projectName] = true;
+      return true;
+    });
+  }
 
   self.memberData = data.data[0];
   self.meta_title = 'The Govlab '+self.memberData.name;
@@ -127,6 +156,7 @@ metaInfo () {
   self.meta_image = self.memberData.picture;
 
   self.fetchBlogsAndCombine();
+  self.fetchOtherWorks();
 })
 .catch(error => console.error(error));
     },
@@ -145,6 +175,26 @@ metaInfo () {
         firstName: parts.slice(0, -1).join(' '),
         lastName: parts[parts.length - 1]
       };
+    },
+
+    resolvePawTeamId() {
+      const self = this;
+      const nameParts = this.parseNameParts(this.memberData.name);
+
+      return this.client.getItems('paw_team', {
+        limit: 1,
+        fields: ['id', 'First_Name', 'Last_Name'],
+        filter: {
+          First_Name: { _eq: nameParts.firstName },
+          Last_Name: { _eq: nameParts.lastName }
+        }
+      }).then(function (data) {
+        self.pawTeamId = data.data && data.data[0] ? data.data[0].id : null;
+        return self.pawTeamId;
+      }).catch(function () {
+        self.pawTeamId = null;
+        return null;
+      });
     },
 
     resolveRebootTeamId() {
@@ -190,7 +240,22 @@ metaInfo () {
       });
     },
 
+    isExcludedPublication(text) {
+      return (text || '').toLowerCase().indexOf('news that caught our eye') !== -1;
+    },
+
+    filterPublicationItems(items) {
+      const self = this;
+      return items.filter(function (item) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = item.html;
+        const text = tempDiv.textContent || tempDiv.innerText || '';
+        return !self.isExcludedPublication(text);
+      });
+    },
+
     publicationItemsFromHtml(publicationsHTML) {
+      const self = this;
       const allItems = [];
       if (!publicationsHTML) {
         return allItems;
@@ -201,8 +266,11 @@ metaInfo () {
       const pubListItems = tempDiv.querySelectorAll('li');
 
       pubListItems.forEach(function (li) {
-        const html = li.outerHTML;
         const text = li.textContent || li.innerText || '';
+        if (self.isExcludedPublication(text)) {
+          return;
+        }
+        const html = li.outerHTML;
         let date = null;
         const dateMatch = text.match(/(\d{4})/);
         if (dateMatch) {
@@ -221,7 +289,10 @@ metaInfo () {
     },
 
     publicationItemsFromCollection(pubs) {
-      return pubs.map(function (pub) {
+      const self = this;
+      return pubs.filter(function (pub) {
+        return !self.isExcludedPublication(pub.title);
+      }).map(function (pub) {
         const title = pub.title || 'Untitled';
         const url = pub.url || '#';
         const authors = pub.authors ? ', ' + pub.authors : '';
@@ -235,8 +306,39 @@ metaInfo () {
       });
     },
 
-    blogItemsFromPosts(blogs) {
+    getPawBlogTranslation(blog) {
+      const translations = blog.translations || [];
+      return translations.find(function (translation) {
+        return translation.languages_code === 'en-US';
+      }) || translations.find(function (translation) {
+        return translation.slug;
+      }) || translations[0] || {};
+    },
+
+    pawBlogItemsFromPosts(blogs) {
+      const self = this;
       return blogs.map(function (blog) {
+        const translation = self.getPawBlogTranslation(blog);
+        const title = translation.title || 'Untitled';
+        const slug = translation.slug;
+        const blogLink = slug ? 'https://poweratwork.us/' + slug : '#';
+        const blogSource = 'Power At Work';
+        const blogDate = blog.publication_date;
+        const formattedDate = blogDate ? moment(blogDate).format('MMMM D, YYYY') : '';
+        const date = blogDate ? new Date(blogDate) : null;
+        return {
+          html: '<li><a href="' + blogLink + '" target="_blank">' + title + '</a>, ' + blogSource + (formattedDate ? ', ' + formattedDate : '') + '</li>',
+          date: date,
+          type: 'paw_blog'
+        };
+      });
+    },
+
+    blogItemsFromPosts(blogs) {
+      const self = this;
+      return blogs.filter(function (blog) {
+        return !self.isExcludedPublication(blog.title);
+      }).map(function (blog) {
         const blogTitle = blog.title || 'Untitled';
         const blogLink = blog.fullURL || blog.external_link || (blog.slug ? 'https://rebootdemocracy.ai/blog/' + blog.slug : '#');
         const blogSource = 'Reboot Democracy';
@@ -251,13 +353,15 @@ metaInfo () {
       });
     },
 
-    buildCombinedPublicationsHtml(allItems, fallbackHtml) {
-      allItems.sort(function (a, b) {
-        if (!a.date && !b.date) return 0;
-        if (!a.date) return 1;
-        if (!b.date) return -1;
-        return new Date(b.date) - new Date(a.date);
-      });
+    buildCombinedPublicationsHtml(allItems, fallbackHtml, sortByDate) {
+      if (sortByDate !== false) {
+        allItems.sort(function (a, b) {
+          if (!a.date && !b.date) return 0;
+          if (!a.date) return 1;
+          if (!b.date) return -1;
+          return new Date(b.date) - new Date(a.date);
+        });
+      }
 
       let combinedHTML = '';
       allItems.forEach(function (item) {
@@ -268,6 +372,58 @@ metaInfo () {
         return '<ul>' + combinedHTML + '</ul>';
       }
       return combinedHTML || fallbackHtml || '';
+    },
+
+    buildListHtmlFromItems(items) {
+      if (!items.length) {
+        return '';
+      }
+
+      let listHtml = '';
+      items.forEach(function (item) {
+        listHtml += item.html;
+      });
+      return '<ul>' + listHtml + '</ul>';
+    },
+
+    buildOtherWorksHtml(publicationItems, pawItems) {
+      let html = this.buildListHtmlFromItems(publicationItems);
+
+      if (publicationItems.length && pawItems.length) {
+        html += '<p class="e-other-works-heading"><strong>Power At Work</strong></p>';
+      }
+
+      html += this.buildListHtmlFromItems(pawItems);
+      return html;
+    },
+
+    fetchOtherWorks() {
+      const self = this;
+      const publicationItems = self.hasTeamPublicationsHtml()
+        ? self.filterPublicationItems(self.publicationItemsFromHtml(self.memberData.publications))
+        : [];
+
+      self.resolvePawTeamId().then(function (pawTeamId) {
+        const pawPromise = pawTeamId
+          ? self.client.getItems('paw_blog', {
+              limit: -1,
+              sort: '-publication_date',
+              fields: ['id', 'status', 'publication_date', 'translations.title', 'translations.slug', 'translations.languages_code', 'author.paw_team_id'],
+              filter: {
+                status: { _eq: 'published' },
+                author: { paw_team_id: { _eq: pawTeamId } }
+              }
+            })
+          : Promise.resolve({ data: [] });
+
+        return pawPromise.then(function (data) {
+          const pawItems = self.pawBlogItemsFromPosts(data.data || []);
+          self.otherWorks = self.buildOtherWorksHtml(publicationItems, pawItems);
+        });
+      }).catch(function (error) {
+        console.error('Error fetching Power At Work blog posts:', error);
+        self.otherWorks = self.buildOtherWorksHtml(publicationItems, []);
+      });
     },
 
     fetchBlogsAndCombine() {
@@ -282,20 +438,14 @@ metaInfo () {
           }
         });
 
-        const pubsPromise = self.hasTeamPublicationsHtml()
-          ? Promise.resolve([])
-          : self.fetchPublicationsFromCollection();
+        const pubsPromise = self.fetchPublicationsFromCollection();
 
         return Promise.all([blogPromise, pubsPromise]).then(function (results) {
           const blogData = results[0];
           const collectionPubs = results[1];
           const allItems = [];
 
-          if (self.hasTeamPublicationsHtml()) {
-            allItems.push.apply(allItems, self.publicationItemsFromHtml(self.memberData.publications));
-          } else {
-            allItems.push.apply(allItems, self.publicationItemsFromCollection(collectionPubs));
-          }
+          allItems.push.apply(allItems, self.publicationItemsFromCollection(collectionPubs));
 
           const filteredBlogs = (blogData.data || []).filter(function (blog) {
             if (!blog.authors || !Array.isArray(blog.authors) || !rebootTeamId) {
@@ -311,12 +461,12 @@ metaInfo () {
 
           allItems.push.apply(allItems, self.blogItemsFromPosts(filteredBlogs));
 
-          const fallback = self.hasTeamPublicationsHtml() ? self.memberData.publications : '';
-          self.combinedPublications = self.buildCombinedPublicationsHtml(allItems, fallback);
+          const filteredItems = self.filterPublicationItems(allItems);
+          self.combinedPublications = self.buildCombinedPublicationsHtml(filteredItems, '');
         });
       }).catch(function (error) {
         console.error('Error fetching publications and Reboot blog posts:', error);
-        self.combinedPublications = self.hasTeamPublicationsHtml() ? self.memberData.publications : '';
+        self.combinedPublications = '';
       });
     },
 

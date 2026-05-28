@@ -194,7 +194,7 @@
             <div class="e-main-content">
                 <p v-html="memberData.bio"></p>
 
-                <div class="e-collapsed" v-if="combinedPublications || (memberData.projects && memberData.projects.length)">
+                <div class="e-collapsed" v-if="combinedPublications || otherWorks || (memberData.projects && memberData.projects.length)">
 
                     <template v-if="combinedPublications">
                       <p v-if="!publications_toggle"><span class="b-button m-naked js-articles-toggle" @click="toggle('publications')">Publications &amp; Writing <i
@@ -202,6 +202,14 @@
                       <p v-if="publications_toggle"><span class="b-button m-naked js-articles-toggle" @click="toggle('publications')">Publications &amp; Writing <i
                                   class="material-icons">keyboard_arrow_up</i></span></p>
                       <div class="e-selected-articles project_list" v-if="publications_toggle" v-html="combinedPublications"></div>
+                    </template>
+
+                    <template v-if="otherWorks">
+                      <p v-if="!other_works_toggle"><span class="b-button m-naked js-other-works-toggle" @click="toggle('other_works')">Other Works <i
+                                  class="material-icons">keyboard_arrow_down</i></span></p>
+                      <p v-if="other_works_toggle"><span class="b-button m-naked js-other-works-toggle" @click="toggle('other_works')">Other Works <i
+                                  class="material-icons">keyboard_arrow_up</i></span></p>
+                      <div class="e-selected-articles project_list" v-if="other_works_toggle" v-html="otherWorks"></div>
                     </template>
 
                     <template v-if="memberData.projects && memberData.projects.length">
