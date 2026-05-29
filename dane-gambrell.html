@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-<meta content="The GovLab | Caleb Gayle" property="og:title" />
+<meta content="The GovLab | Dane Gambrell" property="og:title" />
 <meta
-    content="Caleb Gayle is a Senior Fellow at the Burnes Center for Global Impact and its partner project, The GovLab"
+    content="Dane Gambrell is a Research Fellow at the Burnes Center for Global Impact and its partner project, The GovLab"
     property="og:description">
 
     <meta property="og:type" content="website" />
@@ -89,7 +89,7 @@
 
     
 
-<div class="b-fancy-bio" id="teamdetail">
+<div class="b-fancy-bio" id="teamdetail" v-cloak>
     <div class="b-top-section">
         <div class="e-wrap">
             <div v-if="memberData.picture" class="e-pic" :style="{ backgroundImage: 'url(' +client.url+'assets/'+  memberData.picture.id+ ')' }">
@@ -159,7 +159,7 @@
                     </ul>
 
                 </section> -->
-                <section class="e-section">
+                <section class="e-section" v-if="memberData.books && memberData.books.length">
                     <h3>By {{memberData.name}}</h3>
 
                     <ul class="e-books"  v-for= "(book, index) in memberData.books">
@@ -194,8 +194,33 @@
             <div class="e-main-content">
                 <p v-html="memberData.bio"></p>
 
-                
+                <div class="e-collapsed" v-if="combinedPublications || otherWorks || (memberData.projects && memberData.projects.length)">
 
+                    <template v-if="combinedPublications">
+                      <p v-if="!publications_toggle"><span class="b-button m-naked js-articles-toggle" @click="toggle('publications')">Publications &amp; Writing <i
+                                  class="material-icons">keyboard_arrow_down</i></span></p>
+                      <p v-if="publications_toggle"><span class="b-button m-naked js-articles-toggle" @click="toggle('publications')">Publications &amp; Writing <i
+                                  class="material-icons">keyboard_arrow_up</i></span></p>
+                      <div class="e-selected-articles project_list" v-if="publications_toggle" v-html="combinedPublications"></div>
+                    </template>
+
+                    <template v-if="otherWorks">
+                      <p v-if="!other_works_toggle"><span class="b-button m-naked js-other-works-toggle" @click="toggle('other_works')">Other Works <i
+                                  class="material-icons">keyboard_arrow_down</i></span></p>
+                      <p v-if="other_works_toggle"><span class="b-button m-naked js-other-works-toggle" @click="toggle('other_works')">Other Works <i
+                                  class="material-icons">keyboard_arrow_up</i></span></p>
+                      <div class="e-selected-articles project_list" v-if="other_works_toggle" v-html="otherWorks"></div>
+                    </template>
+
+                    <template v-if="memberData.projects && memberData.projects.length">
+                      <div class="b-button m-naked js-project-toggle" v-if="!projects_toggle" @click="toggle('projects')">Projects <i class="material-icons">keyboard_arrow_down</i></div>
+                      <div class="b-button m-naked js-project-toggle" v-if="projects_toggle" @click="toggle('projects')">Projects <i class="material-icons">keyboard_arrow_up</i></div>
+                      <ul class="e-projects project_list" v-if="projects_toggle">
+                        <li v-for="project in memberData.projects"><a :href="projectHref(project)" target="_blank">{{project.projects_id.name}}</a></li>
+                      </ul>
+                    </template>
+
+                </div>
 
             </div>
         </div>
