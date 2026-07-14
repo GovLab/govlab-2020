@@ -116,6 +116,14 @@
   .tint-ds{filter:grayscale(1) brightness(.72) sepia(1) saturate(6) hue-rotate(228deg) brightness(.62) contrast(1.15);}
   .tint-100q{filter:brightness(0) saturate(100%) invert(19%) sepia(43%) saturate(1673%) hue-rotate(177deg) brightness(94%) contrast(97%);}
 
+  /* ---------- whole-card click (stretched-link overlay) ---------- */
+  /* A transparent pseudo-element on the primary link covers the entire card,
+     so clicking anywhere on the card follows that link. */
+  .post,.tile{position:relative;cursor:pointer;}
+  .post-title::after,.tile-link::after{content:"";position:absolute;inset:0;z-index:1;}
+  /* keep the button a separate, independently-clickable link above the overlay */
+  .post .btn{position:relative;z-index:2;}
+
   /* ---------- footer ---------- */
   footer{background:rgba(0,0,0,.85);color:rgba(255,255,255,.6);}
   .foot-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;padding:34px 24px 10px;}
