@@ -34,7 +34,7 @@
   .menu-btn{background:none;border:none;color:rgba(255,255,255,.75);font-size:28px;cursor:pointer;padding:0;line-height:1;transition:color .3s;}
   .menu-btn:hover{color:#fff;}
   .topbar-right{display:flex;align-items:center;gap:20px;}
-  .sites-link{background:rgba(255,255,255,.2);color:#fff;text-decoration:none;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:8px 13px;transition:background .3s;}
+  .sites-link{background:rgba(255,255,255,.2);color:#fff;text-decoration:none;font-size:14px;font-weight:400;letter-spacing:.5px;text-transform:uppercase;padding:8px 13px;transition:background .3s;}
   .sites-link:hover{background:rgba(255,255,255,.3);color:#fff;}
   .social{color:rgba(255,255,255,.85);text-decoration:none;font-size:18px;transition:color .3s;}
   .social:hover{color:#fff;}
@@ -44,7 +44,7 @@
   .menu-panel{position:fixed;top:0;bottom:0;left:0;width:320px;max-width:82vw;background:var(--grey);z-index:60;transform:translateX(-100%);transition:transform .35s ease;overflow-y:auto;box-shadow:0 0 24px rgba(0,0,0,.45);}
   .menu-panel .close{display:block;text-align:right;padding:18px 24px 6px;}
   .menu-panel .close label{color:rgba(255,255,255,.7);font-size:26px;cursor:pointer;line-height:1;}
-  .menu-panel a{display:block;font-size:15px;padding:18px 24px;color:rgba(255,255,255,.7);text-align:right;border-bottom:1px solid rgba(255,255,255,.1);text-transform:uppercase;font-weight:600;letter-spacing:1px;text-decoration:none;transition:all .3s;}
+  .menu-panel a{display:block;font-size:15px;padding:18px 24px;color:rgba(255,255,255,.7);text-align:right;border-bottom:1px solid rgba(255,255,255,.1);text-transform:uppercase;font-weight:400;letter-spacing:.5px;text-decoration:none;transition:all .3s;}
   .menu-panel a:hover{color:#fff;background:rgba(0,0,0,.15);}
   .menu-scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:55;opacity:0;pointer-events:none;transition:opacity .35s ease;}
   #menu-toggle:checked ~ .menu-panel{transform:translateX(0);}
@@ -183,11 +183,11 @@
     <a href="https://thegovlab.org"><img class="hero-logo" src="assets/the-govlab-logo-white-transpo.png" alt="The GovLab"></a>
     <h1 class="hero-sub">Deepening our understanding of how to govern<br>more effectively and legitimately through technology</h1>
   </div>
-  <div class="search-band">
+  <form class="search-band" action="https://blog.thegovlab.org/" method="get" target="_blank">
     <i class="material-icons">search</i>
-    <input type="text" placeholder="SEARCH HERE" aria-label="Search">
+    <input type="text" name="q" placeholder="SEARCH HERE" aria-label="Search">
     <button type="submit">Search</button>
-  </div>
+  </form>
 </header>
 
 <!-- ===================== THE LATEST ===================== -->
