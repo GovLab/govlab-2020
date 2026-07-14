@@ -247,8 +247,12 @@
       <div class="h">Subscribe to The Digest</div>
       <div class="p">A weekly curation of new findings and developments on innovation in governance.</div>
     </div>
-    <form class="digest-form" onsubmit="return false">
-      <input type="email" placeholder="EMAIL" aria-label="Email address">
+    <form class="digest-form" method="post"
+          action="https://thegovlab.us6.list-manage.com/subscribe/post?u=1a990feb5c&amp;id=d90a01c7ff"
+          target="_blank">
+      <!-- Mailchimp anti-bot honeypot (must stay empty) -->
+      <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_1a990feb5c_d90a01c7ff" tabindex="-1" value=""></div>
+      <input type="email" name="EMAIL" placeholder="EMAIL" aria-label="Email address" required>
       <button type="submit">Subscribe</button>
     </form>
     <a class="digest-go" href="https://thegovlab.org/the-digest" target="_blank" rel="noopener">Go to Digest <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
