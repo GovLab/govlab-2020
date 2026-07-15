@@ -27,7 +27,7 @@
   img{max-width:100%;}
   a{color:var(--purple);}
   a:hover{color:var(--purple-dark);}
-  .wrap{max-width:1280px;margin:0 auto;}
+  .wrap{max-width:none;margin:0 auto;}
 
   /* ---------- top nav ---------- */
   .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 25px;position:relative;z-index:30;}
@@ -70,9 +70,9 @@
 
   /* ---------- latest ---------- */
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:stretch;}
-  .post{display:flex;flex-direction:column;background:#fff;box-shadow:0 0 6px rgba(0,0,0,.15);transition:box-shadow .4s;}
+  .post{display:flex;flex-direction:column;background:#fff;box-shadow:0 0 6px rgba(0,0,0,.15);border-radius:14px;overflow:hidden;transition:box-shadow .4s;}
   .post:hover{box-shadow:0 0 12px rgba(0,0,0,.3);}
-  .post-img{aspect-ratio:1.91/1;position:relative;overflow:hidden;background:#e8e8ea;}
+  .post-img{aspect-ratio:1.91/1;position:relative;overflow:hidden;background:#e8e8ea;display:block;}
   .post-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .post-body{display:flex;flex-direction:column;gap:12px;padding:25px 25px 30px;flex:1;}
   .kicker{font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
@@ -101,7 +101,7 @@
   /* ---------- projects ---------- */
   .projects{background:#fff;}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
-  .tile{display:flex;flex-direction:column;background:var(--tile);transition:box-shadow .4s;}
+  .tile{display:flex;flex-direction:column;background:var(--tile);border-radius:14px;overflow:hidden;transition:box-shadow .4s;}
   .tile:hover{box-shadow:0 0 12px rgba(0,0,0,.3);}
   .tile-logo{aspect-ratio:2.2/1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8%;background:var(--tile);}
   .tile-logo img{position:absolute;inset:17.6% 8%;width:84%;height:64.8%;object-fit:contain;}
@@ -116,33 +116,12 @@
   .tint-ds{filter:grayscale(1) brightness(.72) sepia(1) saturate(6) hue-rotate(228deg) brightness(.62) contrast(1.15);}
   .tint-100q{filter:brightness(0) saturate(100%) invert(19%) sepia(43%) saturate(1673%) hue-rotate(177deg) brightness(94%) contrast(97%);}
 
-  /* ---------- whole-card click (stretched-link overlay) ---------- */
-  /* A transparent pseudo-element on the primary link covers the entire card,
-     so clicking anywhere on the card follows that link. */
-  .post,.tile{position:relative;cursor:pointer;}
-  .post-title::after,.tile-link::after{content:"";position:absolute;inset:0;z-index:1;}
-  /* keep the button a separate, independently-clickable link above the overlay */
-  .post .btn{position:relative;z-index:2;}
-
   /* ---------- footer ---------- */
-  .site-footer{background:#0c2f35;color:rgba(255,255,255,.8);font-size:16px;}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding:50px 24px;align-items:start;}
-  .site-footer h4{margin:0 0 6px;font-size:16px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;}
-  .foot-partners h4:nth-of-type(2){margin-top:34px;}
-  .foot-links a{display:inline-block;width:49%;box-sizing:border-box;color:rgba(255,255,255,.7);text-decoration:none;padding:6px 10px;margin-left:-10px;transition:all .3s;}
-  .foot-links a:hover{color:#fff;background:rgba(255,255,255,.1);}
-  .foot-funders-col{display:flex;justify-content:center;}
-  .foot-funders{display:block;width:100%;max-width:300px;text-align:center;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:1px;font-weight:600;font-size:15px;padding:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);transition:background .3s;}
-  .foot-funders:hover{background:rgba(255,255,255,.1);color:#fff;}
-  .foot-logo{display:block;}
-  .foot-logo img{max-width:90%;max-height:60px;padding:10px 0;opacity:.5;transition:opacity .3s;}
-  .foot-logo:hover img{opacity:1;}
-  .foot-copyright{background:#262321;color:rgba(255,255,255,.7);font-size:14px;}
-  .foot-copyright .wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding:20px 24px;}
-  .foot-copyright a{color:rgba(255,255,255,.7);}
-  .foot-copyright a:hover{color:#fff;}
-  .cc-badge{flex:none;line-height:0;}
-  .cc-badge img{border:0;}
+  footer{background:rgba(0,0,0,.85);color:rgba(255,255,255,.6);}
+  .foot-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;padding:34px 24px 10px;}
+  .foot-nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;padding:6px 12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;transition:color .3s;}
+  .foot-nav a:hover{color:#fff;}
+  .foot-base{text-align:center;padding:12px 24px 40px;font-size:12px;color:rgba(255,255,255,.45);}
 
   /* ---------- responsive ---------- */
   @media(max-width:960px){
@@ -152,7 +131,6 @@
     .grid3{grid-template-columns:repeat(2,1fr);}
     .hero-logo{height:170px;}
     .hero-sub{font-size:20px;margin:20px auto 42px;}
-    .foot-grid{grid-template-columns:1fr;gap:28px;padding:40px 32px;}
   }
   @media(max-width:620px){
     section{padding:44px 20px;}
@@ -169,7 +147,6 @@
     .digest-inner{gap:16px;}
     .digest-form{width:100%;} .digest-form input{flex:1;width:auto;}
     .tile-text{font-size:20px;} .tile-text.cc{font-size:20px;}
-    .foot-links a{width:100%;}
   }
 </style>
 </head>
@@ -220,7 +197,7 @@
     <div class="latest-grid">
 
       <article class="post">
-        <div class="post-img"><img src="assets/drop-img-announcement.webp" alt=""></div>
+        <a class="post-img" href="https://www.alexandriabrief.com/alexandria-to-offer-free-ai-training-to-all-city-employees/" target="_blank" rel="noopener"><img src="assets/drop-img-announcement.webp" alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--orange)">Announcements</div>
           <a class="post-title" href="https://www.alexandriabrief.com/alexandria-to-offer-free-ai-training-to-all-city-employees/" target="_blank" rel="noopener">Governor Hochul Delivers Artificial Intelligence Training Tool to the New York State Workforce</a>
@@ -230,7 +207,7 @@
       </article>
 
       <article class="post">
-        <div class="post-img"><img src="assets/drop-img-reboot.webp" alt=""></div>
+        <a class="post-img" href="https://rebootdemocracy.ai/blog" target="_blank" rel="noopener"><img src="assets/drop-img-reboot.webp" alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--teal)">Latest from Reboot Democracy</div>
           <a class="post-title" href="https://rebootdemocracy.ai/blog" target="_blank" rel="noopener">Notes from the field: Building UX capacity in City government</a>
@@ -241,7 +218,7 @@
       </article>
 
       <article class="post">
-        <div class="post-img"><img src="assets/drop-img-datastewards.webp" alt=""></div>
+        <a class="post-img" href="https://opendatapolicylab.org/articles/defining-data-commons/" target="_blank" rel="noopener"><img src="assets/drop-img-datastewards.webp" alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--blue)">Latest from ODPL &amp; Data Stewards</div>
           <a class="post-title" href="https://opendatapolicylab.org/articles/defining-data-commons/" target="_blank" rel="noopener">Defining Data Commons: A Framework for Assessing Shared Data Resources</a>
@@ -262,15 +239,11 @@
       <div class="h">Subscribe to The Digest</div>
       <div class="p">A weekly curation of new findings and developments on innovation in governance.</div>
     </div>
-    <form class="digest-form" method="post"
-          action="https://thegovlab.us6.list-manage.com/subscribe/post?u=1a990feb5c&amp;id=d90a01c7ff"
-          target="_blank">
-      <!-- Mailchimp anti-bot honeypot (must stay empty) -->
-      <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_1a990feb5c_d90a01c7ff" tabindex="-1" value=""></div>
-      <input type="email" name="EMAIL" placeholder="EMAIL" aria-label="Email address" required>
+    <form class="digest-form" onsubmit="return false">
+      <input type="email" placeholder="EMAIL" aria-label="Email address">
       <button type="submit">Subscribe</button>
     </form>
-    <a class="digest-go" href="https://thelivinglib.org/" target="_blank" rel="noopener">Go to Digest <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+    <a class="digest-go" href="https://thegovlab.org/the-digest" target="_blank" rel="noopener">Go to Digest <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
   </div>
 </div>
 
@@ -345,44 +318,16 @@
 </section>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="site-footer">
-  <div class="wrap foot-grid">
-
-    <div class="foot-sections">
-      <h4>Sections</h4>
-      <nav class="foot-links" aria-label="Footer">
-        <a href="https://thegovlab.org/">Home</a>
-        <a href="https://thegovlab.org/about">About</a>
-        <a href="https://thegovlab.org/projects">Projects</a>
-        <a href="https://thegovlab.org/events">Events</a>
-        <a href="https://thegovlab.org/publications">Publications</a>
-        <a href="https://thegovlab.org/team">Team</a>
-        <a href="https://thegovlab.org/transparency">Our Transparency</a>
-        <a href="https://thegovlab.org/job-board">Job Board</a>
-        <a href="https://thegovlab.org/contact">Contact</a>
-        <a href="https://thegovlab.org/brand">Brand Assets</a>
-      </nav>
-    </div>
-
-    <div class="foot-funders-col">
-      <a class="foot-funders" href="https://thegovlab.org/transparency" target="_blank" rel="noopener">Our Funders</a>
-    </div>
-
-    <div class="foot-partners">
-      <h4>Affiliated With</h4>
-      <a class="foot-logo" href="https://burnes.northeastern.edu" target="_blank" rel="noopener"><img src="assets/burnes-logo-northeastern.png" alt="The Burnes Center for Social Change — Northeastern University"></a>
-      <h4>Founded At</h4>
-      <a class="foot-logo" href="https://engineering.nyu.edu/tandon" target="_blank" rel="noopener"><img src="assets/nyu-tandon.png" alt="NYU Tandon School of Engineering"></a>
-    </div>
-
-  </div>
-
-  <div class="foot-copyright">
-    <div class="wrap">
-      <a class="cc-badge" rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-      <span>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 4.0 International License</a></span>
-    </div>
-  </div>
+<footer>
+  <nav class="foot-nav" aria-label="Footer">
+    <a href="https://thegovlab.org/projects">Projects</a>
+    <a href="https://blog.thegovlab.org">Blog</a>
+    <a href="https://thegovlab.org/about">About</a>
+    <a href="https://thegovlab.org/our-sites">Our Sites</a>
+    <a href="https://thegovlab.org/contact">Contact</a>
+    <a href="https://thegovlab.org/the-digest">The Digest</a>
+  </nav>
+  <div class="foot-base">The Governance Lab &middot; Tandon School of Engineering, New York University</div>
 </footer>
 
 </body>
