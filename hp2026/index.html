@@ -101,7 +101,7 @@
   /* ---------- projects ---------- */
   .projects{background:#fff;}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
-  .tile{display:flex;flex-direction:column;background:var(--tile);border-radius:14px;overflow:hidden;transition:box-shadow .4s;}
+  .tile{display:flex;flex-direction:column;background:var(--tile);border-radius:14px;overflow:hidden;transition:box-shadow .4s;position:relative;}
   .tile:hover{box-shadow:0 0 12px rgba(0,0,0,.3);}
   .tile-logo{aspect-ratio:2.2/1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8%;background:var(--tile);}
   .tile-logo img{position:absolute;inset:17.6% 8%;width:84%;height:64.8%;object-fit:contain;}
@@ -112,6 +112,8 @@
   .tile-link .d{font-size:13px;color:#999;display:block;}
   .tile-link .n{font-size:12px;font-style:italic;color:#999;display:block;}
   .tile-link .meta{flex:1;min-width:0;}
+  /* Stretch the tile link over the whole tile so the logo area is clickable too */
+  .tile-link::after{content:"";position:absolute;inset:0;z-index:1;}
   .tint-purple{filter:brightness(0) saturate(100%) invert(21%) sepia(51%) saturate(2004%) hue-rotate(245deg) brightness(90%) contrast(94%);}
   .tint-ds{filter:grayscale(1) brightness(.72) sepia(1) saturate(6) hue-rotate(228deg) brightness(.62) contrast(1.15);}
   .tint-100q{filter:brightness(0) saturate(100%) invert(19%) sepia(43%) saturate(1673%) hue-rotate(177deg) brightness(94%) contrast(97%);}
