@@ -18,7 +18,8 @@
   @font-face{font-family:'proxima-nova';font-weight:700;font-style:normal;font-display:swap;src:url('assets/fonts/proxima-nova-600.woff2') format('woff2');}
   :root{
     --grey:#333333; --purple:#523080; --purple-dark:#47296e;
-    --teal:#008895; --orange:#ee5b43; --blue:#008ab3; --tile:#efefef;
+    --teal:#008895; --orange:#ee5b43; --blue:#008ab3;
+    --tile:#f4f4f6; /* logo well inside a white card */
     --sans:'proxima-nova','Montserrat',Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box;}
@@ -30,7 +31,9 @@
   .wrap{max-width:none;margin:0 auto;}
 
   /* ---------- top nav ---------- */
-  .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 25px;position:relative;z-index:30;}
+  /* The hero is white, so the nav band carries its own purple (it used to
+     inherit the hero's dark background). */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 25px;position:relative;z-index:30;background:var(--purple);}
   .menu-btn{background:none;border:none;color:rgba(255,255,255,.75);font-size:28px;cursor:pointer;padding:0;line-height:1;transition:color .3s;}
   .menu-btn:hover{color:#fff;}
   .topbar-right{display:flex;align-items:center;gap:20px;}
@@ -51,10 +54,11 @@
   #menu-toggle:checked ~ .menu-scrim{opacity:1;pointer-events:auto;}
 
   /* ---------- hero ---------- */
-  .hero{background:var(--grey);position:relative;}
-  .hero-inner{max-width:1025px;margin:0 auto;padding:0 20px 10px;display:flex;flex-direction:column;align-items:center;}
-  .hero-logo{height:250px;display:block;margin-top:10px;}
-  .hero-sub{margin:25px auto 55px;font-weight:300;font-size:26px;line-height:1.4;letter-spacing:1px;color:#fff;text-transform:uppercase;text-align:center;}
+  /* White centre block between the purple nav and search bands. */
+  .hero{background:#fff;position:relative;}
+  .hero-inner{max-width:840px;margin:0 auto;padding:48px 24px 56px;display:flex;flex-direction:column;align-items:center;}
+  .hero-logo{height:45px;display:block;}
+  .hero-sub{margin:28px 0 0;font-weight:400;font-size:22px;line-height:1.45;letter-spacing:1.2px;color:var(--purple);text-transform:uppercase;text-align:center;}
 
   /* ---------- search band ---------- */
   .search-band{background:var(--purple);padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:14px;}
@@ -85,29 +89,51 @@
   .btn.orange{background:var(--orange);} .btn.teal{background:var(--teal);} .btn.blue{background:var(--blue);}
 
   /* ---------- digest band ---------- */
-  .digest{background:var(--purple);padding:30px 64px;}
-  .digest-inner{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;}
+  .digest{background:var(--purple);padding:44px 64px;}
+  .digest-inner{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px;}
   .digest-copy{display:flex;flex-direction:column;gap:6px;}
   .digest-copy .h{font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.9);}
   .digest-copy .p{font-size:15px;font-weight:300;color:rgba(255,255,255,.6);}
-  .digest-form{display:flex;}
-  .digest-form input{width:320px;max-width:60vw;padding:14px 20px;border:none;outline:none;font-size:14px;letter-spacing:1px;font-family:inherit;background:rgba(255,255,255,.1);color:#fff;}
+  /* Checkboxes sit directly on the purple band (no tile) and spread evenly
+     across the full width. */
+  .list-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;justify-items:left;}
+  .list-opt{display:flex;align-items:center;gap:12px;}
+  .list-opt input{appearance:none;-webkit-appearance:none;width:20px;height:20px;flex:none;margin:0;cursor:pointer;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.5);position:relative;}
+  .list-opt input:checked{background:#fff;border-color:#fff;}
+  .list-opt input:checked::after{content:'';position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid var(--purple);border-width:0 2px 2px 0;transform:rotate(45deg);}
+  .list-opt label{flex:1;min-width:0;cursor:pointer;color:#fff;font-size:14px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
+  /* "Go to …" buttons under the checkbox grid: transparent on the purple band,
+     revealing a dark wash only on hover (matches the live site's .digest-go). */
+  .list-links{display:flex;flex-wrap:wrap;gap:12px;}
+  .digest-go{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:12px 16px;transition:background .3s;}
+  .digest-go:hover{background:rgba(0,0,0,.2);color:#fff;}
+  .digest-form-wrap{display:flex;flex-direction:column-reverse;gap:16px;}
+  .digest-form{display:flex;flex-wrap:wrap;gap:0;}
+  .digest-form input[type=email]{width:360px;max-width:100%;flex:1;padding:14px 20px;border:none;outline:none;font-size:14px;letter-spacing:1px;font-family:inherit;background:rgba(255,255,255,.1);color:#fff;}
   .digest-form input::placeholder{color:rgba(255,255,255,.6);}
   .digest-form button{border:none;cursor:pointer;background:rgba(255,255,255,.2);color:#fff;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 25px;font-family:inherit;transition:background .3s;}
   .digest-form button:hover{background:rgba(255,255,255,.3);}
-  .digest-go{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:12px 16px;transition:background .3s;}
-  .digest-go:hover{background:rgba(0,0,0,.2);color:#fff;}
+  .digest-note{font-size:14px;color:rgba(255,255,255,.85);}
 
   /* ---------- projects ---------- */
   .projects{background:#fff;}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
-  .tile{display:flex;flex-direction:column;background:var(--tile);border-radius:14px;overflow:hidden;transition:box-shadow .4s;position:relative;}
-  .tile:hover{box-shadow:0 0 12px rgba(0,0,0,.3);}
+  /* White card on a white page: the edge comes from a two-layer shadow
+     (tight contact + wide ambient), not a border. */
+  .tile{display:flex;flex-direction:column;background:#fff;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.06), 0 8px 22px rgba(0,0,0,.08);transition:transform .3s ease, box-shadow .3s ease;}
+  .tile:hover{transform:translateY(-6px);box-shadow:0 6px 12px rgba(0,0,0,.08), 0 18px 42px rgba(0,0,0,.16);}
   .tile-logo{aspect-ratio:2.2/1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8%;background:var(--tile);}
   .tile-logo img{position:absolute;inset:17.6% 8%;width:84%;height:64.8%;object-fit:contain;}
   .tile-text{font-weight:700;letter-spacing:1px;color:#124559;text-align:center;line-height:1.35;font-size:26px;font-family:'Gotham','Montserrat',sans-serif;}
   .tile-text.cc{font-family:'akzidenz-grotesk-next-conden','Archivo Narrow','Roboto Condensed',sans-serif;font-weight:600;letter-spacing:.5px;line-height:1.25;font-size:27px;}
-  .tile-link{display:flex;align-items:center;gap:12px;padding:18px 20px;text-decoration:none;color:var(--grey);}
+  .tile-link{display:flex;align-items:center;gap:12px;padding:18px 20px;text-decoration:none;color:var(--grey);border-top:1px solid #ededf0;}
+  /* Arrow colour cycle: purple -> teal -> orange -> blue, repeating every 4
+     tiles and running continuously across the grid (it does not reset per
+     row), so with 3 columns no two adjacent tiles share a colour. */
+  .grid3 > .tile:nth-child(4n+1) .tile-link .material-icons{color:var(--purple);}
+  .grid3 > .tile:nth-child(4n+2) .tile-link .material-icons{color:var(--teal);}
+  .grid3 > .tile:nth-child(4n+3) .tile-link .material-icons{color:var(--orange);}
+  .grid3 > .tile:nth-child(4n)   .tile-link .material-icons{color:var(--blue);}
   .tile-link .t{font-size:17px;font-weight:600;line-height:1.3;display:block;}
   .tile-link .d{font-size:13px;color:#999;display:block;}
   .tile-link .n{font-size:12px;font-style:italic;color:#999;display:block;}
@@ -131,23 +157,27 @@
     .digest{padding:28px 32px;}
     .latest-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto;}
     .grid3{grid-template-columns:repeat(2,1fr);}
-    .hero-logo{height:170px;}
-    .hero-sub{font-size:20px;margin:20px auto 42px;}
+    .list-grid{grid-template-columns:repeat(2,1fr);}
+    .hero-inner{padding:40px 24px 44px;}
+    .hero-logo{height:40px;}
+    .hero-sub{font-size:19px;margin:24px 0 0;}
   }
   @media(max-width:620px){
     section{padding:44px 20px;}
     .digest{padding:24px 20px;}
     .grid3{grid-template-columns:1fr;max-width:440px;margin:0 auto;}
+    .list-grid{grid-template-columns:1fr;}
     .topbar{padding:14px 18px;}
     .sites-link{font-size:11px;padding:7px 10px;}
     .social{font-size:16px;}
-    .hero-logo{height:120px;}
-    .hero-sub{font-size:16px;letter-spacing:.5px;margin:16px auto 34px;}
+    .hero-inner{padding:32px 20px 36px;}
+    .hero-logo{height:32px;}
+    .hero-sub{font-size:16px;letter-spacing:.5px;margin:20px 0 0;}
     .search-band input{width:auto;flex:1;}
     .section-title{font-size:19px;margin-bottom:28px;}
     .post-title{font-size:19px;}
     .digest-inner{gap:16px;}
-    .digest-form{width:100%;} .digest-form input{flex:1;width:auto;}
+    .digest-form{width:100%;} .digest-form input[type=email]{flex:1;width:auto;}
     .tile-text{font-size:20px;} .tile-text.cc{font-size:20px;}
   }
 </style>
@@ -182,7 +212,7 @@
     </div>
   </div>
   <div class="hero-inner">
-    <a href="https://thegovlab.org"><img class="hero-logo" src="assets/the-govlab-logo-white-transpo.png" alt="The GovLab"></a>
+    <a href="https://thegovlab.org"><img class="hero-logo" src="assets/the-govlab-logo-dark.svg" alt="The GovLab"></a>
     <h1 class="hero-sub">Deepening our understanding of how to govern<br>more effectively and legitimately through technology</h1>
   </div>
   <form class="search-band" action="https://blog.thegovlab.org/" method="get" target="_blank">
@@ -198,17 +228,17 @@
     <h2 class="section-title">The Latest</h2>
     <div class="latest-grid">
 
-      <article class="post">
-        <a class="post-img" href="https://www.alexandriabrief.com/alexandria-to-offer-free-ai-training-to-all-city-employees/" target="_blank" rel="noopener"><img src="assets/drop-img-announcement.webp" alt=""></a>
+      <article class="post" id="card-announcement">
+        <a class="post-img" href="https://innovate-us.org/comms/new-york-state-innovateus/" target="_blank" rel="noopener"><img src="assets/drop-img-announcement.webp" alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--orange)">Announcements</div>
-          <a class="post-title" href="https://www.alexandriabrief.com/alexandria-to-offer-free-ai-training-to-all-city-employees/" target="_blank" rel="noopener">Governor Hochul Delivers Artificial Intelligence Training Tool to the New York State Workforce</a>
-          <div class="date">June 15, 2026</div>
-          <a class="btn orange" href="https://innovate-us.org/comms" target="_blank" rel="noopener">All announcements <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+          <a class="post-title" href="https://innovate-us.org/comms/new-york-state-innovateus/" target="_blank" rel="noopener">Governor Hochul Delivers Artificial Intelligence Training Tool to the New York State Workforce</a>
+          <div class="date">April 6, 2026</div>
+          <a class="btn orange" href="https://innovate-us.org/comms/new-york-state-innovateus/" target="_blank" rel="noopener">Read the announcement <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
         </div>
       </article>
 
-      <article class="post">
+      <article class="post" id="card-reboot">
         <a class="post-img" href="https://rebootdemocracy.ai/blog" target="_blank" rel="noopener"><img src="assets/drop-img-reboot.webp" alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--teal)">Latest from Reboot Democracy</div>
@@ -219,7 +249,7 @@
         </div>
       </article>
 
-      <article class="post">
+      <article class="post" id="card-odpl">
         <a class="post-img" href="https://opendatapolicylab.org/articles/defining-data-commons/" target="_blank" rel="noopener"><img src="assets/drop-img-datastewards.webp" alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--blue)">Latest from ODPL &amp; Data Stewards</div>
@@ -238,14 +268,43 @@
 <div class="digest">
   <div class="digest-inner">
     <div class="digest-copy">
-      <div class="h">Subscribe to The Digest</div>
-      <div class="p">A weekly curation of new findings and developments on innovation in governance.</div>
+      <div class="h">Subscribe To Our Mailinglists</div>
+      <div class="p">Choose the newsletters you&rsquo;d like to receive.</div>
     </div>
-    <form class="digest-form" onsubmit="return false">
-      <input type="email" placeholder="EMAIL" aria-label="Email address">
-      <button type="submit">Subscribe</button>
+    <!-- All four are separate Mailchimp AUDIENCES across TWO accounts
+         (thegovlab us6: Digest, GovLab · innovate-us us14: Reboot, InnovateUS),
+         so a single form POST cannot reach them. Submission is handled in JS
+         (see MAILCHIMP_LISTS at the bottom of this file): one POST per selected
+         list into a hidden iframe. -->
+    <form class="digest-form-wrap" id="mc-form" action="#" method="post" onsubmit="return false">
+      <div class="list-grid">
+        <div class="list-opt">
+          <input type="checkbox" id="list-reboot" data-list="reboot" checked>
+          <label for="list-reboot">Reboot Democracy</label>
+        </div>
+        <div class="list-opt">
+          <input type="checkbox" id="list-innovateus" data-list="innovateus" checked>
+          <label for="list-innovateus">InnovateUS</label>
+        </div>
+        <div class="list-opt">
+          <input type="checkbox" id="list-digest" data-list="digest" checked>
+          <label for="list-digest">The Digest</label>
+        </div>
+        <div class="list-opt">
+          <input type="checkbox" id="list-govlab" data-list="govlab" checked>
+          <label for="list-govlab">The GovLab</label>
+        </div>
+      </div>
+      <div class="digest-form">
+        <input type="email" name="EMAIL" placeholder="EMAIL" aria-label="Email address" required>
+        <button type="submit">Subscribe</button>
+      </div>
+      <div class="digest-note" id="mc-note" role="status" aria-live="polite"></div>
     </form>
-    <a class="digest-go" href="https://thegovlab.org/the-digest" target="_blank" rel="noopener">Go to Digest <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+    <div class="list-links">
+      <a class="digest-go" href="https://rebootdemocracy.ai/" target="_blank" rel="noopener">Go to Reboot <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+      <a class="digest-go" href="https://thelivinglib.org/" target="_blank" rel="noopener">Go to Digest <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+    </div>
   </div>
 </div>
 
@@ -257,62 +316,62 @@
 
       <div class="tile">
         <div class="tile-logo"><img class="tint-purple" src="https://thelivinglib.org/wp-content/uploads/2018/10/cropped-logo_top2.png" alt="The Digest"></div>
-        <a class="tile-link" href="https://thelivinglib.org/" target="_blank" rel="noopener"><span class="meta"><span class="t">The Digest</span><span class="d">thelivinglib.org</span></span><i class="material-icons" style="color:var(--purple)">arrow_forward</i></a>
+        <a class="tile-link" href="https://thelivinglib.org/" target="_blank" rel="noopener"><span class="meta"><span class="t">The Digest</span><span class="d">thelivinglib.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img src="https://opendatapolicylab.org/images/odpl/open-data-policy-lab-logo-horizontal.svg" alt="Open Data Policy Lab"></div>
-        <a class="tile-link" href="https://opendatapolicylab.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Open Data Policy Lab</span><span class="d">opendatapolicylab.org</span></span><i class="material-icons" style="color:var(--teal)">arrow_forward</i></a>
+        <a class="tile-link" href="https://opendatapolicylab.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Open Data Policy Lab</span><span class="d">opendatapolicylab.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img class="tint-ds" src="https://datastewards.net/images/logo.svg" alt="Data Stewards"></div>
-        <a class="tile-link" href="https://datastewards.net" target="_blank" rel="noopener"><span class="meta"><span class="t">Data Stewards</span><span class="d">datastewards.net</span></span><i class="material-icons" style="color:var(--orange)">arrow_forward</i></a>
+        <a class="tile-link" href="https://datastewards.net" target="_blank" rel="noopener"><span class="meta"><span class="t">Data Stewards</span><span class="d">datastewards.net</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><span class="tile-text">International Network on Digital Self-Determination</span></div>
-        <a class="tile-link" href="https://www.idsd.network" target="_blank" rel="noopener"><span class="meta"><span class="t">International Network on Digital Self-Determination</span><span class="d">idsd.network</span></span><i class="material-icons" style="color:var(--blue)">arrow_forward</i></a>
+        <a class="tile-link" href="https://www.idsd.network" target="_blank" rel="noopener"><span class="meta"><span class="t">International Network on Digital Self-Determination</span><span class="d">idsd.network</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img class="tint-100q" src="https://the100questions.org/images/100-questions-logo-v-white.svg" alt="The 100 Questions Initiative"></div>
-        <a class="tile-link" href="https://the100questions.org" target="_blank" rel="noopener"><span class="meta"><span class="t">The 100 Questions Initiative</span><span class="d">the100questions.org</span><span class="n">To be replaced by the Q-Lab site</span></span><i class="material-icons" style="color:var(--purple)">arrow_forward</i></a>
+        <a class="tile-link" href="https://the100questions.org" target="_blank" rel="noopener"><span class="meta"><span class="t">The 100 Questions Initiative</span><span class="d">the100questions.org</span><span class="n">To be replaced by the Q-Lab site</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img src="https://www.data4philanthropy.net/images/d4p-logo-colored.svg" alt="DATA4Philanthropy"></div>
-        <a class="tile-link" href="https://www.data4philanthropy.net" target="_blank" rel="noopener"><span class="meta"><span class="t">DATA4Philanthropy</span><span class="d">data4philanthropy.net</span><span class="n">To be replaced by the new data commons</span></span><i class="material-icons" style="color:var(--teal)">arrow_forward</i></a>
+        <a class="tile-link" href="https://www.data4philanthropy.net" target="_blank" rel="noopener"><span class="meta"><span class="t">DATA4Philanthropy</span><span class="d">data4philanthropy.net</span><span class="n">To be replaced by the new data commons</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img src="https://innovate-us.org/images/wordmark_light.svg" alt="InnovateUS"></div>
-        <a class="tile-link" href="https://innovate-us.org" target="_blank" rel="noopener"><span class="meta"><span class="t">InnovateUS</span><span class="d">innovate-us.org</span></span><i class="material-icons" style="color:var(--orange)">arrow_forward</i></a>
+        <a class="tile-link" href="https://innovate-us.org" target="_blank" rel="noopener"><span class="meta"><span class="t">InnovateUS</span><span class="d">innovate-us.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img src="https://rebootdemocracy.ai/images/version=default.svg" alt="Reboot Democracy"></div>
-        <a class="tile-link" href="https://rebootdemocracy.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">Reboot Democracy</span><span class="d">rebootdemocracy.ai</span></span><i class="material-icons" style="color:var(--blue)">arrow_forward</i></a>
+        <a class="tile-link" href="https://rebootdemocracy.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">Reboot Democracy</span><span class="d">rebootdemocracy.ai</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img src="assets/burnes-logo-red.svg" alt="The Burnes Center for Social Change"></div>
-        <a class="tile-link" href="https://burnes.northeastern.edu" target="_blank" rel="noopener"><span class="meta"><span class="t">The Burnes Center for Social Change</span><span class="d">burnes.northeastern.edu</span></span><i class="material-icons" style="color:var(--purple)">arrow_forward</i></a>
+        <a class="tile-link" href="https://burnes.northeastern.edu" target="_blank" rel="noopener"><span class="meta"><span class="t">The Burnes Center for Social Change</span><span class="d">burnes.northeastern.edu</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img src="https://ai4impact.ai/images/afi-wordmark.svg" alt="AI for Impact"></div>
-        <a class="tile-link" href="https://ai4impact.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">AI for Impact</span><span class="d">ai4impact.ai</span></span><i class="material-icons" style="color:var(--teal)">arrow_forward</i></a>
+        <a class="tile-link" href="https://ai4impact.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">AI for Impact</span><span class="d">ai4impact.ai</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img class="tint-purple" src="assets/smarter-crowdsourcing-logo.svg" alt="Smarter Crowdsourcing"></div>
-        <a class="tile-link" href="https://smartercrowdsourcing.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Smarter Crowdsourcing</span><span class="d">smartercrowdsourcing.org</span></span><i class="material-icons" style="color:var(--orange)">arrow_forward</i></a>
+        <a class="tile-link" href="https://smartercrowdsourcing.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Smarter Crowdsourcing</span><span class="d">smartercrowdsourcing.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><span class="tile-text cc"><span style="color:#175B33">THE </span><span style="color:#F07D22">COMMUNITY-CENTERED AI</span><span style="color:#175B33"> PROJECT</span></span></div>
-        <a class="tile-link" href="https://communitycentered.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">The Community-Centered AI Project</span><span class="d">communitycentered.ai</span></span><i class="material-icons" style="color:var(--blue)">arrow_forward</i></a>
+        <a class="tile-link" href="https://communitycentered.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">The Community-Centered AI Project</span><span class="d">communitycentered.ai</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
     </div>
@@ -331,6 +390,304 @@
   </nav>
   <div class="foot-base">The Governance Lab &middot; Tandon School of Engineering, New York University</div>
 </footer>
+
+<script>
+/* ============================================================
+   1) THE LATEST — live cards from Directus
+   The hardcoded markup above acts as the fallback: if a fetch
+   fails, the existing content simply stays put.
+   ============================================================ */
+(function () {
+  var CMS    = "https://cms.thegovlab.com";
+  var BURNES = "https://directus.theburnescenter.org";
+  var THUMB  = "?width=800&height=450&fit=cover";
+
+  // Matches how the live ODPL / Data Stewards sites build their article URLs.
+  function slugify(s) {
+    return (s || "").toLowerCase()
+      .replace(/[.'’,]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+  // Decodes CMS entities (&amp;, &nbsp;) without ever executing markup.
+  function decode(s) {
+    var t = document.createElement("textarea");
+    t.innerHTML = s || "";
+    return t.value;
+  }
+  // Parse the date part only — these are naive ISO stamps with no timezone,
+  // so building from Y/M/D avoids any off-by-one from UTC shifting.
+  function fmtDate(d) {
+    if (!d) return "";
+    var p = String(d).slice(0, 10).split("-");
+    return new Date(+p[0], +p[1] - 1, +p[2])
+      .toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  }
+  function get(url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function (j) {
+      // A collection marked "singleton" in Directus returns a bare object
+      // instead of an array, so normalise before anything calls .filter/.map.
+      if (!j.data) return [];
+      return Array.isArray(j.data) ? j.data : [j.data];
+    });
+  }
+
+  function paint(cardId, post) {
+    var card = document.getElementById(cardId);
+    if (!card || !post || !post.title || !post.url) return;
+    var imgLink = card.querySelector("a.post-img");
+    var img     = card.querySelector("a.post-img img");
+    var title   = card.querySelector("a.post-title");
+    var byline  = card.querySelector(".byline");
+    var date    = card.querySelector(".date");
+    var btn     = card.querySelector("a.btn");
+
+    var kicker = card.querySelector(".kicker");
+
+    if (imgLink) imgLink.href = post.url;
+    if (img && post.image) { img.src = post.image; img.alt = post.title; }
+    if (title) { title.href = post.url; title.textContent = post.title; }
+    if (kicker && post.kicker) kicker.textContent = post.kicker;
+    if (date) {
+      date.textContent = fmtDate(post.date);
+      date.hidden = !post.date;
+    }
+    if (byline) {
+      if (post.byline) {
+        byline.textContent = "By: ";
+        var b = document.createElement("b");
+        b.textContent = post.byline;
+        byline.appendChild(b);
+        byline.hidden = false;
+      } else {
+        byline.hidden = true; // older posts can have no author
+      }
+    }
+    if (btn && post.btnLabel) {
+      btn.href = post.btnHref;
+      btn.textContent = post.btnLabel + " ";
+      var i = document.createElement("i");
+      i.className = "material-icons";
+      i.style.fontSize = "16px";
+      i.textContent = "arrow_forward";
+      btn.appendChild(i);
+    }
+  }
+
+  /* --- Reboot Democracy --------------------------------------------------
+     date <= $NOW  : posts are routinely created days before their date
+     slug not null : one published post has no slug (external_link only)   */
+  get(BURNES + "/items/reboot_democracy_blog"
+    + "?filter[_and][0][status][_eq]=published"
+    + "&filter[_and][1][date][_lte]=$NOW"
+    + "&filter[_and][2][slug][_nnull]=true"
+    + "&sort=-date&limit=1"
+    + "&fields=title,slug,date,image.id,authors.team_id.First_Name,authors.team_id.Last_Name"
+  ).then(function (rows) {
+    var p = rows[0];
+    if (!p) return;
+    paint("card-reboot", {
+      title: decode(p.title),
+      date:  p.date,
+      url:   "https://rebootdemocracy.ai/blog/" + p.slug,
+      image: p.image && p.image.id ? BURNES + "/assets/" + p.image.id + THUMB : null,
+      byline: (p.authors || []).map(function (a) {
+        var t = a.team_id || {};
+        return ((t.First_Name || "").trim() + " " + (t.Last_Name || "").trim()).trim();
+      }).filter(Boolean).join(", ")
+    });
+  }).catch(function () { /* keep the fallback markup */ });
+
+  /* --- ODPL + Data Stewards (newest across both) ------------------------
+     limit=3 each: the two collections cross-post heavily, so keep
+     runners-up available rather than betting on a single row.            */
+  var qs = "?filter[_and][0][status][_eq]=published"
+         + "&filter[_and][1][date][_nnull]=true"
+         + "&filter[_and][2][date][_lte]=$NOW"
+         + "&sort=-date,-id&limit=3&fields=";
+  Promise.all([
+    get(CMS + "/items/odpl_items" + qs
+      + "id,heading,brow,date,cover_image,custom_url,collaborators.sort,collaborators.odpl_team_id.name"),
+    get(CMS + "/items/ds_blogposts" + qs + "id,heading,date,image,author")
+  ]).then(function (res) {
+    var items = res[0].map(function (o) {
+      return {
+        title: decode(o.heading),
+        date:  o.date,
+        // odpl_items.slug is null on recent rows — always custom_url || brow+heading
+        url:   "https://opendatapolicylab.org/articles/"
+               + (o.custom_url || slugify((o.brow || "") + " " + (o.heading || ""))) + "/",
+        image: o.cover_image ? CMS + "/assets/" + o.cover_image + THUMB : null,
+        byline: (o.collaborators || []).slice()
+                  .sort(function (a, b) { return (a.sort || 0) - (b.sort || 0); })
+                  .map(function (c) { return c.odpl_team_id && c.odpl_team_id.name; })
+                  .filter(Boolean).join(", "),
+        btnLabel: "More from the ODPL blog",
+        btnHref:  "https://opendatapolicylab.org/blog/"
+      };
+    }).concat(res[1].map(function (d) {
+      return {
+        title: decode(d.heading),
+        date:  d.date,
+        url:   "https://datastewards.net/news/" + slugify(d.heading || ""),
+        image: d.image ? CMS + "/assets/" + d.image + THUMB : null,
+        byline: (d.author || "").trim(), // already human-formatted, incl. multi-author
+        btnLabel: "More from the Data Stewards blog",
+        btnHref:  "https://datastewards.net/news"
+      };
+    }));
+    items.sort(function (a, b) {
+      return (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0);
+    });
+    paint("card-odpl", items[0]);
+  }).catch(function () { /* keep the fallback markup */ });
+
+  /* --- Announcements ----------------------------------------------------
+     thegovlab_announcement (singular) lives on the Burnes instance alongside
+     the GovLab and Reboot blogs — NOT on cms.thegovlab.com. That instance is
+     Directus 12, where the old draft/published `status` string is replaced by
+     an `archived` boolean, so we skip archived rows (and still honour a
+     legacy `status` field if one is ever added).
+     Fetches a few rows rather than 1 so an archived newest row doesn't leave
+     the card empty. The button links straight to the announcement. */
+  get(BURNES + "/items/thegovlab_announcement?sort=-date,-id&limit=5&fields=*")
+    .then(function (rows) {
+      var a = rows.filter(function (r) {
+        if (r.archived === true) return false;
+        if (r.status && r.status !== "published") return false;
+        return r.title && r.link;
+      })[0];
+      if (!a) return;
+      paint("card-announcement", {
+        title: decode(a.title),
+        date:  a.date || null,
+        url:   a.link,
+        image: a.image ? BURNES + "/assets/" + a.image + THUMB : null,
+        kicker: a.category ? decode(a.category) : null,
+        btnLabel: "Read the announcement",
+        btnHref:  a.link
+      });
+    }).catch(function () { /* unreachable — keep the fallback markup */ });
+})();
+
+/* ============================================================
+   2) Mailing lists
+   The four lists live in TWO Mailchimp accounts, so one POST can
+   never cover them all:
+     - innovate-us / us14 : Reboot and InnovateUS are SEPARATE audiences
+                            (sources: rebootdemocracy.ai/signup, innovate-us.org)
+     - thegovlab   / us6  : The Digest and The GovLab are interest GROUPS
+                            inside ONE audience, category 25
+                            (source: thegovlab.org/community)
+   So selections are grouped by audience and submitted once per
+   audience: ticking Digest + GovLab is a single request, not two.
+   Max 3 requests.
+
+   Submission uses the classic /subscribe/post into a hidden iframe
+   rather than post-json: post-json 404s for the Reboot and GovLab
+   audiences (only InnovateUS supports it), while classic post works
+   for all three. list-manage.com sends no CORS headers, so a plain
+   fetch is impossible either way. Trade-off: the response is
+   cross-origin and unreadable, so we can't surface "already
+   subscribed" — we validate client-side and show a neutral message.
+   ============================================================ */
+(function () {
+  var US14 = "https://innovate-us.us14.list-manage.com/subscribe/post";
+  var US6  = "https://thegovlab.us6.list-manage.com/subscribe/post";
+
+  // Four SEPARATE audiences (list ids from the owner), split across the two
+  // accounts. Verified: each id resolves only on its own account (ef27ea1e30
+  // 404s on us14, 6fd2122762 404s on us6), and none of the four support
+  // /subscribe/post-json — hence the unreadable-response note on submit.
+  var MAILCHIMP_LISTS = {
+    reboot:     { url: US14, u: "36f840aa1f979805ce7b81fa7", id: "6f8a160bd5", label: "Reboot Democracy" },
+    innovateus: { url: US14, u: "36f840aa1f979805ce7b81fa7", id: "6fd2122762", label: "InnovateUS" },
+    digest:     { url: US6,  u: "1a990feb5c", id: "d90a01c7ff", label: "The Digest" },
+    govlab:     { url: US6,  u: "1a990feb5c", id: "ef27ea1e30", label: "The GovLab" }
+  };
+
+  var form = document.getElementById("mc-form");
+  var note = document.getElementById("mc-note");
+  if (!form) return;
+
+  function say(msg) { if (note) note.textContent = msg || ""; }
+
+  // POST a synthetic form into a hidden iframe: works cross-origin without CORS.
+  function postToList(cfg, email) {
+    var target = "mc_" + Math.random().toString(36).slice(2);
+    var frame = document.createElement("iframe");
+    frame.name = target;
+    frame.style.display = "none";
+    document.body.appendChild(frame);
+
+    var f = document.createElement("form");
+    f.method = "post";
+    f.target = target;
+    f.style.display = "none";
+    f.action = cfg.url + "?u=" + cfg.u + "&id=" + cfg.id + (cfg.f_id ? "&f_id=" + cfg.f_id : "");
+
+    function add(name, value) {
+      var i = document.createElement("input");
+      i.type = "hidden"; i.name = name; i.value = value;
+      f.appendChild(i);
+    }
+    add("EMAIL", email);
+    add("b_" + cfg.u + "_" + cfg.id, ""); // bot check: must be present and empty
+
+    document.body.appendChild(f);
+    f.submit();
+    setTimeout(function () {
+      if (f.parentNode) f.parentNode.removeChild(f);
+      if (frame.parentNode) frame.parentNode.removeChild(frame);
+    }, 20000);
+  }
+
+  // Safety net: never offer a checkbox that has no configuration behind it.
+  Array.prototype.forEach.call(form.querySelectorAll("input[data-list]"), function (box) {
+    if (!MAILCHIMP_LISTS[box.dataset.list]) {
+      box.checked = false;
+      box.disabled = true;
+      box.closest(".list-opt").style.opacity = ".55";
+      box.closest(".list-opt").title = "Mailchimp list not configured yet";
+    }
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var emailEl = form.querySelector("input[type=email]");
+    var email = (emailEl.value || "").trim();
+    if (!email || !emailEl.checkValidity()) {
+      say("Please enter a valid email address.");
+      return;
+    }
+
+    var picked = Array.prototype.filter.call(
+      form.querySelectorAll("input[data-list]"),
+      function (b) { return b.checked && !b.disabled; }
+    );
+    if (!picked.length) { say("Please choose at least one newsletter."); return; }
+
+    // One POST per selected list — they are four separate audiences, so there
+    // is nothing to collapse.
+    picked.forEach(function (box) {
+      postToList(MAILCHIMP_LISTS[box.dataset.list], email);
+    });
+
+    // We can only report that the requests were SENT, not that they succeeded:
+    // none of these four audiences expose /subscribe/post-json, so the iframe
+    // responses are cross-origin and unreadable. Keep the wording honest rather
+    // than claiming a subscription we cannot verify. Double opt-in sends one
+    // confirmation email PER LIST, so name the count.
+    say(picked.length > 1
+      ? "Thanks — we sent your request to " + picked.length + " lists. Each one emails you a separate confirmation link to finish signing up; if one doesn't arrive you may already be subscribed."
+      : "Thanks — we sent your request. Look for a confirmation email to finish signing up; if it doesn't arrive you may already be subscribed.");
+    emailEl.value = "";
+  });
+})();
+</script>
 
 </body>
 </html>
