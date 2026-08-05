@@ -80,6 +80,23 @@
 
   /* ---------- latest ---------- */
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:stretch;}
+  .post[hidden]{display:none;}
+  /* Skeleton state: cards hold their place in the grid while Directus loads,
+     so nothing jumps when the real content lands. Removed by paint(); a failed
+     fetch hides the card instead. */
+  @keyframes sk{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+  .post.is-loading .post-img,
+  .post.is-loading .post-title,
+  .post.is-loading .byline,
+  .post.is-loading .date{
+    background:linear-gradient(90deg,rgba(0,138,179,.09) 25%,rgba(0,138,179,.20) 37%,rgba(0,138,179,.09) 63%);
+    background-size:400% 100%;animation:sk 1.4s ease-in-out infinite;border-radius:4px;color:transparent;}
+  .post.is-loading .post-title{min-height:2.6em;}
+  .post.is-loading .byline{min-height:1em;width:55%;}
+  .post.is-loading .date{min-height:1em;width:35%;}
+  .post.is-loading .kicker{opacity:.4;}
+  .post.is-loading .btn{visibility:hidden;}
+  @media (prefers-reduced-motion:reduce){.post.is-loading .post-img,.post.is-loading .post-title,.post.is-loading .byline,.post.is-loading .date{animation:none;}}
   .post{display:flex;flex-direction:column;background:#fff;box-shadow:0 0 6px rgba(0,0,0,.15);border-radius:14px;overflow:hidden;transition:box-shadow .4s;}
   .post:hover{box-shadow:0 0 12px rgba(0,0,0,.3);}
   .post-img{aspect-ratio:1.91/1;position:relative;overflow:hidden;background:#e8e8ea;display:block;}
@@ -239,39 +256,43 @@
 </header>
 
 <!-- ===================== THE LATEST ===================== -->
+<!-- The three cards are populated at runtime from Directus (see the script at
+     the foot of this file). They carry no placeholder content and stay hidden
+     until their fetch resolves, so nothing stale is ever shown and a failed
+     fetch simply omits that card rather than displaying last year's post. -->
 <section class="latest">
   <div class="wrap">
     <h2 class="section-title">The Latest</h2>
     <div class="latest-grid">
 
-      <article class="post" id="card-announcement">
-        <a class="post-img" href="https://innovate-us.org/comms/new-york-state-innovateus/" target="_blank" rel="noopener"><img src="assets/drop-img-announcement.webp" alt=""></a>
+      <article class="post is-loading" id="card-announcement">
+        <a class="post-img"><img alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--orange)">Announcements</div>
-          <a class="post-title" href="https://innovate-us.org/comms/new-york-state-innovateus/" target="_blank" rel="noopener">Governor Hochul Delivers Artificial Intelligence Training Tool to the New York State Workforce</a>
-          <div class="date">April 6, 2026</div>
-          <a class="btn orange" href="https://innovate-us.org/comms/new-york-state-innovateus/" target="_blank" rel="noopener">Read the announcement <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+          <a class="post-title"></a>
+          <div class="date"></div>
+          <a class="btn orange">Read the announcement <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
         </div>
       </article>
 
-      <article class="post" id="card-reboot">
-        <a class="post-img" href="https://rebootdemocracy.ai/blog" target="_blank" rel="noopener"><img src="assets/drop-img-reboot.webp" alt=""></a>
+      <article class="post is-loading" id="card-reboot">
+        <a class="post-img"><img alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--teal)">Latest from Reboot Democracy</div>
-          <a class="post-title" href="https://rebootdemocracy.ai/blog" target="_blank" rel="noopener">Notes from the field: Building UX capacity in City government</a>
-          <div class="byline">By: <b>Cindy Phan, Keith Wilson</b></div>
-          <div class="date">July 7, 2026</div>
+          <a class="post-title"></a>
+          <div class="byline"></div>
+          <div class="date"></div>
           <a class="btn teal" href="https://rebootdemocracy.ai/blog" target="_blank" rel="noopener">More from the Reboot blog <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
         </div>
       </article>
 
-      <article class="post" id="card-odpl">
-        <a class="post-img" href="https://opendatapolicylab.org/articles/defining-data-commons/" target="_blank" rel="noopener"><img src="assets/drop-img-datastewards.webp" alt=""></a>
+      <article class="post is-loading" id="card-odpl">
+        <a class="post-img"><img alt=""></a>
         <div class="post-body">
           <div class="kicker" style="color:var(--blue)">Latest from ODPL &amp; Data Stewards</div>
-          <a class="post-title" href="https://opendatapolicylab.org/articles/defining-data-commons/" target="_blank" rel="noopener">Defining Data Commons: A Framework for Assessing Shared Data Resources</a>
-          <div class="byline">By: <b>Hannah Chafetz, Andrew J. Zahuranec, Stefaan Verhulst</b></div>
-          <div class="date">July 6, 2026</div>
+          <a class="post-title"></a>
+          <div class="byline"></div>
+          <div class="date"></div>
           <a class="btn blue" href="https://datastewards.net" target="_blank" rel="noopener">More from the Data Stewards blog <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
         </div>
       </article>
@@ -442,9 +463,16 @@
     });
   }
 
+  // Nothing to show for this card — drop it rather than shimmer indefinitely.
+  function drop(cardId) {
+    var c = document.getElementById(cardId);
+    if (c) { c.classList.remove("is-loading"); c.hidden = true; }
+  }
+
   function paint(cardId, post) {
     var card = document.getElementById(cardId);
-    if (!card || !post || !post.title || !post.url) return;
+    if (!post || !post.title || !post.url) { drop(cardId); return; }
+    if (!card) return;
     var imgLink = card.querySelector("a.post-img");
     var img     = card.querySelector("a.post-img img");
     var title   = card.querySelector("a.post-title");
@@ -454,9 +482,14 @@
 
     var kicker = card.querySelector(".kicker");
 
+    card.classList.remove("is-loading");   // real content has arrived
     if (imgLink) imgLink.href = post.url;
     if (img && post.image) { img.src = post.image; img.alt = post.title; }
-    if (title) { title.href = post.url; title.textContent = post.title; }
+    if (imgLink) { imgLink.target = "_blank"; imgLink.rel = "noopener"; }
+    if (title) {
+      title.href = post.url; title.textContent = post.title;
+      title.target = "_blank"; title.rel = "noopener";
+    }
     if (kicker && post.kicker) kicker.textContent = post.kicker;
     if (date) {
       date.textContent = fmtDate(post.date);
@@ -474,7 +507,7 @@
       }
     }
     if (btn && post.btnLabel) {
-      btn.href = post.btnHref;
+      btn.href = post.btnHref; btn.target = "_blank"; btn.rel = "noopener";
       btn.textContent = post.btnLabel + " ";
       var i = document.createElement("i");
       i.className = "material-icons";
@@ -495,7 +528,7 @@
     + "&fields=title,slug,date,image.id,authors.team_id.First_Name,authors.team_id.Last_Name"
   ).then(function (rows) {
     var p = rows[0];
-    if (!p) return;
+    if (!p) { drop("card-reboot"); return; }
     paint("card-reboot", {
       title: decode(p.title),
       date:  p.date,
@@ -506,7 +539,7 @@
         return ((t.First_Name || "").trim() + " " + (t.Last_Name || "").trim()).trim();
       }).filter(Boolean).join(", ")
     });
-  }).catch(function () { /* keep the fallback markup */ });
+  }).catch(function () { drop("card-reboot"); });
 
   /* --- ODPL + Data Stewards (newest across both) ------------------------
      limit=3 each: the two collections cross-post heavily, so keep
@@ -550,7 +583,7 @@
       return (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0);
     });
     paint("card-odpl", items[0]);
-  }).catch(function () { /* keep the fallback markup */ });
+  }).catch(function () { drop("card-odpl"); });
 
   /* --- Announcements ----------------------------------------------------
      thegovlab_announcement (singular) lives on the Burnes instance alongside
@@ -567,7 +600,7 @@
         if (r.status && r.status !== "published") return false;
         return r.title && r.link;
       })[0];
-      if (!a) return;
+      if (!a) { drop("card-announcement"); return; }
       paint("card-announcement", {
         title: decode(a.title),
         date:  a.date || null,
@@ -577,7 +610,7 @@
         btnLabel: "Read the announcement",
         btnHref:  a.link
       });
-    }).catch(function () { /* unreachable — keep the fallback markup */ });
+    }).catch(function () { drop("card-announcement"); });
 })();
 
 
