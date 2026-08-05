@@ -6387,6 +6387,3 @@
 /case-study-list/* http://odimpact.org/
 /open-data-impact-case-studies/* http://odimpact.org/
 /open-peer-review-at-the-govlab/* https://blog.thegovlab.com/post/open-peer-review-opportunity-policy-paper-on-emerging-uses-of-technology-for-development
-
-### Keep function source from being served as a static file ###
-/netlify/*  /404.html  404

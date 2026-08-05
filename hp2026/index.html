@@ -94,32 +94,40 @@
   .btn:hover{filter:brightness(1.08);color:#fff;}
   .btn.orange{background:var(--orange);} .btn.teal{background:var(--teal);} .btn.blue{background:var(--blue);}
 
-  /* ---------- digest band ---------- */
-  .digest{background:var(--brand);padding:44px 64px;}
-  .digest-inner{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px;}
-  .digest-copy{display:flex;flex-direction:column;gap:6px;}
-  .digest-copy .h{font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.9);}
-  .digest-copy .p{font-size:15px;font-weight:300;color:rgba(255,255,255,.6);}
-  /* Checkboxes sit directly on the brand band (no tile) and spread evenly
-     across the full width. */
-  .list-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;justify-items:left;}
-  .list-opt{display:flex;align-items:center;gap:12px;}
-  .list-opt input{appearance:none;-webkit-appearance:none;width:20px;height:20px;flex:none;margin:0;cursor:pointer;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.5);position:relative;}
-  .list-opt input:checked{background:#fff;border-color:#fff;}
-  .list-opt input:checked::after{content:'';position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid var(--brand);border-width:0 2px 2px 0;transform:rotate(45deg);}
-  .list-opt label{flex:1;min-width:0;cursor:pointer;color:#fff;font-size:14px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
-  /* "Go to …" buttons under the checkbox grid: transparent on the brand band,
-     revealing a dark wash only on hover (matches the live site's .digest-go). */
-  .list-links{display:flex;flex-wrap:wrap;gap:12px;}
-  .digest-go{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:12px 16px;transition:background .3s;}
+  /* ---------- subscribe bands ---------- */
+  /* Two stacked bands, same layout as the b-subscribe block on thegovlab.org:
+     copy left, inline Mailchimp form, then a "go to" link — all on one row.
+     The copy flexes so the form and link stay put and the two bands align. */
+  .digest{background:#00616b;padding:30px 64px;}   /* The Digest */
+  .digest.alt{background:#008AB3;}                  /* Reboot Democracy */
+  /* Fixed columns so the Subscribe and "Go to" buttons line up between bands. */
+  .digest-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 400px 200px;align-items:center;gap:28px;}
+  .digest-copy{min-width:0;display:flex;flex-direction:column;gap:6px;}
+  .digest-copy .h{font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#fff;}
+  .digest-copy .h strong{font-weight:700;}
+  .digest-copy .p{font-size:15px;font-weight:300;color:rgba(255,255,255,.8);}
+  .digest-cta{flex:0 0 auto;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.22);color:#fff;text-decoration:none;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 25px;transition:background .3s;}
+  .digest-cta:hover{background:rgba(255,255,255,.34);color:#fff;}
+  .digest-form{display:flex;}
+  .digest-form input[type=email]{flex:1;min-width:0;padding:14px 20px;border:none;outline:none;font-size:14px;letter-spacing:1px;font-family:inherit;background:rgba(255,255,255,.14);color:#fff;}
+  .digest-form input::placeholder{color:rgba(255,255,255,.75);}
+  .digest-form button{border:none;cursor:pointer;background:rgba(255,255,255,.22);color:#fff;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 25px;font-family:inherit;transition:background .3s;}
+  .digest-form button:hover{background:rgba(255,255,255,.34);}
+  .digest-go{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:12px 16px;transition:background .3s;}
   .digest-go:hover{background:rgba(0,0,0,.2);color:#fff;}
-  .digest-form-wrap{display:flex;flex-direction:column-reverse;gap:16px;}
-  .digest-form{display:flex;flex-wrap:wrap;gap:0;}
-  .digest-form input[type=email]{width:360px;max-width:100%;flex:1;padding:14px 20px;border:none;outline:none;font-size:14px;letter-spacing:1px;font-family:inherit;background:rgba(255,255,255,.1);color:#fff;}
-  .digest-form input::placeholder{color:rgba(255,255,255,.6);}
-  .digest-form button{border:none;cursor:pointer;background:rgba(255,255,255,.2);color:#fff;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 25px;font-family:inherit;transition:background .3s;}
-  .digest-form button:hover{background:rgba(255,255,255,.3);}
   .digest-note{font-size:14px;color:rgba(255,255,255,.85);}
+  .mc-verification{width:min(760px,calc(100% - 32px));height:min(760px,calc(100vh - 32px));height:min(760px,calc(100dvh - 32px));max-width:none;max-height:none;padding:0;border:0;background:transparent;overflow:hidden;}
+  .mc-verification::backdrop{background:rgba(20,27,31,.72);}
+  .mc-verification-card{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:#fff;box-shadow:0 24px 70px rgba(0,0,0,.35);}
+  .mc-verification-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:18px 20px;background:var(--brand);color:#fff;}
+  .mc-verification-title{margin:0;font-size:18px;font-weight:600;letter-spacing:.5px;}
+  .mc-verification-copy{margin:4px 0 0;color:#fff;font-size:14px;}
+  .mc-verification-close{display:inline-flex;align-items:center;justify-content:center;flex:none;border:0;background:transparent;color:#fff;cursor:pointer;padding:4px;}
+  .mc-verification-close:hover{background:rgba(0,0,0,.15);}
+  .mc-verification-frame{display:block;width:100%;flex:1;min-height:0;border:0;background:#fff;}
+  .mc-verification-foot{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-top:1px solid #e6e6e6;color:#555;font-size:13px;text-align:center;}
+  .mc-verification-fallback{border:0;background:transparent;color:var(--brand-dark);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:0;}
+  body.mc-verification-open{overflow:hidden;}
 
   /* ---------- projects ---------- */
   .projects{background:#fff;}
@@ -164,9 +172,9 @@
   @media(max-width:960px){
     section{padding:56px 32px;}
     .digest{padding:28px 32px;}
+    .digest-inner{grid-template-columns:1fr;gap:18px;}
     .latest-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto;}
     .grid3{grid-template-columns:repeat(2,1fr);}
-    .list-grid{grid-template-columns:repeat(2,1fr);}
     .hero-inner{padding:40px 24px 44px;}
     .hero-logo{height:40px;}
     .hero-sub{font-size:19px;margin:24px 0 0;}
@@ -175,7 +183,6 @@
     section{padding:44px 20px;}
     .digest{padding:24px 20px;}
     .grid3{grid-template-columns:1fr;max-width:440px;margin:0 auto;}
-    .list-grid{grid-template-columns:1fr;}
     .topbar{padding:14px 18px;}
     .sites-link{font-size:11px;padding:7px 10px;}
     .social{font-size:16px;}
@@ -185,7 +192,7 @@
     .search-band input{width:auto;flex:1;}
     .section-title{font-size:19px;margin-bottom:28px;}
     .post-title{font-size:19px;}
-    .digest-inner{gap:16px;}
+    .digest-inner{grid-template-columns:1fr;gap:16px;}
     .digest-form{width:100%;} .digest-form input[type=email]{flex:1;width:auto;}
     .tile-text{font-size:20px;} .tile-text.cc{font-size:20px;}
   }
@@ -273,47 +280,38 @@
   </div>
 </section>
 
-<!-- ===================== DIGEST BAND ===================== -->
+<!-- ===================== SUBSCRIBE BANDS ===================== -->
+<!-- NO direct-POST form here on purpose. Mailchimp applies its reCAPTCHA only
+     to its own hosted forms, never to /subscribe/post, so an embedded form is
+     an unprotected public endpoint and was collecting bot signups. The email
+     field below just hands off to the hosted form with the address prefilled
+     (MERGE0), so the actual submit happens on Mailchimp where the captcha runs.
+     Do not turn these back into <form action=".../subscribe/post">. -->
 <div class="digest">
   <div class="digest-inner">
     <div class="digest-copy">
-      <div class="h">Subscribe To Our Mailinglists</div>
-      <div class="p">Choose the newsletters you&rsquo;d like to receive.</div>
+      <div class="h"><strong>Subscribe</strong> To The Digest</div>
+      <div class="p">A weekly curation of new findings and developments on innovation in governance</div>
     </div>
-    <!-- All four are separate Mailchimp AUDIENCES across TWO accounts
-         (thegovlab us6: Digest, GovLab · innovate-us us14: Reboot, InnovateUS),
-         so a single form POST cannot reach them. Submission is handled in JS
-         (see MAILCHIMP_LISTS at the bottom of this file): one POST per selected
-         list into a hidden iframe. -->
-    <form class="digest-form-wrap" id="mc-form" action="#" method="post" onsubmit="return false">
-      <div class="list-grid">
-        <div class="list-opt">
-          <input type="checkbox" id="list-reboot" data-list="reboot" checked>
-          <label for="list-reboot">Reboot Democracy</label>
-        </div>
-        <div class="list-opt">
-          <input type="checkbox" id="list-innovateus" data-list="innovateus" checked>
-          <label for="list-innovateus">InnovateUS</label>
-        </div>
-        <div class="list-opt">
-          <input type="checkbox" id="list-digest" data-list="digest" checked>
-          <label for="list-digest">The Digest</label>
-        </div>
-        <div class="list-opt">
-          <input type="checkbox" id="list-govlab" data-list="govlab" checked>
-          <label for="list-govlab">The GovLab</label>
-        </div>
-      </div>
-      <div class="digest-form">
-        <input type="email" name="EMAIL" placeholder="EMAIL" aria-label="Email address" required>
-        <button type="submit">Subscribe</button>
-      </div>
-      <div class="digest-note" id="mc-note" role="status" aria-live="polite"></div>
+    <form class="digest-form" data-hosted="https://livinglib.us6.list-manage.com/subscribe?u=1a990feb5c&amp;id=d90a01c7ff">
+      <input type="email" name="EMAIL" placeholder="Email" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
     </form>
-    <div class="list-links">
-      <a class="digest-go" href="https://rebootdemocracy.ai/" target="_blank" rel="noopener">Go to Reboot <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
-      <a class="digest-go" href="https://thelivinglib.org/" target="_blank" rel="noopener">Go to Digest <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+    <a class="digest-go" href="https://thelivinglib.org/" target="_blank" rel="noopener">Go to Digest <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+  </div>
+</div>
+
+<div class="digest alt">
+  <div class="digest-inner">
+    <div class="digest-copy">
+      <div class="h"><strong>Subscribe</strong> To Reboot Democracy</div>
+      <div class="p">Weekly writing on AI, democracy and governing in the public interest</div>
     </div>
+    <form class="digest-form" data-hosted="https://rebootdemocracy.us14.list-manage.com/subscribe?u=36f840aa1f979805ce7b81fa7&amp;id=6f8a160bd5">
+      <input type="email" name="EMAIL" placeholder="Email" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <a class="digest-go" href="https://rebootdemocracy.ai/" target="_blank" rel="noopener">Go to Reboot <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
   </div>
 </div>
 
@@ -582,118 +580,20 @@
     }).catch(function () { /* unreachable — keep the fallback markup */ });
 })();
 
-/* ============================================================
-   2) Mailing lists
-   The four lists live in TWO Mailchimp accounts, so one POST can
-   never cover them all:
-     - innovate-us / us14 : Reboot and InnovateUS are SEPARATE audiences
-                            (sources: rebootdemocracy.ai/signup, innovate-us.org)
-     - thegovlab   / us6  : The Digest and The GovLab are interest GROUPS
-                            inside ONE audience, category 25
-                            (source: thegovlab.org/community)
-   So selections are grouped by audience and submitted once per
-   audience: ticking Digest + GovLab is a single request, not two.
-   Max 3 requests.
 
-   Submission uses the classic /subscribe/post into a hidden iframe
-   rather than post-json: post-json 404s for the Reboot and GovLab
-   audiences (only InnovateUS supports it), while classic post works
-   for all three. list-manage.com sends no CORS headers, so a plain
-   fetch is impossible either way. Trade-off: the response is
-   cross-origin and unreadable, so we can't surface "already
-   subscribed" — we validate client-side and show a neutral message.
-   ============================================================ */
+/* Subscribe bands: hand the address to Mailchimp's HOSTED form (prefilled via
+   MERGE0) instead of POSTing from this page, so Mailchimp's bot protection
+   applies. Nothing is submitted from here. */
 (function () {
-  var US14 = "https://innovate-us.us14.list-manage.com/subscribe/post";
-  var US6  = "https://thegovlab.us6.list-manage.com/subscribe/post";
-
-  // Four SEPARATE audiences (list ids from the owner), split across the two
-  // accounts. Verified: each id resolves only on its own account (ef27ea1e30
-  // 404s on us14, 6fd2122762 404s on us6), and none of the four support
-  // /subscribe/post-json — hence the unreadable-response note on submit.
-  var MAILCHIMP_LISTS = {
-    reboot:     { url: US14, u: "36f840aa1f979805ce7b81fa7", id: "6f8a160bd5", label: "Reboot Democracy" },
-    innovateus: { url: US14, u: "36f840aa1f979805ce7b81fa7", id: "6fd2122762", label: "InnovateUS" },
-    digest:     { url: US6,  u: "1a990feb5c", id: "d90a01c7ff", label: "The Digest" },
-    govlab:     { url: US6,  u: "1a990feb5c", id: "7de5242eb3", label: "The GovLab" }
-  };
-
-  var form = document.getElementById("mc-form");
-  var note = document.getElementById("mc-note");
-  if (!form) return;
-
-  function say(msg) { if (note) note.textContent = msg || ""; }
-
-  // POST a synthetic form into a hidden iframe: works cross-origin without CORS.
-  function postToList(cfg, email) {
-    var target = "mc_" + Math.random().toString(36).slice(2);
-    var frame = document.createElement("iframe");
-    frame.name = target;
-    frame.style.display = "none";
-    document.body.appendChild(frame);
-
-    var f = document.createElement("form");
-    f.method = "post";
-    f.target = target;
-    f.style.display = "none";
-    f.action = cfg.url + "?u=" + cfg.u + "&id=" + cfg.id + (cfg.f_id ? "&f_id=" + cfg.f_id : "");
-
-    function add(name, value) {
-      var i = document.createElement("input");
-      i.type = "hidden"; i.name = name; i.value = value;
-      f.appendChild(i);
-    }
-    add("EMAIL", email);
-    add("b_" + cfg.u + "_" + cfg.id, ""); // bot check: must be present and empty
-
-    document.body.appendChild(f);
-    f.submit();
-    setTimeout(function () {
-      if (f.parentNode) f.parentNode.removeChild(f);
-      if (frame.parentNode) frame.parentNode.removeChild(frame);
-    }, 20000);
-  }
-
-  // Safety net: never offer a checkbox that has no configuration behind it.
-  Array.prototype.forEach.call(form.querySelectorAll("input[data-list]"), function (box) {
-    if (!MAILCHIMP_LISTS[box.dataset.list]) {
-      box.checked = false;
-      box.disabled = true;
-      box.closest(".list-opt").style.opacity = ".55";
-      box.closest(".list-opt").title = "Mailchimp list not configured yet";
-    }
-  });
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var emailEl = form.querySelector("input[type=email]");
-    var email = (emailEl.value || "").trim();
-    if (!email || !emailEl.checkValidity()) {
-      say("Please enter a valid email address.");
-      return;
-    }
-
-    var picked = Array.prototype.filter.call(
-      form.querySelectorAll("input[data-list]"),
-      function (b) { return b.checked && !b.disabled; }
-    );
-    if (!picked.length) { say("Please choose at least one newsletter."); return; }
-
-    // One POST per selected list — they are four separate audiences, so there
-    // is nothing to collapse.
-    picked.forEach(function (box) {
-      postToList(MAILCHIMP_LISTS[box.dataset.list], email);
+  Array.prototype.forEach.call(document.querySelectorAll(".digest-form[data-hosted]"), function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var input = form.querySelector("input[type=email]");
+      if (!input.value.trim() || !input.checkValidity()) { input.reportValidity(); return; }
+      window.open(form.dataset.hosted + "&MERGE0=" + encodeURIComponent(input.value.trim()),
+                  "_blank", "noopener");
+      input.value = "";
     });
-
-    // We can only report that the requests were SENT, not that they succeeded:
-    // none of these four audiences expose /subscribe/post-json, so the iframe
-    // responses are cross-origin and unreadable. Keep the wording honest rather
-    // than claiming a subscription we cannot verify. Double opt-in sends one
-    // confirmation email PER LIST, so name the count.
-    say(picked.length > 1
-      ? "Thanks — we sent your request to " + picked.length + " lists. Each one emails you a separate confirmation link to finish signing up; if one doesn't arrive you may already be subscribed."
-      : "Thanks — we sent your request. Look for a confirmation email to finish signing up; if it doesn't arrive you may already be subscribed.");
-    emailEl.value = "";
   });
 })();
 </script>
