@@ -1,0 +1,105 @@
+{
+  "note": "Project tiles on hp2026, in the order they appear top-to-bottom. Arrow colour is derived from position via the nth-child(4n) cycle — reordering recolours automatically.",
+  "tiles": [
+    {
+      "position": 1,
+      "name": "Open Data Policy Lab",
+      "url": "https://opendatapolicylab.org",
+      "domain": "opendatapolicylab.org",
+      "arrow": "purple",
+      "logo": "https://opendatapolicylab.org/images/odpl/open-data-policy-lab-logo-horizontal.svg"
+    },
+    {
+      "position": 2,
+      "name": "InnovateUS",
+      "url": "https://innovate-us.org",
+      "domain": "innovate-us.org",
+      "arrow": "teal",
+      "logo": "https://innovate-us.org/images/wordmark_light.svg"
+    },
+    {
+      "position": 3,
+      "name": "Data Stewards",
+      "url": "https://datastewards.net",
+      "domain": "datastewards.net",
+      "arrow": "orange",
+      "logo": "https://datastewards.net/images/logo.svg"
+    },
+    {
+      "position": 4,
+      "name": "Reboot Democracy",
+      "url": "https://rebootdemocracy.ai",
+      "domain": "rebootdemocracy.ai",
+      "arrow": "blue",
+      "logo": "https://rebootdemocracy.ai/images/version=default.svg"
+    },
+    {
+      "position": 5,
+      "name": "The Digest",
+      "url": "https://thelivinglib.org/",
+      "domain": "thelivinglib.org",
+      "arrow": "purple",
+      "logo": "https://thelivinglib.org/wp-content/uploads/2018/10/cropped-logo_top2.png"
+    },
+    {
+      "position": 6,
+      "name": "Observatory of Public Sector AI",
+      "url": "https://innovate-us.org/research",
+      "domain": "innovate-us.org/research",
+      "arrow": "teal",
+      "logo": "https://burnes-center.directus.app/assets/f657a304-4510-474b-b1e6-a3d9c29fc53c"
+    },
+    {
+      "position": 7,
+      "name": "AI for Impact",
+      "url": "https://ai4impact.ai",
+      "domain": "ai4impact.ai",
+      "arrow": "orange",
+      "logo": "https://ai4impact.ai/images/afi-wordmark.svg"
+    },
+    {
+      "position": 8,
+      "name": "International Network on Digital Self-Determination",
+      "url": "https://www.idsd.network",
+      "domain": "idsd.network",
+      "arrow": "blue",
+      "logo": null,
+      "wordmark": "International Network on Digital Self-Determination"
+    },
+    {
+      "position": 9,
+      "name": "The 100 Questions Initiative",
+      "url": "https://the100questions.org",
+      "domain": "the100questions.org",
+      "arrow": "purple",
+      "logo": "https://the100questions.org/images/100-questions-logo-v-white.svg",
+      "note": "To be replaced by the Q-Lab site"
+    },
+    {
+      "position": 10,
+      "name": "DATA4Philanthropy",
+      "url": "https://www.data4philanthropy.net",
+      "domain": "data4philanthropy.net",
+      "arrow": "teal",
+      "logo": "https://www.data4philanthropy.net/images/d4p-logo-colored.svg",
+      "note": "To be replaced by the new data commons"
+    },
+    {
+      "position": 11,
+      "name": "Smarter Crowdsourcing",
+      "url": "https://smartercrowdsourcing.org",
+      "domain": "smartercrowdsourcing.org",
+      "arrow": "orange",
+      "logo": "assets/smarter-crowdsourcing-logo.svg"
+    },
+    {
+      "position": 12,
+      "name": "The Community-Centered AI Project",
+      "url": "https://communitycentered.ai",
+      "domain": "communitycentered.ai",
+      "arrow": "blue",
+      "logo": null,
+      "wordmark": "THE COMMUNITY-CENTERED AI PROJECT"
+    }
+  ]
+}

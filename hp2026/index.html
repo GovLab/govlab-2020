@@ -155,6 +155,9 @@
   .tile:hover{transform:translateY(-6px);box-shadow:0 6px 12px rgba(0,0,0,.08), 0 18px 42px rgba(0,0,0,.16);}
   .tile-logo{aspect-ratio:2.2/1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8%;background:var(--tile);}
   .tile-logo img{position:absolute;inset:17.6% 8%;width:84%;height:64.8%;object-fit:contain;}
+  /* Artwork that is a finished graphic (own background, not a transparent
+     wordmark) fills the tile edge to edge instead of sitting inset. */
+  .tile-logo img.fill{inset:0;width:100%;height:100%;object-fit:cover;}
   .tile-text{font-weight:700;letter-spacing:1px;color:#124559;text-align:center;line-height:1.35;font-size:26px;font-family:'Gotham','Montserrat',sans-serif;}
   .tile-text.cc{font-family:'akzidenz-grotesk-next-conden','Archivo Narrow','Roboto Condensed',sans-serif;font-weight:600;letter-spacing:.5px;line-height:1.25;font-size:27px;}
   .tile-link{display:flex;align-items:center;gap:12px;padding:18px 20px;text-decoration:none;color:var(--grey);border-top:1px solid #ededf0;}
@@ -341,62 +344,51 @@
   <div class="wrap">
     <h2 class="section-title">Our Projects</h2>
     <div class="grid3">
-
-      <div class="tile">
-        <div class="tile-logo"><img class="tint-purple" src="https://thelivinglib.org/wp-content/uploads/2018/10/cropped-logo_top2.png" alt="The Digest"></div>
-        <a class="tile-link" href="https://thelivinglib.org/" target="_blank" rel="noopener"><span class="meta"><span class="t">The Digest</span><span class="d">thelivinglib.org</span></span><i class="material-icons">arrow_forward</i></a>
-      </div>
-
       <div class="tile">
         <div class="tile-logo"><img src="https://opendatapolicylab.org/images/odpl/open-data-policy-lab-logo-horizontal.svg" alt="Open Data Policy Lab"></div>
         <a class="tile-link" href="https://opendatapolicylab.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Open Data Policy Lab</span><span class="d">opendatapolicylab.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
-
-      <div class="tile">
-        <div class="tile-logo"><img class="tint-ds" src="https://datastewards.net/images/logo.svg" alt="Data Stewards"></div>
-        <a class="tile-link" href="https://datastewards.net" target="_blank" rel="noopener"><span class="meta"><span class="t">Data Stewards</span><span class="d">datastewards.net</span></span><i class="material-icons">arrow_forward</i></a>
-      </div>
-
-      <div class="tile">
-        <div class="tile-logo"><span class="tile-text">International Network on Digital Self-Determination</span></div>
-        <a class="tile-link" href="https://www.idsd.network" target="_blank" rel="noopener"><span class="meta"><span class="t">International Network on Digital Self-Determination</span><span class="d">idsd.network</span></span><i class="material-icons">arrow_forward</i></a>
-      </div>
-
-      <div class="tile">
-        <div class="tile-logo"><img class="tint-100q" src="https://the100questions.org/images/100-questions-logo-v-white.svg" alt="The 100 Questions Initiative"></div>
-        <a class="tile-link" href="https://the100questions.org" target="_blank" rel="noopener"><span class="meta"><span class="t">The 100 Questions Initiative</span><span class="d">the100questions.org</span><span class="n">To be replaced by the Q-Lab site</span></span><i class="material-icons">arrow_forward</i></a>
-      </div>
-
-      <div class="tile">
-        <div class="tile-logo"><img src="https://www.data4philanthropy.net/images/d4p-logo-colored.svg" alt="DATA4Philanthropy"></div>
-        <a class="tile-link" href="https://www.data4philanthropy.net" target="_blank" rel="noopener"><span class="meta"><span class="t">DATA4Philanthropy</span><span class="d">data4philanthropy.net</span><span class="n">To be replaced by the new data commons</span></span><i class="material-icons">arrow_forward</i></a>
-      </div>
-
       <div class="tile">
         <div class="tile-logo"><img src="https://innovate-us.org/images/wordmark_light.svg" alt="InnovateUS"></div>
         <a class="tile-link" href="https://innovate-us.org" target="_blank" rel="noopener"><span class="meta"><span class="t">InnovateUS</span><span class="d">innovate-us.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
-
+      <div class="tile">
+        <div class="tile-logo"><img class="tint-ds" src="https://datastewards.net/images/logo.svg" alt="Data Stewards"></div>
+        <a class="tile-link" href="https://datastewards.net" target="_blank" rel="noopener"><span class="meta"><span class="t">Data Stewards</span><span class="d">datastewards.net</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
       <div class="tile">
         <div class="tile-logo"><img src="https://rebootdemocracy.ai/images/version=default.svg" alt="Reboot Democracy"></div>
         <a class="tile-link" href="https://rebootdemocracy.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">Reboot Democracy</span><span class="d">rebootdemocracy.ai</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
-
       <div class="tile">
-        <div class="tile-logo"><img src="assets/burnes-logo-red.svg" alt="The Burnes Center for Social Change"></div>
-        <a class="tile-link" href="https://burnes.northeastern.edu" target="_blank" rel="noopener"><span class="meta"><span class="t">The Burnes Center for Social Change</span><span class="d">burnes.northeastern.edu</span></span><i class="material-icons">arrow_forward</i></a>
+        <div class="tile-logo"><img class="tint-purple" src="https://thelivinglib.org/wp-content/uploads/2018/10/cropped-logo_top2.png" alt="The Digest"></div>
+        <a class="tile-link" href="https://thelivinglib.org/" target="_blank" rel="noopener"><span class="meta"><span class="t">The Digest</span><span class="d">thelivinglib.org</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img class="fill" src="https://burnes-center.directus.app/assets/f657a304-4510-474b-b1e6-a3d9c29fc53c" alt="Observatory of Public Sector AI"></div>
+        <a class="tile-link" href="https://innovate-us.org/research" target="_blank" rel="noopener"><span class="meta"><span class="t">Observatory of Public Sector AI</span><span class="d">innovate-us.org/research</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
         <div class="tile-logo"><img src="https://ai4impact.ai/images/afi-wordmark.svg" alt="AI for Impact"></div>
         <a class="tile-link" href="https://ai4impact.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">AI for Impact</span><span class="d">ai4impact.ai</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
-
+      <div class="tile">
+        <div class="tile-logo"><span class="tile-text">International Network on Digital Self-Determination</span></div>
+        <a class="tile-link" href="https://www.idsd.network" target="_blank" rel="noopener"><span class="meta"><span class="t">International Network on Digital Self-Determination</span><span class="d">idsd.network</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img class="tint-100q" src="https://the100questions.org/images/100-questions-logo-v-white.svg" alt="The 100 Questions Initiative"></div>
+        <a class="tile-link" href="https://the100questions.org" target="_blank" rel="noopener"><span class="meta"><span class="t">The 100 Questions Initiative</span><span class="d">the100questions.org</span><span class="n">To be replaced by the Q-Lab site</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img src="https://www.data4philanthropy.net/images/d4p-logo-colored.svg" alt="DATA4Philanthropy"></div>
+        <a class="tile-link" href="https://www.data4philanthropy.net" target="_blank" rel="noopener"><span class="meta"><span class="t">DATA4Philanthropy</span><span class="d">data4philanthropy.net</span><span class="n">To be replaced by the new data commons</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
       <div class="tile">
         <div class="tile-logo"><img class="tint-purple" src="assets/smarter-crowdsourcing-logo.svg" alt="Smarter Crowdsourcing"></div>
         <a class="tile-link" href="https://smartercrowdsourcing.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Smarter Crowdsourcing</span><span class="d">smartercrowdsourcing.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
-
       <div class="tile">
         <div class="tile-logo"><span class="tile-text cc"><span style="color:#175B33">THE </span><span style="color:#F07D22">COMMUNITY-CENTERED AI</span><span style="color:#175B33"> PROJECT</span></span></div>
         <a class="tile-link" href="https://communitycentered.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">The Community-Centered AI Project</span><span class="d">communitycentered.ai</span></span><i class="material-icons">arrow_forward</i></a>
