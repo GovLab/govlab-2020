@@ -420,6 +420,9 @@
 (function () {
   var CMS    = "https://cms.thegovlab.com";
   var BURNES = "https://directus.theburnescenter.org";
+  // Images come off the Directus Cloud domain for the same instance — it is the
+  // canonical asset host and proved steadier under load than the vanity domain.
+  var BURNES_ASSETS = "https://burnes-center.directus.app";
   var THUMB  = "?width=800&height=450&fit=cover";
 
   // Matches how the live ODPL / Data Stewards sites build their article URLs.
@@ -525,7 +528,7 @@
       title: decode(p.title),
       date:  p.date,
       url:   "https://rebootdemocracy.ai/blog/" + p.slug,
-      image: p.image && p.image.id ? BURNES + "/assets/" + p.image.id + THUMB : null,
+      image: p.image && p.image.id ? BURNES_ASSETS + "/assets/" + p.image.id + THUMB : null,
       byline: (p.authors || []).map(function (a) {
         var t = a.team_id || {};
         return ((t.First_Name || "").trim() + " " + (t.Last_Name || "").trim()).trim();
@@ -597,7 +600,7 @@
         title: decode(a.title),
         date:  a.date || null,
         url:   a.link,
-        image: a.image ? BURNES + "/assets/" + a.image + THUMB : null,
+        image: a.image ? BURNES_ASSETS + "/assets/" + a.image + THUMB : null,
         kicker: a.category ? decode(a.category) : null,
         btnLabel: "Read the announcement",
         btnHref:  a.link
