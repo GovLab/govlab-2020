@@ -479,7 +479,14 @@
 
     card.classList.remove("is-loading");   // real content has arrived
     if (imgLink) imgLink.href = post.url;
-    if (img && post.image) { img.src = post.image; img.alt = post.title; }
+    if (img && post.image) {
+      // Ask for the resized derivative, but fall back to the untransformed
+      // original if it 403s — the Burnes instance currently refuses one or the
+      // other depending on the file, and which one varies. One retry only.
+      img.alt = post.title;
+      img.onerror = function () { img.onerror = null; img.src = post.image; };
+      img.src = post.image + THUMB;
+    }
     if (imgLink) { imgLink.target = "_blank"; imgLink.rel = "noopener"; }
     if (title) {
       title.href = post.url; title.textContent = post.title;
@@ -528,7 +535,7 @@
       title: decode(p.title),
       date:  p.date,
       url:   "https://rebootdemocracy.ai/blog/" + p.slug,
-      image: p.image && p.image.id ? BURNES_ASSETS + "/assets/" + p.image.id + THUMB : null,
+      image: p.image && p.image.id ? BURNES_ASSETS + "/assets/" + p.image.id : null,
       byline: (p.authors || []).map(function (a) {
         var t = a.team_id || {};
         return ((t.First_Name || "").trim() + " " + (t.Last_Name || "").trim()).trim();
@@ -555,7 +562,7 @@
         // odpl_items.slug is null on recent rows — always custom_url || brow+heading
         url:   "https://opendatapolicylab.org/articles/"
                + (o.custom_url || slugify((o.brow || "") + " " + (o.heading || ""))) + "/",
-        image: o.cover_image ? CMS + "/assets/" + o.cover_image + THUMB : null,
+        image: o.cover_image ? CMS + "/assets/" + o.cover_image : null,
         byline: (o.collaborators || []).slice()
                   .sort(function (a, b) { return (a.sort || 0) - (b.sort || 0); })
                   .map(function (c) { return c.odpl_team_id && c.odpl_team_id.name; })
@@ -568,7 +575,7 @@
         title: decode(d.heading),
         date:  d.date,
         url:   "https://datastewards.net/news/" + slugify(d.heading || ""),
-        image: d.image ? CMS + "/assets/" + d.image + THUMB : null,
+        image: d.image ? CMS + "/assets/" + d.image : null,
         byline: (d.author || "").trim(), // already human-formatted, incl. multi-author
         btnLabel: "More from the Data Stewards blog",
         btnHref:  "https://datastewards.net/news"
@@ -600,7 +607,7 @@
         title: decode(a.title),
         date:  a.date || null,
         url:   a.link,
-        image: a.image ? BURNES_ASSETS + "/assets/" + a.image + THUMB : null,
+        image: a.image ? BURNES_ASSETS + "/assets/" + a.image : null,
         kicker: a.category ? decode(a.category) : null,
         btnLabel: "Read the announcement",
         btnHref:  a.link
