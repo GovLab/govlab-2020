@@ -1,1031 +1,638 @@
-<!-- Taglines
-GovLab Projects: Building new technology to solve public problems
-GovLab Academy: Coaching public entrepreneurs
-GovLab Observatory: Reporting on innovations in governance
-The GovLab:   -->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The GovLab</title>
+<meta name="description" content="The Governance Lab — deepening our understanding of how to govern more effectively and legitimately through technology.">
+<link href="/static/img/favicon-transparent.png" rel="shortcut icon">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  /* Proxima Nova — The GovLab brand typeface, self-hosted so it renders on any domain/subfolder. */
+  @font-face{font-family:'proxima-nova';font-weight:100;font-style:normal;font-display:swap;src:url('/hp2026/assets/fonts/proxima-nova-100.woff2') format('woff2');}
+  @font-face{font-family:'proxima-nova';font-weight:300;font-style:normal;font-display:swap;src:url('/hp2026/assets/fonts/proxima-nova-300.woff2') format('woff2');}
+  @font-face{font-family:'proxima-nova';font-weight:400;font-style:normal;font-display:swap;src:url('/hp2026/assets/fonts/proxima-nova-400.woff2') format('woff2');}
+  @font-face{font-family:'proxima-nova';font-weight:400;font-style:italic;font-display:swap;src:url('/hp2026/assets/fonts/proxima-nova-400-italic.woff2') format('woff2');}
+  @font-face{font-family:'proxima-nova';font-weight:600;font-style:normal;font-display:swap;src:url('/hp2026/assets/fonts/proxima-nova-600.woff2') format('woff2');}
+  @font-face{font-family:'proxima-nova';font-weight:700;font-style:normal;font-display:swap;src:url('/hp2026/assets/fonts/proxima-nova-600.woff2') format('woff2');}
+  :root{
+    /* Base brand colour: every band, link and tick on the page. Was purple
+       (#523080 / #47296e) until the 2026 teal rebrand. */
+    --grey:#333333; --brand:#008AB3; --brand-dark:#006E8F;
+    /* Accent set — NOT the base colour. Drives the four-step project-tile
+       arrow cycle, the .btn variants and the "Latest" kickers. --purple stays
+       purple here on purpose: it is the violet step of that cycle, which needs
+       four visibly different hues (see the nth-child rules below). */
+    --teal:#008895; --orange:#ee5b43; --blue:#008ab3; --purple:#523080;
+    --tile:#f4f4f6; /* logo well inside a white card */
+    --sans:'proxima-nova','Montserrat',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:var(--sans);color:var(--grey);background:#fff;line-height:1.5;}
+  img{max-width:100%;}
+  a{color:var(--brand);}
+  a:hover{color:var(--brand-dark);}
+  .wrap{max-width:none;margin:0 auto;}
 
-    <title>The Governance Lab</title>
-    <meta property="og:title" content="The Governance Lab" />
-    <meta content="Deepening Our Understanding of How to Govern
-    More Effectively and Legitimately Through Technology" property="og:description">
+  /* ---------- top nav ---------- */
+  /* The hero is white, so the nav band carries its own brand colour (it used
+     to inherit the hero's dark background). */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 25px;position:relative;z-index:30;background:var(--brand);}
+  .menu-btn{background:none;border:none;color:rgba(255,255,255,.75);font-size:28px;cursor:pointer;padding:0;line-height:1;transition:color .3s;}
+  .menu-btn:hover{color:#fff;}
+  .topbar-right{display:flex;align-items:center;gap:20px;}
+  .sites-link{background:rgba(255,255,255,.2);color:#fff;text-decoration:none;font-size:14px;font-weight:400;letter-spacing:.5px;text-transform:uppercase;padding:8px 13px;transition:background .3s;}
+  .sites-link:hover{background:rgba(255,255,255,.3);color:#fff;}
+  .social{color:rgba(255,255,255,.85);text-decoration:none;font-size:18px;transition:color .3s;}
+  .social:hover{color:#fff;}
 
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.thegovlab.org/static/img/thegovlab-og.png" />
-    <meta content="The GovLab" property="og:site_name">
-    <script src="https://use.typekit.net/zez3buj.js"></script>
-    <script>try { Typekit.load(); } catch (e) { }</script>
-    <link href="static/img/favicon-transparent.png" rel="shortcut icon">
+  /* ---------- off-canvas menu ---------- */
+  #menu-toggle{position:absolute;opacity:0;pointer-events:none;}
+  .menu-panel{position:fixed;top:0;bottom:0;left:0;width:320px;max-width:82vw;background:var(--grey);z-index:60;transform:translateX(-100%);transition:transform .35s ease;overflow-y:auto;box-shadow:0 0 24px rgba(0,0,0,.45);}
+  .menu-panel .close{display:block;text-align:right;padding:18px 24px 6px;}
+  .menu-panel .close label{color:rgba(255,255,255,.7);font-size:26px;cursor:pointer;line-height:1;}
+  .menu-panel a{display:block;font-size:15px;padding:18px 24px;color:rgba(255,255,255,.7);text-align:right;border-bottom:1px solid rgba(255,255,255,.1);text-transform:uppercase;font-weight:400;letter-spacing:.5px;text-decoration:none;transition:all .3s;}
+  .menu-panel a:hover{color:#fff;background:rgba(0,0,0,.15);}
+  .menu-scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:55;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+  #menu-toggle:checked ~ .menu-panel{transform:translateX(0);}
+  #menu-toggle:checked ~ .menu-scrim{opacity:1;pointer-events:auto;}
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  /* ---------- hero ---------- */
+  /* White centre block between the brand-coloured nav and search bands. */
+  .hero{background:#fff;position:relative;}
+  .hero-inner{max-width:840px;margin:0 auto;padding:48px 24px 56px;display:flex;flex-direction:column;align-items:center;}
+  .hero-logo{height:45px;display:block;}
+  .hero-sub{margin:28px 0 0;font-weight:400;font-size:22px;line-height:1.45;letter-spacing:1.2px;color:var(--brand);text-transform:uppercase;text-align:center;}
 
-    <link rel="stylesheet" href="static/vendor/normalize.css">
-    <link rel="stylesheet" href="static/vendor/slick.css">
-    <link rel="stylesheet" href="static/styles/styles.css">
-    </script>
-    <script src="https://unpkg.com/@directus/sdk-js@5.3.4/dist/directus-sdk.umd.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  /* ---------- search band ---------- */
+  .search-band{background:var(--brand);padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:14px;}
+  .search-band .material-icons{color:rgba(255,255,255,.5);}
+  .search-band input{width:380px;max-width:60vw;padding:13px 18px;border:none;outline:none;font-size:13px;letter-spacing:1px;font-family:inherit;background:rgba(255,255,255,.12);color:#fff;}
+  .search-band input::placeholder{color:rgba(255,255,255,.6);}
+  .search-band button{border:none;cursor:pointer;background:rgba(255,255,255,.25);color:#fff;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:13px 22px;font-family:inherit;transition:background .3s;}
+  .search-band button:hover{background:rgba(255,255,255,.35);}
 
-        ga('create', 'UA-40012093-4', 'auto');
-        ga('send', 'pageview');
-    </script>
+  /* ---------- sections ---------- */
+  section{padding:70px 64px;}
+  .section-title{margin:0 0 40px;font-size:24px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--grey);text-align:center;}
 
+  /* ---------- latest ---------- */
+  .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:stretch;}
+  .post[hidden]{display:none;}
+  /* Skeleton state: cards hold their place in the grid while Directus loads,
+     so nothing jumps when the real content lands. Removed by paint(); a failed
+     fetch hides the card instead. */
+  @keyframes sk{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+  .post.is-loading .post-img,
+  .post.is-loading .post-title,
+  .post.is-loading .byline,
+  .post.is-loading .date{
+    background:linear-gradient(90deg,rgba(0,138,179,.09) 25%,rgba(0,138,179,.20) 37%,rgba(0,138,179,.09) 63%);
+    background-size:400% 100%;animation:sk 1.4s ease-in-out infinite;border-radius:4px;color:transparent;}
+  .post.is-loading .post-title{min-height:2.6em;}
+  .post.is-loading .byline{min-height:1em;width:55%;}
+  .post.is-loading .date{min-height:1em;width:35%;}
+  .post.is-loading .kicker{opacity:.4;}
+  .post.is-loading .btn{visibility:hidden;}
+  @media (prefers-reduced-motion:reduce){.post.is-loading .post-img,.post.is-loading .post-title,.post.is-loading .byline,.post.is-loading .date{animation:none;}}
+  .post{display:flex;flex-direction:column;background:#fff;box-shadow:0 0 6px rgba(0,0,0,.15);border-radius:14px;overflow:hidden;transition:box-shadow .4s;}
+  .post:hover{box-shadow:0 0 12px rgba(0,0,0,.3);}
+  .post-img{aspect-ratio:1.91/1;position:relative;overflow:hidden;background:#e8e8ea;display:block;}
+  .post-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .post-body{display:flex;flex-direction:column;gap:12px;padding:25px 25px 30px;flex:1;}
+  .kicker{font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+  .post-title{font-size:22px;font-weight:300;line-height:1.35;color:var(--grey);text-decoration:none;transition:color .3s;}
+  .post-title:hover{color:var(--brand);}
+  .byline{font-size:14px;color:var(--grey);}
+  .date{font-size:14px;color:#999;}
+  .btn{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 20px;transition:filter .3s;}
+  .btn:hover{filter:brightness(1.08);color:#fff;}
+  .btn.orange{background:var(--orange);} .btn.teal{background:var(--teal);} .btn.blue{background:var(--blue);}
 
+  /* ---------- subscribe bands ---------- */
+  /* Two stacked bands, same layout as the b-subscribe block on thegovlab.org:
+     copy left, inline Mailchimp form, then a "go to" link — all on one row.
+     The copy flexes so the form and link stay put and the two bands align. */
+  .digest{background:#00616b;padding:30px 64px;}   /* The Digest */
+  .digest.alt{background:#008AB3;}                  /* Reboot Democracy */
+  /* Fixed columns so the Subscribe and "Go to" buttons line up between bands. */
+  .digest-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 400px 200px;align-items:center;gap:28px;}
+  .digest-copy{min-width:0;display:flex;flex-direction:column;gap:6px;}
+  .digest-copy .h{font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#fff;}
+  .digest-copy .h strong{font-weight:700;}
+  .digest-copy .p{font-size:15px;font-weight:300;color:rgba(255,255,255,.8);}
+  .digest-cta{flex:0 0 auto;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.22);color:#fff;text-decoration:none;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 25px;transition:background .3s;}
+  .digest-cta:hover{background:rgba(255,255,255,.34);color:#fff;}
+  .digest-form{display:flex;}
+  .digest-form input[type=email]{flex:1;min-width:0;padding:14px 20px;border:none;outline:none;font-size:14px;letter-spacing:1px;font-family:inherit;background:rgba(255,255,255,.14);color:#fff;}
+  .digest-form input::placeholder{color:rgba(255,255,255,.75);}
+  .digest-form button{border:none;cursor:pointer;background:rgba(255,255,255,.22);color:#fff;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 25px;font-family:inherit;transition:background .3s;}
+  .digest-form button:hover{background:rgba(255,255,255,.34);}
+  .digest-go{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:12px 16px;transition:background .3s;}
+  .digest-go:hover{background:rgba(0,0,0,.2);color:#fff;}
+  .digest-note{font-size:14px;color:rgba(255,255,255,.85);}
+  .mc-verification{width:min(760px,calc(100% - 32px));height:min(760px,calc(100vh - 32px));height:min(760px,calc(100dvh - 32px));max-width:none;max-height:none;padding:0;border:0;background:transparent;overflow:hidden;}
+  .mc-verification::backdrop{background:rgba(20,27,31,.72);}
+  .mc-verification-card{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:#fff;box-shadow:0 24px 70px rgba(0,0,0,.35);}
+  .mc-verification-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:18px 20px;background:var(--brand);color:#fff;}
+  .mc-verification-title{margin:0;font-size:18px;font-weight:600;letter-spacing:.5px;}
+  .mc-verification-copy{margin:4px 0 0;color:#fff;font-size:14px;}
+  .mc-verification-close{display:inline-flex;align-items:center;justify-content:center;flex:none;border:0;background:transparent;color:#fff;cursor:pointer;padding:4px;}
+  .mc-verification-close:hover{background:rgba(0,0,0,.15);}
+  .mc-verification-frame{display:block;width:100%;flex:1;min-height:0;border:0;background:#fff;}
+  .mc-verification-foot{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-top:1px solid #e6e6e6;color:#555;font-size:13px;text-align:center;}
+  .mc-verification-fallback{border:0;background:transparent;color:var(--brand-dark);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:0;}
+  body.mc-verification-open{overflow:hidden;}
+
+  /* ---------- projects ---------- */
+  .projects{background:#fff;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  /* White card on a white page: the edge comes from a two-layer shadow
+     (tight contact + wide ambient), not a border. */
+  .tile{display:flex;flex-direction:column;background:#fff;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.06), 0 8px 22px rgba(0,0,0,.08);transition:transform .3s ease, box-shadow .3s ease;}
+  .tile:hover{transform:translateY(-6px);box-shadow:0 6px 12px rgba(0,0,0,.08), 0 18px 42px rgba(0,0,0,.16);}
+  .tile-logo{aspect-ratio:2.2/1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8%;background:var(--tile);}
+  .tile-logo img{position:absolute;inset:17.6% 8%;width:84%;height:64.8%;object-fit:contain;}
+  /* Artwork that is a finished graphic (own background, not a transparent
+     wordmark) fills the tile edge to edge instead of sitting inset. */
+  .tile-logo img.fill{inset:0;width:100%;height:100%;object-fit:cover;}
+  .tile-text{font-weight:700;letter-spacing:1px;color:#124559;text-align:center;line-height:1.35;font-size:26px;font-family:'Gotham','Montserrat',sans-serif;}
+  .tile-text.cc{font-family:'akzidenz-grotesk-next-conden','Archivo Narrow','Roboto Condensed',sans-serif;font-weight:600;letter-spacing:.5px;line-height:1.25;font-size:27px;}
+  .tile-link{display:flex;align-items:center;gap:12px;padding:18px 20px;text-decoration:none;color:var(--grey);border-top:1px solid #ededf0;}
+  /* Arrow colour cycle: purple -> teal -> orange -> blue, repeating every 4
+     tiles and running continuously across the grid (it does not reset per
+     row), so with 3 columns no two adjacent tiles share a colour.
+     This is the ACCENT set, deliberately not var(--brand): --blue is already
+     #008ab3, so pointing the first step at the brand teal would collapse the
+     cycle to three distinct colours. The violet step keeps all four apart. */
+  .grid3 > .tile:nth-child(4n+1) .tile-link .material-icons{color:var(--purple);}
+  .grid3 > .tile:nth-child(4n+2) .tile-link .material-icons{color:var(--teal);}
+  .grid3 > .tile:nth-child(4n+3) .tile-link .material-icons{color:var(--orange);}
+  .grid3 > .tile:nth-child(4n)   .tile-link .material-icons{color:var(--blue);}
+  .tile-link .t{font-size:17px;font-weight:600;line-height:1.3;display:block;}
+  .tile-link .d{font-size:13px;color:#999;display:block;}
+  .tile-link .n{font-size:12px;font-style:italic;color:#999;display:block;}
+  .tile-link .meta{flex:1;min-width:0;}
+  /* Stretch the tile link over the whole tile so the logo area is clickable too */
+  .tile-link::after{content:"";position:absolute;inset:0;z-index:1;}
+  .tint-purple{filter:brightness(0) saturate(100%) invert(21%) sepia(51%) saturate(2004%) hue-rotate(245deg) brightness(90%) contrast(94%);}
+  .tint-ds{filter:grayscale(1) brightness(.72) sepia(1) saturate(6) hue-rotate(228deg) brightness(.62) contrast(1.15);}
+  .tint-100q{filter:brightness(0) saturate(100%) invert(19%) sepia(43%) saturate(1673%) hue-rotate(177deg) brightness(94%) contrast(97%);}
+
+  /* ---------- footer ---------- */
+  footer{background:rgba(0,0,0,.85);color:rgba(255,255,255,.6);}
+  .foot-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;padding:34px 24px 10px;}
+  .foot-nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;padding:6px 12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;transition:color .3s;}
+  .foot-nav a:hover{color:#fff;}
+  .foot-base{text-align:center;padding:12px 24px 40px;font-size:12px;color:rgba(255,255,255,.45);}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:960px){
+    section{padding:56px 32px;}
+    .digest{padding:28px 32px;}
+    .digest-inner{grid-template-columns:1fr;gap:18px;}
+    .latest-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto;}
+    .grid3{grid-template-columns:repeat(2,1fr);}
+    .hero-inner{padding:40px 24px 44px;}
+    .hero-logo{height:40px;}
+    .hero-sub{font-size:19px;margin:24px 0 0;}
+  }
+  @media(max-width:620px){
+    section{padding:44px 20px;}
+    .digest{padding:24px 20px;}
+    .grid3{grid-template-columns:1fr;max-width:440px;margin:0 auto;}
+    .topbar{padding:14px 18px;}
+    .sites-link{font-size:11px;padding:7px 10px;}
+    .social{font-size:16px;}
+    .hero-inner{padding:32px 20px 36px;}
+    .hero-logo{height:32px;}
+    .hero-sub{font-size:16px;letter-spacing:.5px;margin:20px 0 0;}
+    .search-band input{width:auto;flex:1;}
+    .section-title{font-size:19px;margin-bottom:28px;}
+    .post-title{font-size:19px;}
+    .digest-inner{grid-template-columns:1fr;gap:16px;}
+    .digest-form{width:100%;} .digest-form input[type=email]{flex:1;width:auto;}
+    .tile-text{font-size:20px;} .tile-text.cc{font-size:20px;}
+  }
+</style>
 </head>
+<body>
 
-<body id="homepage">
+<input type="checkbox" id="menu-toggle" aria-hidden="true">
 
-    <!-- Class for google material icons ".material-icons" -->
-    <header class="b-top-nav ">
-        <div class="e-nav-group">
-            <div class="e-nav-item js-nav-trigger e-nav-trigger">
-                <i class="material-icons">menu</i>
-            </div>
-            <form class="e-search m-active" action="">
-                <div class="e-nav-item js-search-trigger e-search-trigger">
-                    <i class="material-icons">search</i>
-                </div>
-                <input class="js-search-value" type="text">
-                <input class="js-search-submit" type="submit" value="Search">
-            </form>
-        </div>
+<!-- off-canvas main menu (Events omitted intentionally) -->
+<nav class="menu-panel" aria-label="Main menu">
+  <span class="close"><label for="menu-toggle" aria-label="Close menu">&times;</label></span>
+  <a href="https://thegovlab.org/">Home</a>
+  <a href="https://thegovlab.org/about">About</a>
+  <a href="https://thegovlab.org/projects">Projects</a>
+  <a href="https://thegovlab.org/publications">Publications</a>
+  <a href="https://thegovlab.org/team">Team</a>
+  <a href="https://thegovlab.org/global-advisory-council">Global Advisory Council</a>
+  <a href="https://thegovlab.org/our-transparency">Our Transparency</a>
+  <a href="https://thegovlab.org/job-board">Job Board</a>
+  <a href="https://thegovlab.org/contact">Contact</a>
+</nav>
+<label class="menu-scrim" for="menu-toggle" aria-hidden="true"></label>
 
-        <div class="e-logo">
-            <a href="./"><img src="static/img/the-govlab-logo-white.png" alt=""></a>
-        </div>
-
-
-        <div class="e-social-media e-nav-group">
-            <a class="e-site-button"
-                style="color: rgba(255,255,255,0.7); background-color: rgba(255,255,255,0.2); padding: 5px; font-size: 12pt; font-weight: 600"
-                href="./our-sites.html">OUR SITES</a>
-            <a href="https://twitter.com/TheGovLab" class="e-nav-item" target="_blank"><i
-                    class="e-social-media-item fa fa-twitter"></i></a>
-            <!-- <a href="#" class="e-nav-item" target="_blank"><i class="e-social-media-item fa fa-facebook"></i></a> -->
-            <a href="https://www.youtube.com/user/TheGovLab" class="e-nav-item" target="_blank"><i
-                    class="e-social-media-item fa fa-youtube-play"></i></a>
-        </div>
-    </header>
-
-    <!-- Main Menu (Off Canvas) -->
-    <nav class="b-main-menu">
-        <a href="./">Home</a>
-        <a href="./about.html">About</a>
-        <a href="./projects.html">Projects</a>
-        <a href="./events.html">Events</a>
-        <!-- <a href="./events.html">Events</a> -->
-        <a href="./publications.html">Publications</a>
-        <a href="./team.html">Team</a>
-        <a href="./global-advisory-council.html">Global Advisory Council</a>
-        <a href="./our-transparency.html">Our Transparency</a>
-        <a href="./job-board.html">Job Board</a>
-        <a href="./contact.html">Contact</a>
-    </nav>
-
-
-
-    <section id="homepage-banner" class="b-landing-questions b-top-section large-header">
-        <canvas id="demo-canvas"></canvas>
-        <h2 class="e-question">Deepening our understanding of how to govern<br> more effectively and legitimately
-            through technology</h2>
-        <a href="https://rebootdemocracy.ai" target="_blank" class="b-button m-purple">Read the Reboot Blog<i class="material-icons">arrow_forward</i></a>
-        <a href="https://blog.thegovlab.org/" target="_blank" class="b-button m-purple">Explore the GovLab Blog<i
-                class="material-icons">arrow_forward</i></a>
-        <a href="http://innovate-us.org" target="_blank" class="b-button m-purple">Take a class with InnovateUS<i
-                    class="material-icons">arrow_forward</i></a>
-    </section>
-    <section class="b-govlab-fronts">
-        <a href="./projects.html" class="e-govlab-front m-projects">
-            <h2>Projects<br>&nbsp;</h2>
-            <p class="e-explanation">See how the GovLab is transforming governance around the world</p>
-        </a>
-        <!-- Collapsing 4px space
-     --><a href="https://thelivinglib.org/" target="_blank" class="e-govlab-front m-observatory">
-            <h2>The Living<br>&nbsp; Library</h2>
-            <p class="e-explanation">Learn and stay up-to-date on emerging forms of governance innovation</p>
-        </a>
-        <!-- Collapsing 4px space
-     --><a href="http://govlabacademy.org" target="_blank" class="e-govlab-front m-academy">
-            <h2>Academy<br>&nbsp;</h2>
-            <p class="e-explanation">Get training and mentorship for your projects from GovLab's network of experts</p>
-        </a>
-        <!-- Collapsing 4px space
-     --><a href="./community.html" class="e-govlab-front m-community">
-            <h2>Community<br>&nbsp;</h2>
-            <p class="e-explanation">Get answers to your questions, share knowledge and find collaborators</p>
-        </a>
-    </section>
-
-    <div class="e-banner-container">
-        <!-- this will be pulled via RSS -->
-        <section class="b-featured-content m-article js-dynamic-blog-article" style="display:block">
-            <header>
-                <div class="e-banner-controls">
-                    <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                    <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                </div>
-                <div class="e-wrap">
-                    <div class="e-banner-index">
-                        <span class="m-active"></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <h4>From Our Blog</h4>
-                </div>
-            </header>
-            <div class="e-wrap">
-                <div>
-                    <div class="e-half">
-                        <div class="e-content">
-                            <h2 class="e-article-name js-article-title"></h2>
-                            <p class="e-byline">By: <strong class="js-article-author"></strong></p>
-                        </div>
-                    </div>
-                    <div class="e-half">
-                        <div class="e-content js-article-content"></div>
-                    </div>
-                </div>
-                <div class="e-action-group">
-                    <div class="e-half">
-                        <div class="e-action">
-                            <a class="b-button m-naked" href="https://blog.thegovlab.org/" target="_blank">All Articles<i class="material-icons">arrow_forward</i></a>
-                        </div>
-                    </div>
-                    <div class="e-half">
-                        <div class="e-action">
-                            <a class="b-button m-naked js-article-link" href="" target="_blank">Read more<i class="material-icons">arrow_forward</i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="b-featured-content m-article js-dynamic-blog-article" style="display:none">
-            <header>
-                <div class="e-banner-controls">
-                    <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                    <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                </div>
-                <div class="e-wrap">
-                    <div class="e-banner-index">
-                        <span></span>
-                        <span class="m-active"></span>
-                        <span></span>
-                    </div>
-                    <h4>From Our Blog</h4>
-                </div>
-            </header>
-            <div class="e-wrap">
-                <div>
-                    <div class="e-half">
-                        <div class="e-content">
-                            <h2 class="e-article-name js-article-title"></h2>
-                            <p class="e-byline">By: <strong class="js-article-author"></strong></p>
-                        </div>
-                    </div>
-                    <div class="e-half">
-                        <div class="e-content js-article-content"></div>
-                    </div>
-                </div>
-                <div class="e-action-group">
-                    <div class="e-half">
-                        <div class="e-action">
-                            <a class="b-button m-naked" href="https://blog.thegovlab.org/" target="_blank">All Articles<i class="material-icons">arrow_forward</i></a>
-                        </div>
-                    </div>
-                    <div class="e-half">
-                        <div class="e-action">
-                            <a class="b-button m-naked js-article-link" href="" target="_blank">Read more<i class="material-icons">arrow_forward</i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="b-featured-content m-article js-dynamic-blog-article" style="display:none">
-            <header>
-                <div class="e-banner-controls">
-                    <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                    <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                </div>
-                <div class="e-wrap">
-                    <div class="e-banner-index">
-                        <span></span>
-                        <span></span>
-                        <span class="m-active"></span>
-                    </div>
-                    <h4>From Our Blog</h4>
-                </div>
-            </header>
-            <div class="e-wrap">
-                <div>
-                    <div class="e-half">
-                        <div class="e-content">
-                            <h2 class="e-article-name js-article-title"></h2>
-                            <p class="e-byline">By: <strong class="js-article-author"></strong></p>
-                        </div>
-                    </div>
-                    <div class="e-half">
-                        <div class="e-content js-article-content"></div>
-                    </div>
-                </div>
-                <div class="e-action-group">
-                    <div class="e-half">
-                        <div class="e-action">
-                            <a class="b-button m-naked" href="https://blog.thegovlab.org/" target="_blank">All Articles<i class="material-icons">arrow_forward</i></a>
-                        </div>
-                    </div>
-                    <div class="e-half">
-                        <div class="e-action">
-                            <a class="b-button m-naked js-article-link" href="" target="_blank">Read more<i class="material-icons">arrow_forward</i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-       
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="topbar">
+    <label class="menu-btn" for="menu-toggle" aria-label="Open menu"><i class="material-icons">menu</i></label>
+    <div class="topbar-right">
+      <a class="sites-link" href="https://thegovlab.org/our-sites" target="_blank" rel="noopener">Our Sites</a>
+      <a class="social" href="https://twitter.com/thegovlab" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+      <a class="social" href="https://www.youtube.com/user/thegovlab" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
     </div>
+  </div>
+  <div class="hero-inner">
+    <a href="https://thegovlab.org"><img class="hero-logo" src="/hp2026/assets/the-govlab-logo-dark.svg" alt="The GovLab"></a>
+    <h1 class="hero-sub">Deepening our understanding of how to govern<br>more effectively and legitimately through technology</h1>
+  </div>
+  <form class="search-band" action="https://blog.thegovlab.org/" method="get" target="_blank">
+    <i class="material-icons">search</i>
+    <input type="text" name="q" placeholder="SEARCH HERE" aria-label="Search">
+    <button type="submit">Search</button>
+  </form>
+</header>
 
-    <div class="b-subscribe">
-        <div class="e-wrap">
-            <div>
-                <h4><strong>Subscribe</strong>
-                    To The Digest</h4>
-                <p>A weekly curation of new findings and developments on innovation in governance</p>
-            </div>
+<!-- ===================== THE LATEST ===================== -->
+<!-- The three cards are populated at runtime from Directus (see the script at
+     the foot of this file). They carry no placeholder content and stay hidden
+     until their fetch resolves, so nothing stale is ever shown and a failed
+     fetch simply omits that card rather than displaying last year's post. -->
+<section class="latest">
+  <div class="wrap">
+    <h2 class="section-title">The Latest</h2>
+    <div class="latest-grid">
 
-            <form method="post"
-                action="https://thegovlab.us6.list-manage.com/subscribe/post?u=1a990feb5c&amp;id=d90a01c7ff"
-                target="_blank">
-                <div style="position: absolute; left: -5000px;"><input type="text" name="b_1a990feb5c_d90a01c7ff"
-                        tabindex="-1" value=""></div>
-
-                <input type="email" name="EMAIL" placeholder="Email">
-                <button type="submit">Subscribe</button>
-            </form>
+      <article class="post is-loading" id="card-announcement">
+        <a class="post-img"><img alt=""></a>
+        <div class="post-body">
+          <div class="kicker" style="color:var(--orange)">Announcements</div>
+          <a class="post-title"></a>
+          <div class="date"></div>
+          <a class="btn orange">Read the announcement <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
         </div>
-        <div class="e-wrap">
-            <p><a href="https://thelivinglib.org/" target="_blank" class="b-button m-naked">Go to Digest<i
-                        class="material-icons">arrow_forward</i></a></p>
+      </article>
+
+      <article class="post is-loading" id="card-reboot">
+        <a class="post-img"><img alt=""></a>
+        <div class="post-body">
+          <div class="kicker" style="color:var(--teal)">Latest from Reboot Democracy</div>
+          <a class="post-title"></a>
+          <div class="byline"></div>
+          <div class="date"></div>
+          <a class="btn teal" href="https://rebootdemocracy.ai/blog" target="_blank" rel="noopener">More from the Reboot blog <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
         </div>
+      </article>
+
+      <article class="post is-loading" id="card-odpl">
+        <a class="post-img"><img alt=""></a>
+        <div class="post-body">
+          <div class="kicker" style="color:var(--blue)">Latest from ODPL &amp; Data Stewards</div>
+          <a class="post-title"></a>
+          <div class="byline"></div>
+          <div class="date"></div>
+          <a class="btn blue" href="https://datastewards.net" target="_blank" rel="noopener">More from the Data Stewards blog <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+        </div>
+      </article>
+
     </div>
-
-    <div class="b-featured-content-wrapper m-publication">
-        <div class="e-banner-container">
-
-
-            <section id="wanted-data-stewards" class="b-featured-content m-publication">
-                <header>
-                    <div class="e-banner-controls">
-                        <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                        <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                    </div>
-                    <div class="e-wrap">
-                        <div class="e-banner-index">
-
-
-
-                            <span class="m-active"></span>
-
-                            <span></span>
-
-                            <span></span>
-
-                        </div>
-                        <h4>Featured Publication</h4>
-                    </div>
-                </header>
-
-                <div class="e-wrap">
-                    <div>
-                        <div class="e-half">
-                            <div class="e-content">
-                                <h2 class="e-article-name">How to Master the Practice of Defining Problemss</h2>
-                                <p class="e-byline">By: <strong>Stefaan Verhulst, Andrew Young, and Andrew J. Zahuranec
-                                </strong></p>
-                            </div>
-                        </div>
-                        <div class="e-half">
-                            <div class="e-content">
-                                <a href="https://incubator.opendatapolicylab.org/files/ODPLTool_ProblemDefinition.pdf"><img
-                                        src="./static/files/publications/defining-problems.png"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="e-action-group">
-                        <div class="e-half">
-                            <div class="e-action">
-                                <a class="b-button m-naked" href="./publications.html">All Publications<i
-                                        class="material-icons">arrow_forward</i></a>
-                            </div>
-                        </div>
-                        <div class="e-half">
-                            <div class="e-action m-centered">
-                                <a class="b-button m-naked m-action-centered"
-                                    href="./static/files/publications/wanted-data-stewards.pdf">Read more<i
-                                        class="material-icons">arrow_forward</i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-            <section id="todays-problems-yesterdays-toolkit" class="b-featured-content m-publication">
-                <header>
-                    <div class="e-banner-controls">
-                        <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                        <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                    </div>
-                    <div class="e-wrap">
-                        <div class="e-banner-index">
-
-
-
-                            <span></span>
-
-                            <span class="m-active"></span>
-
-                            <span></span>
-
-                        </div>
-                        <h4>Featured Publication</h4>
-                    </div>
-                </header>
-
-                <div class="e-wrap">
-                    <div>
-                        <div class="e-half">
-                            <div class="e-content">
-                                <h2 class="e-article-name">Today's Problems, Yesterday's Toolkit</h2>
-                                <p class="e-byline">By: <strong>Beth Noveck, Rod Glover</strong></p>
-                            </div>
-                        </div>
-                        <div class="e-half">
-                            <div class="e-content">
-                                <a href="./static/files/publications/ANZSOG-report.pdf"><img
-                                        src="./static/files/publications/anzsog-cover.png"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="e-action-group">
-                        <div class="e-half">
-                            <div class="e-action">
-                                <a class="b-button m-naked" href="./publications.html">All Publications<i
-                                        class="material-icons">arrow_forward</i></a>
-                            </div>
-                        </div>
-                        <div class="e-half">
-                            <div class="e-action m-centered">
-                                <a class="b-button m-naked m-action-centered"
-                                    href="./static/files/publications/ANZSOG-report.pdf">Read more<i
-                                        class="material-icons">arrow_forward</i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-            <section id="open-data-impact-when-demand-and-supply-meet" class="b-featured-content m-publication">
-                <header>
-                    <div class="e-banner-controls">
-                        <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                        <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                    </div>
-                    <div class="e-wrap">
-                        <div class="e-banner-index">
-
-
-
-                            <span></span>
-
-                            <span></span>
-
-                            <span class="m-active"></span>
-
-                        </div>
-                        <h4>Featured Publication</h4>
-                    </div>
-                </header>
-
-                <div class="e-wrap">
-                    <div>
-                        <div class="e-half">
-                            <div class="e-content">
-                                <h2 class="e-article-name">Responsible Data for Refugee Children in Uganda: Improving Data Systems for Mental Health and Psychosocial Services Through a Studio Series</h2>
-                                <p class="e-byline">By: <strong>Stefaan Verhulst, Andrew J. Zahuranec, Sara Marcucci, and Eugenia Olliario</strong></p>
-                            </div>
-                        </div>
-                        <div class="e-half">
-                            <div class="e-content">
-                                <a href="https://files.rd4c.org/RD4C_Uganda.pdf"><img
-                                        src="./static/files/publications/uganda-report.png"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="e-action-group">
-                        <div class="e-half">
-                            <div class="e-action">
-                                <a class="b-button m-naked" href="./publications.html">All Publications<i
-                                        class="material-icons">arrow_forward</i></a>
-                            </div>
-                        </div>
-                        <div class="e-half">
-                            <div class="e-action m-centered">
-                                <a class="b-button m-naked m-action-centered"
-                                    href="./static/files/publications/open-data-impact-key-findings.pdf">Read more<i
-                                        class="material-icons">arrow_forward</i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-        <div class="b-featured-content-wrapper m-project">
-            <div class="e-banner-container">
-
-                <section id="datacollaboratives-org" class="b-featured-content m-project">
-                    <header>
-                        <div class="e-banner-controls">
-                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                        </div>
-                        <div class="e-wrap">
-                            <div class="e-banner-index">
-
-
-
-                                <span class="m-active"></span>
-
-                                <span></span>
-
-                                <span></span>
-
-                            </div>
-                            <h4>Featured Project</h4>
-                        </div>
-                    </header>
-
-                    <div class="e-wrap">
-                        <div>
-                            <div class="e-half">
-                                <div class="e-content">
-                                    <h2 class="e-project-name">DataCollaboratives .org</h2>
-                                    <h3 class="e-question">Creating Public Value by Exchanging Data</h3>
-                                </div>
-                            </div>
-                            <div class="e-half">
-                                <div class="e-content">
-                                    <p>The GovLab is advancing a number of initiatives focused on increasing our
-                                        understanding of data collaboratives. The hub of this work,
-                                        DataCollaboratives.org, is a resource on creating public value by exchanging
-                                        data, collecting examples of data collaboratives from around the world, and
-                                        providing information on how to develop and implement a data collaborative. The
-                                        site, and the GovLab’s work on the topic in general, seeks to provide insight on
-                                        how the responsible exchange of corporate data can improve people’s lives.</p>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="e-action-group">
-                            <div class="e-half">
-                                <div class="e-action">
-                                    <a class="b-button m-naked" href="./projects.html">All Projects<i
-                                            class="material-icons">arrow_forward</i></a>
-                                </div>
-                            </div>
-                            <div class="e-half">
-                                <div class="e-action">
-                                    <a class="b-button m-naked" href="project-datacollaboratives-org.html">Find out
-                                        more<i class="material-icons">arrow_forward</i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="crowdlaw" class="b-featured-content m-project">
-                    <header>
-                        <div class="e-banner-controls">
-                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                        </div>
-                        <div class="e-wrap">
-                            <div class="e-banner-index">
-
-
-
-                                <span></span>
-
-                                <span class="m-active"></span>
-
-                                <span></span>
-
-                            </div>
-                            <h4>Featured Project</h4>
-                        </div>
-                    </header>
-
-                    <div class="e-wrap">
-                        <div>
-                            <div class="e-half">
-                                <div class="e-content">
-                                    <h2 class="e-project-name">CrowdLaw</h2>
-                                    <h3 class="e-question">Develop recommendations on how to use crowdlaw to improve the
-                                        quality of lawmaking. We want to explore when and under what circumstances
-                                        engagement can result in lawmaking that is either more legitimate, more
-                                        effective or both.</h3>
-                                </div>
-                            </div>
-                            <div class="e-half">
-                                <div class="e-content">
-                                    <p>Crowdlaw is an emerging field of practice that is comprised of lawyers, platform
-                                        developers, lawyers, government employees and research scientists, among others
-                                        including citizen advocates. GovLab plays a convening role to engage
-                                        practitioners from around the world and has initiated a dialogue in order to
-                                        identify case studies and pilots, assess impact and inspire greater innovation
-                                        across political, government and civil society actors.</p>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="e-action-group">
-                            <div class="e-half">
-                                <div class="e-action">
-                                    <a class="b-button m-naked" href="./projects.html">All Projects<i
-                                            class="material-icons">arrow_forward</i></a>
-                                </div>
-                            </div>
-                            <div class="e-half">
-                                <div class="e-action">
-                                    <a class="b-button m-naked" href="project-crowdlaw.html">Find out more<i
-                                            class="material-icons">arrow_forward</i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="blockchange-blockchain-technology-for-social-change" class="b-featured-content m-project">
-                    <header>
-                        <div class="e-banner-controls">
-                            <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                            <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                        </div>
-                        <div class="e-wrap">
-                            <div class="e-banner-index">
-
-
-
-                                <span></span>
-
-                                <span></span>
-
-                                <span class="m-active"></span>
-
-                            </div>
-                            <h4>Featured Project</h4>
-                        </div>
-                    </header>
-
-                    <div class="e-wrap">
-                        <div>
-                            <div class="e-half">
-                                <div class="e-content">
-                                    <h2 class="e-project-name">Responsible Data for Children </h2>
-                                    <h3 class="e-question">Provides guidance, tools and leadership to support the responsible handling of data for and about children.</h3>
-                                </div>
-                            </div>
-                            <div class="e-half">
-                                <div class="e-content">
-                                    <p>The Responsible Data for Children initiative aims to fill an important gap and to provide actionable insight, tools, and guidance on how responsible data practices can provide benefits (and avoid harms) for children around the world. .</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="e-action-group">
-                            <div class="e-half">
-                                <div class="e-action">
-                                    <a class="b-button m-naked" href="./projects.html">All Projects<i
-                                            class="material-icons">arrow_forward</i></a>
-                                </div>
-                            </div>
-                            <div class="e-half">
-                                <div class="e-action">
-                                    <a class="b-button m-naked"
-                                        href="https://thegovlab.org/project/project-responsible-data-for-children">Find out
-                                        more<i class="material-icons">arrow_forward</i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-
-
-            <div class="e-banner-container">
-
-            </div>
-        </div>
-        <div class="b-sticky b-sticky--index m-gray js-target-sticky js-active">
-            <div class="e-wrap">
-                <i class="material-icons e-close js-close">close</i>
-                <div class="b-stickysubscribe">
-                    <div class="e-wrap">
-                        <div>
-                            <h4><strong>Stay in touch </strong><br>
-                                with the GovLab</h4>
-                            <p>Sign up to receive occasional updates on new GovLab projects, events and developments on
-                                innovation in governance.</p>
-                            <!-- <p><a href="https://thelivinglib.org/" target="_blank" class="b-button m-naked">Go to Digest<i class="material-icons">arrow_forward</i></a></p> -->
-
-                        </div>
-
-                        <form method="post"
-                            action="https://thegovlab.us6.list-manage.com/subscribe/post?u=1a990feb5c&amp;id=7de5242eb3"
-                            target="_blank">
-                            <div style="position: absolute; left: -5000px;"><input type="text"
-                                    name="b_1a990feb5c_d90a01c7ff" tabindex="-1" value=""></div>
-                            <div id="mc_embed_signup_scroll">
-                                <div class="mc-field-group input-group" style="display:none">
-                                    <input type="checkbox" value="1" name="group[25][1]" id="mce-group[25]-25-0"
-                                        checked><label for="mce-group[25]-25-0"></label>
-                                    <input type="checkbox" value="2" name="group[25][2]" id="mce-group[25]-25-1"
-                                        checked><label for="mce-group[25]-25-1"></label>
-                                    <input type="checkbox" value="4" name="group[25][4]" id="mce-group[25]-25-2"
-                                        checked><label for="mce-group[25]-25-2"></label>
-                                    <input type="checkbox" value="8" name="group[25][8]" id="mce-group[25]-25-3"
-                                        checked><label for="mce-group[25]-25-3"></label>
-                                    <input type="checkbox" value="16" name="group[25][16]" id="mce-group[25]-25-4"
-                                        checked><label for="mce-group[25]-25-4"></label>
-                                    <input type="checkbox" value="32" name="group[25][32]" id="mce-group[25]-25-5"
-                                        checked><label for="mce-group[25]-25-5"></label>
-                                </div>
-                                <div class="fields">
-                                    <div class="names">
-                                        <input id="fname" type="text" name="FNAME" class="" value=""
-                                            placeholder="First Name">
-                                        <label style="display:none" for="fname">First Name </label>
-                                        <input type="text" name="LNAME" placeholder="Last Name">
-                                        <label style="display:none" for="lname">Last Name </label>
-                                    </div>
-                                    <div class="mail-submit">
-                                        <input type="email" id="email_mc" name="EMAIL" placeholder="Email">
-                                        <label style="display:none" for="email_mc">Email</label>
-                                        <button type="submit">Subscribe</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-
-        <footer class='b-footer'>
-            <div class="e-wrap">
-                <div class="e-content m-sections">
-                    <h4>Sections</h4>
-                    <a href="./">Home</a>
-                    <a href="./about.html">About</a>
-                    <a href="./projects.html">Projects</a>
-                    <!-- <a href="./events.html">Events</a> -->
-                    <a href="./events.html">Events</a>
-                    <a href="./publications.html">Publications</a>
-                    <a href="./team.html">Team</a>
-                    <a href="./global-advisory-council.html">Advisory Council</a>
-                    <a href="./our-transparency.html">Our Transparency</a>
-                    <a href="./job-board.html">Job Board</a>
-                    <a href="./contact.html">Contact</a>
-                    <a href="./brand.html">Brand Assets</a>
-                </div>
-                <div class="e-content">
-                    <a class="e-our-funders" href="./our-transparency.html" target="_blank">OUR FUNDERS</a>
-                </div>
-
-                <div class="e-content">
-                    <h4>Affiliated With</h4>
-                    <a class="e-partner-logo burnes-logo" href="http://northeastern.edu" target="_blank"><img
-                            src="static/img/burnes-logo-northeastern.png" alt="Northeastern University"></a>
-                    <h4>Founded At</h4>
-                    <a class="e-partner-logo" href="http://engineering.nyu.edu/tandon" target="_blank"><img
-                            src="static/img/partners/nyu.png"
-                            alt="NYU Tandon School of Engineering - New York University"></a>
-                </div>
-
-            </div>
+  </div>
+</section>
+
+<!-- ===================== SUBSCRIBE BANDS ===================== -->
+<!-- NO direct-POST form here on purpose. Mailchimp applies its reCAPTCHA only
+     to its own hosted forms, never to /subscribe/post, so an embedded form is
+     an unprotected public endpoint and was collecting bot signups. The email
+     field below just hands off to the hosted form with the address prefilled
+     (MERGE0), so the actual submit happens on Mailchimp where the captcha runs.
+     Do not turn these back into <form action=".../subscribe/post">. -->
+<div class="digest">
+  <div class="digest-inner">
+    <div class="digest-copy">
+      <div class="h"><strong>Subscribe</strong> To The Digest</div>
+      <div class="p">A weekly curation of new findings and developments on innovation in governance</div>
     </div>
-    </footer>
-    <!-- <div class="b-build-team">
-        <div class="e-wrap">
-            <div class="e-social-media">
-                <a href="#" class="e-nav-item"><i class="e-social-media-item fa fa-lg fa-twitter"></i></a>
-                <a href="#" class="e-nav-item"><i class="e-social-media-item fa fa-lg fa-facebook"></i></a>
-                <a href="#" class="e-nav-item"><i class="e-social-media-item fa fa-lg fa-medium"></i></a>
-        </div>
-            <p>This website was created by these <a href="#">GovLabbers</a>.</p>
-        </div>
-    </div> -->
-    <div class="b-copyright">
-        <div class="e-wrap">
-            <a class="e-cc-badge" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img
-                    alt="Creative Commons License" style="border-width:0"
-                    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-            This work is licensed under a <a rel="license"
-                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
-                International License</a><br><br>
-        </div>
-    </div>
-    <div id="overlay"></div>
+    <form class="digest-form" data-hosted="https://livinglib.us6.list-manage.com/subscribe?u=1a990feb5c&amp;id=d90a01c7ff">
+      <input type="email" name="EMAIL" placeholder="Email" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <a class="digest-go" href="https://thelivinglib.org/" target="_blank" rel="noopener">Go to Digest <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+  </div>
+</div>
 
-    <script src="static/vendor/slick.min.js"></script>
-    <script src="static/vendor/EasePack.min.js"></script>
-    <script src="static/vendor/rAF.js"></script>
-    <script src="static/vendor/TweenLite.min.js"></script>
-    <script src="static/js/scripts.js"></script>
-    <script src="static/js/home-page-scroll.js"></script>
-    <script>
-        // Load blog posts and initialize only the blog carousel
-        (function() {
-            // Only prevent the blog carousel from auto-initializing
-            if (typeof $ !== 'undefined') {
-                $(document).ready(function() {
-                    // Don't initialize Slick on the first .e-banner-container (blog carousel)
-                    $('.e-banner-container').first().removeClass('slick-initialized');
-                });
-            }
-            
-            var apiURL = "https://directus.theburnescenter.org/items/blog?fields=*.*,authors.team_id.*&sort=-created_on&limit=3";
-            
-            fetch(apiURL)
-                .then(function(response) { 
-                    return response.json(); 
-                })
-                .then(function(json) {
-                    var posts = json.data || [];
-                    var container = document.querySelector('.e-banner-container');
-                    
-                    console.log('Fetched posts:', posts.length);
-                    
-                    if (posts.length === 0) {
-                        return;
-                    }
-                    
-                    // Clear existing content
-                    container.innerHTML = '';
-                    
-                    // Create articles for each post
-                    for (var i = 0; i < posts.length; i++) {
-                        var post = posts[i];
-                        
-                        // Extract author names (handle multiple authors)
-                        var authors = [];
-                        if (post.authors && post.authors.length > 0) {
-                            post.authors.forEach(function(authorObj) {
-                                if (authorObj.team_id && authorObj.team_id.name) {
-                                    authors.push(authorObj.team_id.name);
-                                } else if (authorObj.name) {
-                                    authors.push(authorObj.name);
-                                }
-                            });
-                        }
-                        var authorText = authors.length > 0 ? authors.join(', ') : 'The GovLab Team';
-                        
-                        // Create article HTML - all slides get controls and indicators
-                        var articleHTML = `
-                            <section class="b-featured-content m-article">
-                                <header>
-                                    <div class="e-banner-controls">
-                                        <i class="material-icons e-banner-control m-prev">keyboard_arrow_left</i>
-                                        <i class="material-icons e-banner-control m-next">keyboard_arrow_right</i>
-                                    </div>
-                                    <div class="e-wrap">
-                                        <div class="e-banner-index">
-                                            ${posts.map((_, index) => `<span class="${index === 0 ? 'm-active' : ''}"></span>`).join('')}
-                                        </div>
-                                        <h4>From Our Blog</h4>
-                                    </div>
-                                </header>
-                                <div class="e-wrap">
-                                    <div>
-                                        <div class="e-half">
-                                            <div class="e-content">
-                                                <h2 class="e-article-name">${post.title || ''}</h2>
-                                                <p class="e-byline">By: <strong>${authorText}</strong></p>
-                                            </div>
-                                        </div>
-                                        <div class="e-half">
-                                            <div class="e-content">${post.excerpt || ''}</div>
-                                        </div>
-                                    </div>
-                                    <div class="e-action-group">
-                                        <div class="e-half">
-                                            <div class="e-action">
-                                                <a class="b-button m-naked" href="https://blog.thegovlab.org/" target="_blank">All Articles<i class="material-icons">arrow_forward</i></a>
-                                            </div>
-                                        </div>
-                                        <div class="e-half">
-                                            <div class="e-action">
-                                                <a class="b-button m-naked" href="${post.fullURL || 'https://blog.thegovlab.org/'}" target="_blank">Read more<i class="material-icons">arrow_forward</i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        `;
-                        
-                        container.insertAdjacentHTML('beforeend', articleHTML);
-                    }
-                    
-                    // Add CSS for equal slide heights
-                    var style = document.createElement('style');
-                    style.textContent = `
-                        .e-banner-container .slick-slide {
-                            height: auto !important;
-                        }
-                        .e-banner-container .slick-track {
-                            display: flex !important;
-                        }
-                        .e-banner-container .slick-slide > div {
-                            height: 100%;
-                            display: flex;
-                            flex-direction: column;
-                        }
-                        .e-banner-container .b-featured-content {
-                            height: 100%;
-                            display: flex;
-                            flex-direction: column;
-                        }
-                        .e-banner-container .e-wrap {
-                            flex: 1;
-                            display: flex;
-                            flex-direction: column;
-                        }
-                        .e-banner-container .e-action-group {
-                            margin-top: auto;
-                        }
-                    `;
-                    document.head.appendChild(style);
-                    
-                    // Wait for DOM to be ready, then initialize Slick for blog carousel only
-                    setTimeout(function() {
-                        if (typeof $ !== 'undefined' && $.fn.slick) {
-                            try {
-                                // Only initialize the first .e-banner-container (blog carousel)
-                                $('.e-banner-container').first().slick({
-                                    arrows: false,
-                                    draggable: false,
-                                    swipeToSlide: true,
-                                    autoplay: true,
-                                    autoplaySpeed: 3000,
-                                    infinite: true,
-                                    adaptiveHeight: false,
-                                    responsive: [
-                                    {
-                                        breakpoint: 800,
-                                        settings: {
-                                            draggable: true,
-                                        }
-                                    }
-                                    ]
-                                });
-                                
-                                // Add navigation event handlers after Slick is initialized
-                                $('.m-prev').click(function() {
-                                    $('.e-banner-container').first().slick('slickPrev');
-                                });
-                                
-                                $('.m-next').click(function() {
-                                    $('.e-banner-container').first().slick('slickNext');
-                                });
-                                
-                                // Update dot indicators when slide changes
-                                $('.e-banner-container').first().on('afterChange', function(event, slick, currentSlide) {
-                                    // Remove active class from all dots in all slides
-                                    $('.e-banner-index span').removeClass('m-active');
-                                    // Add active class to current slide dot in all slides
-                                    $('.e-banner-index span').eq(currentSlide).addClass('m-active');
-                                });
-                                
-                                // Ensure first slide indicator is active on initialization
-                                $('.e-banner-index span').first().addClass('m-active');
-                                
-                                console.log('Blog carousel Slick initialized successfully');
-                            } catch (error) {
-                                console.error('Blog carousel Slick initialization failed:', error);
-                            }
-                        }
-                    }, 200);
-                })
-                .catch(function(error) {
-                    console.error('Error loading blog posts:', error);
-                });
-        })();
-        </script>
+<div class="digest alt">
+  <div class="digest-inner">
+    <div class="digest-copy">
+      <div class="h"><strong>Subscribe</strong> To Reboot Democracy</div>
+      <div class="p">Weekly writing on AI, democracy and governing in the public interest</div>
+    </div>
+    <form class="digest-form" data-hosted="https://rebootdemocracy.us14.list-manage.com/subscribe?u=36f840aa1f979805ce7b81fa7&amp;id=6f8a160bd5">
+      <input type="email" name="EMAIL" placeholder="Email" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <a class="digest-go" href="https://rebootdemocracy.ai/" target="_blank" rel="noopener">Go to Reboot <i class="material-icons" style="font-size:16px">arrow_forward</i></a>
+  </div>
+</div>
+
+<!-- ===================== PROJECTS ===================== -->
+<section class="projects">
+  <div class="wrap">
+    <h2 class="section-title">Our Projects</h2>
+    <div class="grid3">
+      <div class="tile">
+        <div class="tile-logo"><img src="https://opendatapolicylab.org/images/odpl/open-data-policy-lab-logo-horizontal.svg" alt="Open Data Policy Lab"></div>
+        <a class="tile-link" href="https://opendatapolicylab.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Open Data Policy Lab</span><span class="d">opendatapolicylab.org</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img src="https://innovate-us.org/images/wordmark_light.svg" alt="InnovateUS"></div>
+        <a class="tile-link" href="https://innovate-us.org" target="_blank" rel="noopener"><span class="meta"><span class="t">InnovateUS</span><span class="d">innovate-us.org</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img class="tint-ds" src="https://datastewards.net/images/logo.svg" alt="Data Stewards"></div>
+        <a class="tile-link" href="https://datastewards.net" target="_blank" rel="noopener"><span class="meta"><span class="t">Data Stewards</span><span class="d">datastewards.net</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img src="https://rebootdemocracy.ai/images/version=default.svg" alt="Reboot Democracy"></div>
+        <a class="tile-link" href="https://rebootdemocracy.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">Reboot Democracy</span><span class="d">rebootdemocracy.ai</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img class="tint-purple" src="https://thelivinglib.org/wp-content/uploads/2018/10/cropped-logo_top2.png" alt="The Digest"></div>
+        <a class="tile-link" href="https://thelivinglib.org/" target="_blank" rel="noopener"><span class="meta"><span class="t">The Digest</span><span class="d">thelivinglib.org</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img class="fill" src="https://burnes-center.directus.app/assets/f657a304-4510-474b-b1e6-a3d9c29fc53c" alt="Observatory of Public Sector AI"></div>
+        <a class="tile-link" href="https://innovate-us.org/research" target="_blank" rel="noopener"><span class="meta"><span class="t">Observatory of Public Sector AI</span><span class="d">innovate-us.org/research</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+
+      <div class="tile">
+        <div class="tile-logo"><img src="https://ai4impact.ai/images/afi-wordmark.svg" alt="AI for Impact"></div>
+        <a class="tile-link" href="https://ai4impact.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">AI for Impact</span><span class="d">ai4impact.ai</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><span class="tile-text">International Network on Digital Self-Determination</span></div>
+        <a class="tile-link" href="https://www.idsd.network" target="_blank" rel="noopener"><span class="meta"><span class="t">International Network on Digital Self-Determination</span><span class="d">idsd.network</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img class="tint-100q" src="https://the100questions.org/images/100-questions-logo-v-white.svg" alt="The 100 Questions Initiative"></div>
+        <a class="tile-link" href="https://the100questions.org" target="_blank" rel="noopener"><span class="meta"><span class="t">The 100 Questions Initiative</span><span class="d">the100questions.org</span><span class="n">To be replaced by the Q-Lab site</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img src="https://www.data4philanthropy.net/images/d4p-logo-colored.svg" alt="DATA4Philanthropy"></div>
+        <a class="tile-link" href="https://www.data4philanthropy.net" target="_blank" rel="noopener"><span class="meta"><span class="t">DATA4Philanthropy</span><span class="d">data4philanthropy.net</span><span class="n">To be replaced by the new data commons</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><img class="tint-purple" src="/hp2026/assets/smarter-crowdsourcing-logo.svg" alt="Smarter Crowdsourcing"></div>
+        <a class="tile-link" href="https://smartercrowdsourcing.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Smarter Crowdsourcing</span><span class="d">smartercrowdsourcing.org</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+      <div class="tile">
+        <div class="tile-logo"><span class="tile-text cc"><span style="color:#175B33">THE </span><span style="color:#F07D22">COMMUNITY-CENTERED AI</span><span style="color:#175B33"> PROJECT</span></span></div>
+        <a class="tile-link" href="https://communitycentered.ai" target="_blank" rel="noopener"><span class="meta"><span class="t">The Community-Centered AI Project</span><span class="d">communitycentered.ai</span></span><i class="material-icons">arrow_forward</i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <nav class="foot-nav" aria-label="Footer">
+    <a href="https://thegovlab.org/projects">Projects</a>
+    <a href="https://blog.thegovlab.org">Blog</a>
+    <a href="https://thegovlab.org/about">About</a>
+    <a href="https://thegovlab.org/our-sites">Our Sites</a>
+    <a href="https://thegovlab.org/contact">Contact</a>
+    <a href="https://thelivinglib.org/" target="_blank" rel="noopener">The Digest</a>
+  </nav>
+  <div class="foot-base">The Governance Lab &middot; Tandon School of Engineering, New York University</div>
+</footer>
+
+<script>
+/* ============================================================
+   1) THE LATEST — live cards from Directus
+   The hardcoded markup above acts as the fallback: if a fetch
+   fails, the existing content simply stays put.
+   ============================================================ */
+(function () {
+  var CMS    = "https://cms.thegovlab.com";
+  var BURNES = "https://directus.theburnescenter.org";
+  // Images come off the Directus Cloud domain for the same instance — it is the
+  // canonical asset host and proved steadier under load than the vanity domain.
+  var BURNES_ASSETS = "https://burnes-center.directus.app";
+  var THUMB  = "?width=800&height=450&fit=cover";
+
+  // Matches how the live ODPL / Data Stewards sites build their article URLs.
+  function slugify(s) {
+    return (s || "").toLowerCase()
+      .replace(/[.'’,]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+  // Decodes CMS entities (&amp;, &nbsp;) without ever executing markup.
+  function decode(s) {
+    var t = document.createElement("textarea");
+    t.innerHTML = s || "";
+    return t.value;
+  }
+  // Parse the date part only — these are naive ISO stamps with no timezone,
+  // so building from Y/M/D avoids any off-by-one from UTC shifting.
+  function fmtDate(d) {
+    if (!d) return "";
+    var p = String(d).slice(0, 10).split("-");
+    return new Date(+p[0], +p[1] - 1, +p[2])
+      .toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  }
+  function get(url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function (j) {
+      // A collection marked "singleton" in Directus returns a bare object
+      // instead of an array, so normalise before anything calls .filter/.map.
+      if (!j.data) return [];
+      return Array.isArray(j.data) ? j.data : [j.data];
+    });
+  }
+
+  // Nothing to show for this card — drop it rather than shimmer indefinitely.
+  function drop(cardId) {
+    var c = document.getElementById(cardId);
+    if (c) { c.classList.remove("is-loading"); c.hidden = true; }
+  }
+
+  function paint(cardId, post) {
+    var card = document.getElementById(cardId);
+    if (!post || !post.title || !post.url) { drop(cardId); return; }
+    if (!card) return;
+    var imgLink = card.querySelector("a.post-img");
+    var img     = card.querySelector("a.post-img img");
+    var title   = card.querySelector("a.post-title");
+    var byline  = card.querySelector(".byline");
+    var date    = card.querySelector(".date");
+    var btn     = card.querySelector("a.btn");
+
+    var kicker = card.querySelector(".kicker");
+
+    card.classList.remove("is-loading");   // real content has arrived
+    if (imgLink) imgLink.href = post.url;
+    if (img && post.image) {
+      // Ask for the resized derivative, but fall back to the untransformed
+      // original if it 403s — the Burnes instance currently refuses one or the
+      // other depending on the file, and which one varies. One retry only.
+      img.alt = post.title;
+      img.onerror = function () { img.onerror = null; img.src = post.image; };
+      img.src = post.image + THUMB;
+    }
+    if (imgLink) { imgLink.target = "_blank"; imgLink.rel = "noopener"; }
+    if (title) {
+      title.href = post.url; title.textContent = post.title;
+      title.target = "_blank"; title.rel = "noopener";
+    }
+    if (kicker && post.kicker) kicker.textContent = post.kicker;
+    if (date) {
+      date.textContent = fmtDate(post.date);
+      date.hidden = !post.date;
+    }
+    if (byline) {
+      if (post.byline) {
+        byline.textContent = "By: ";
+        var b = document.createElement("b");
+        b.textContent = post.byline;
+        byline.appendChild(b);
+        byline.hidden = false;
+      } else {
+        byline.hidden = true; // older posts can have no author
+      }
+    }
+    if (btn && post.btnLabel) {
+      btn.href = post.btnHref; btn.target = "_blank"; btn.rel = "noopener";
+      btn.textContent = post.btnLabel + " ";
+      var i = document.createElement("i");
+      i.className = "material-icons";
+      i.style.fontSize = "16px";
+      i.textContent = "arrow_forward";
+      btn.appendChild(i);
+    }
+  }
+
+  /* --- Reboot Democracy --------------------------------------------------
+     date <= $NOW  : posts are routinely created days before their date
+     slug not null : one published post has no slug (external_link only)   */
+  get(BURNES + "/items/reboot_democracy_blog"
+    + "?filter[_and][0][status][_eq]=published"
+    + "&filter[_and][1][date][_lte]=$NOW"
+    + "&filter[_and][2][slug][_nnull]=true"
+    + "&sort=-date&limit=1"
+    + "&fields=title,slug,date,image.id,authors.team_id.First_Name,authors.team_id.Last_Name"
+  ).then(function (rows) {
+    var p = rows[0];
+    if (!p) { drop("card-reboot"); return; }
+    paint("card-reboot", {
+      title: decode(p.title),
+      date:  p.date,
+      url:   "https://rebootdemocracy.ai/blog/" + p.slug,
+      image: p.image && p.image.id ? BURNES_ASSETS + "/assets/" + p.image.id : null,
+      byline: (p.authors || []).map(function (a) {
+        var t = a.team_id || {};
+        return ((t.First_Name || "").trim() + " " + (t.Last_Name || "").trim()).trim();
+      }).filter(Boolean).join(", ")
+    });
+  }).catch(function () { drop("card-reboot"); });
+
+  /* --- ODPL + Data Stewards (newest across both) ------------------------
+     limit=3 each: the two collections cross-post heavily, so keep
+     runners-up available rather than betting on a single row.            */
+  var qs = "?filter[_and][0][status][_eq]=published"
+         + "&filter[_and][1][date][_nnull]=true"
+         + "&filter[_and][2][date][_lte]=$NOW"
+         + "&sort=-date,-id&limit=3&fields=";
+  Promise.all([
+    get(CMS + "/items/odpl_items" + qs
+      + "id,heading,brow,date,cover_image,custom_url,collaborators.sort,collaborators.odpl_team_id.name"),
+    get(CMS + "/items/ds_blogposts" + qs + "id,heading,date,image,author")
+  ]).then(function (res) {
+    var items = res[0].map(function (o) {
+      return {
+        title: decode(o.heading),
+        date:  o.date,
+        // odpl_items.slug is null on recent rows — always custom_url || brow+heading
+        url:   "https://opendatapolicylab.org/articles/"
+               + (o.custom_url || slugify((o.brow || "") + " " + (o.heading || ""))) + "/",
+        image: o.cover_image ? CMS + "/assets/" + o.cover_image : null,
+        byline: (o.collaborators || []).slice()
+                  .sort(function (a, b) { return (a.sort || 0) - (b.sort || 0); })
+                  .map(function (c) { return c.odpl_team_id && c.odpl_team_id.name; })
+                  .filter(Boolean).join(", "),
+        btnLabel: "More from the ODPL blog",
+        btnHref:  "https://opendatapolicylab.org/blog/"
+      };
+    }).concat(res[1].map(function (d) {
+      return {
+        title: decode(d.heading),
+        date:  d.date,
+        url:   "https://datastewards.net/news/" + slugify(d.heading || ""),
+        image: d.image ? CMS + "/assets/" + d.image : null,
+        byline: (d.author || "").trim(), // already human-formatted, incl. multi-author
+        btnLabel: "More from the Data Stewards blog",
+        btnHref:  "https://datastewards.net/news"
+      };
+    }));
+    items.sort(function (a, b) {
+      return (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0);
+    });
+    paint("card-odpl", items[0]);
+  }).catch(function () { drop("card-odpl"); });
+
+  /* --- Announcements ----------------------------------------------------
+     thegovlab_announcement (singular) lives on the Burnes instance alongside
+     the GovLab and Reboot blogs — NOT on cms.thegovlab.com. That instance is
+     Directus 12, where the old draft/published `status` string is replaced by
+     an `archived` boolean, so we skip archived rows (and still honour a
+     legacy `status` field if one is ever added).
+     Fetches a few rows rather than 1 so an archived newest row doesn't leave
+     the card empty. The button links straight to the announcement. */
+  get(BURNES + "/items/thegovlab_announcement?sort=-date,-id&limit=5&fields=*")
+    .then(function (rows) {
+      var a = rows.filter(function (r) {
+        if (r.archived === true) return false;
+        if (r.status && r.status !== "published") return false;
+        return r.title && r.link;
+      })[0];
+      if (!a) { drop("card-announcement"); return; }
+      paint("card-announcement", {
+        title: decode(a.title),
+        date:  a.date || null,
+        url:   a.link,
+        image: a.image ? BURNES_ASSETS + "/assets/" + a.image : null,
+        kicker: a.category ? decode(a.category) : null,
+        btnLabel: "Read the announcement",
+        btnHref:  a.link
+      });
+    }).catch(function () { drop("card-announcement"); });
+})();
+
+
+/* Subscribe bands: hand the address to Mailchimp's HOSTED form (prefilled via
+   MERGE0) instead of POSTing from this page, so Mailchimp's bot protection
+   applies. Nothing is submitted from here. */
+(function () {
+  Array.prototype.forEach.call(document.querySelectorAll(".digest-form[data-hosted]"), function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var input = form.querySelector("input[type=email]");
+      if (!input.value.trim() || !input.checkValidity()) { input.reportValidity(); return; }
+      window.open(form.dataset.hosted + "&MERGE0=" + encodeURIComponent(input.value.trim()),
+                  "_blank", "noopener");
+      input.value = "";
+    });
+  });
+})();
+</script>
 
 </body>
-
 </html>
