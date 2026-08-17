@@ -1,5 +1,5 @@
 {
-  "note": "Project tiles on hp2026, in the order they appear top-to-bottom. Arrow colour is derived from position via the nth-child(4n) cycle — reordering recolours automatically.",
+  "note": "Project tiles on the homepage, in the order they appear top-to-bottom. Arrow colour is derived from position via the nth-child(4n) cycle — reordering recolours automatically. index.html and hp2026/index.html are separate copies; keep both in sync.",
   "tiles": [
     {
       "position": 1,
@@ -59,45 +59,67 @@
     },
     {
       "position": 8,
+      "name": "Responsible Data for Children",
+      "url": "https://rd4c.org/",
+      "domain": "rd4c.org",
+      "arrow": "blue",
+      "logo": "assets/rd4c-logo.svg"
+    },
+    {
+      "position": 9,
+      "name": "Big Data for Migration Alliance",
+      "url": "https://data4migration.org/",
+      "domain": "data4migration.org",
+      "arrow": "purple",
+      "logo": "assets/bd4m-logo.svg"
+    },
+    {
+      "position": 10,
+      "name": "AI Localism",
+      "url": "https://ailocalism.org/",
+      "domain": "ailocalism.org",
+      "arrow": "teal",
+      "logo": "assets/ai-localism-logo.png"
+    },
+    {
+      "position": 11,
       "name": "International Network on Digital Self-Determination",
       "url": "https://www.idsd.network",
       "domain": "idsd.network",
-      "arrow": "blue",
+      "arrow": "orange",
       "logo": null,
       "wordmark": "International Network on Digital Self-Determination"
     },
     {
-      "position": 9,
+      "position": 12,
       "name": "The 100 Questions Initiative",
       "url": "https://the100questions.org",
       "domain": "the100questions.org",
-      "arrow": "purple",
-      "logo": "https://the100questions.org/images/100-questions-logo-v-white.svg",
-      "note": "To be replaced by the Q-Lab site"
+      "arrow": "blue",
+      "logo": "https://the100questions.org/images/100-questions-logo-v-white.svg"
     },
     {
-      "position": 10,
+      "position": 13,
       "name": "DATA4Philanthropy",
       "url": "https://www.data4philanthropy.net",
       "domain": "data4philanthropy.net",
-      "arrow": "teal",
-      "logo": "https://www.data4philanthropy.net/images/d4p-logo-colored.svg",
-      "note": "To be replaced by the new data commons"
+      "arrow": "purple",
+      "logo": "https://www.data4philanthropy.net/images/d4p-logo-colored.svg"
     },
     {
-      "position": 11,
+      "position": 14,
       "name": "Smarter Crowdsourcing",
       "url": "https://smartercrowdsourcing.org",
       "domain": "smartercrowdsourcing.org",
-      "arrow": "orange",
+      "arrow": "teal",
       "logo": "assets/smarter-crowdsourcing-logo.svg"
     },
     {
-      "position": 12,
+      "position": 15,
       "name": "The Community-Centered AI Project",
       "url": "https://communitycentered.ai",
       "domain": "communitycentered.ai",
-      "arrow": "blue",
+      "arrow": "orange",
       "logo": null,
       "wordmark": "THE COMMUNITY-CENTERED AI PROJECT"
     }
