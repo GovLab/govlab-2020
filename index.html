@@ -70,9 +70,11 @@
   .hero-sub{margin:28px 0 0;font-weight:400;font-size:22px;line-height:1.45;letter-spacing:1.2px;color:var(--brand);text-transform:uppercase;text-align:center;}
 
   /* ---------- search band ---------- */
-  .search-band{background:var(--brand);padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:14px;}
-  .search-band .material-icons{color:rgba(255,255,255,.5);}
-  .search-band input{width:380px;max-width:60vw;padding:13px 18px;border:none;outline:none;font-size:13px;letter-spacing:1px;font-family:inherit;background:rgba(255,255,255,.12);color:#fff;}
+  /* gap:0 so the field and button read as one control; the icon gets its own
+     spacing. Otherwise the flex gap pushes the button away from the input. */
+  .search-band{background:var(--brand);padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:0;}
+  .search-band .material-icons{color:rgba(255,255,255,.5);margin-right:14px;}
+  .search-band input{width:380px;max-width:60vw;padding:13px 18px;border:none;outline:none;font-size:13px;letter-spacing:1px;font-family:inherit;background:rgba(255,255,255,.12);color:#fff;text-align:left;}
   .search-band input::placeholder{color:rgba(255,255,255,.6);}
   .search-band button{border:none;cursor:pointer;background:rgba(255,255,255,.25);color:#fff;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:13px 22px;font-family:inherit;transition:background .3s;}
   .search-band button:hover{background:rgba(255,255,255,.35);}
