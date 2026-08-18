@@ -197,6 +197,12 @@
   .foot-nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;padding:6px 12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;transition:color .3s;}
   .foot-nav a:hover{color:#fff;}
   .foot-base{text-align:center;padding:12px 24px 40px;font-size:12px;color:rgba(255,255,255,.45);}
+  /* Legacy footer: govlab-styleguide.css centres .b-footer .e-content, which
+     leaves the Sections column inconsistent. Pin the whole column left so every
+     link — Brand Assets included — lines up. */
+  .b-footer .e-content.m-sections{text-align:left;}
+  .b-footer .e-content.m-sections h4,
+  .b-footer .e-content.m-sections a{text-align:left;}
 
   /* ---------- responsive ---------- */
   @media(max-width:960px){
@@ -258,7 +264,7 @@
     </div>
   </div>
   <div class="hero-inner">
-    <a href="https://thegovlab.org"><img class="hero-logo" src="/hp2026/assets/the-govlab-logo-dark.svg" alt="The GovLab"></a>
+    <a href="https://thegovlab.org"><img class="hero-logo" src="/static/img/homepage/the-govlab-logo-dark.svg" alt="The GovLab"></a>
     <h1 class="hero-sub">Deepening our understanding of how to govern<br>more effectively and legitimately through technology</h1>
   </div>
   <form class="search-band" action="https://blog.thegovlab.org/" method="get" target="_blank">
@@ -385,17 +391,17 @@
       </div>
 
       <div class="tile">
-        <div class="tile-logo"><img src="/hp2026/assets/rd4c-logo.svg" alt="Responsible Data for Children"></div>
+        <div class="tile-logo"><img src="/static/img/homepage/rd4c-logo.svg" alt="Responsible Data for Children"></div>
         <a class="tile-link" href="https://rd4c.org/" target="_blank" rel="noopener"><span class="meta"><span class="t">Responsible Data for Children</span><span class="d">rd4c.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
-        <div class="tile-logo"><img src="/hp2026/assets/bd4m-logo.svg" alt="Big Data for Migration Alliance"></div>
+        <div class="tile-logo"><img src="/static/img/homepage/bd4m-logo.svg" alt="Big Data for Migration Alliance"></div>
         <a class="tile-link" href="https://data4migration.org/" target="_blank" rel="noopener"><span class="meta"><span class="t">Big Data for Migration Alliance</span><span class="d">data4migration.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
 
       <div class="tile">
-        <div class="tile-logo"><img src="/hp2026/assets/ai-localism-logo.png" alt="AI Localism"></div>
+        <div class="tile-logo"><img src="/static/img/homepage/ai-localism-logo.png" alt="AI Localism"></div>
         <a class="tile-link" href="https://ailocalism.org/" target="_blank" rel="noopener"><span class="meta"><span class="t">AI Localism</span><span class="d">ailocalism.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
       <div class="tile">
@@ -411,7 +417,7 @@
         <a class="tile-link" href="https://www.data4philanthropy.net" target="_blank" rel="noopener"><span class="meta"><span class="t">DATA4Philanthropy</span><span class="d">data4philanthropy.net</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
       <div class="tile">
-        <div class="tile-logo"><img class="tint-purple" src="/hp2026/assets/smarter-crowdsourcing-logo.svg" alt="Smarter Crowdsourcing"></div>
+        <div class="tile-logo"><img class="tint-purple" src="/static/img/homepage/smarter-crowdsourcing-logo.svg" alt="Smarter Crowdsourcing"></div>
         <a class="tile-link" href="https://smartercrowdsourcing.org" target="_blank" rel="noopener"><span class="meta"><span class="t">Smarter Crowdsourcing</span><span class="d">smartercrowdsourcing.org</span></span><i class="material-icons">arrow_forward</i></a>
       </div>
       <div class="tile">
