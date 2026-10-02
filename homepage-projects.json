@@ -19,70 +19,102 @@
     },
     {
       "position": 3,
-      "name": "Data Stewards",
-      "url": "https://datastewards.net",
-      "domain": "datastewards.net",
+      "name": "Q-Lab",
+      "url": "https://questionslab.org/",
+      "domain": "questionslab.org/",
       "arrow": "orange",
-      "logo": "https://datastewards.net/images/logo.svg"
+      "logo": "https://thegovlab.org/static/img/q-lab-wordmark.png"
     },
     {
       "position": 4,
-      "name": "Reboot Democracy",
-      "url": "https://rebootdemocracy.ai",
-      "domain": "rebootdemocracy.ai",
+      "name": "Data Stewards",
+      "url": "https://datastewards.net",
+      "domain": "datastewards.net",
       "arrow": "blue",
-      "logo": "https://rebootdemocracy.ai/images/version=default.svg"
+      "logo": "https://datastewards.net/images/logo.svg"
     },
     {
       "position": 5,
-      "name": "The Digest",
-      "url": "https://thelivinglib.org/",
-      "domain": "thelivinglib.org",
+      "name": "Reboot Democracy",
+      "url": "https://rebootdemocracy.ai",
+      "domain": "rebootdemocracy.ai",
       "arrow": "purple",
-      "logo": "https://thelivinglib.org/wp-content/uploads/2018/10/cropped-logo_top2.png"
+      "logo": "https://rebootdemocracy.ai/images/version=default.svg"
     },
     {
       "position": 6,
-      "name": "Observatory of Public Sector AI",
-      "url": "https://innovate-us.org/research",
-      "domain": "innovate-us.org/research",
+      "name": "The Digest",
+      "url": "https://thelivinglib.org/",
+      "domain": "thelivinglib.org",
       "arrow": "teal",
-      "logo": "https://burnes-center.directus.app/assets/f657a304-4510-474b-b1e6-a3d9c29fc53c"
+      "logo": "https://thelivinglib.org/wp-content/uploads/2018/10/cropped-logo_top2.png"
     },
     {
       "position": 7,
-      "name": "AI for Impact",
-      "url": "https://ai4impact.ai",
-      "domain": "ai4impact.ai",
+      "name": "Observatory of Public Sector AI",
+      "url": "https://innovate-us.org/research",
+      "domain": "innovate-us.org/research",
       "arrow": "orange",
-      "logo": "https://ai4impact.ai/images/afi-wordmark.svg"
+      "logo": "https://burnes-center.directus.app/assets/f657a304-4510-474b-b1e6-a3d9c29fc53c"
     },
     {
       "position": 8,
-      "name": "Responsible Data for Children",
-      "url": "https://rd4c.org/",
-      "domain": "rd4c.org",
+      "name": "AI for Impact",
+      "url": "https://ai4impact.ai",
+      "domain": "ai4impact.ai",
       "arrow": "blue",
-      "logo": "/static/img/homepage/rd4c-logo.svg"
+      "logo": "https://ai4impact.ai/images/afi-wordmark.svg"
     },
     {
       "position": 9,
-      "name": "Big Data for Migration Alliance",
-      "url": "https://data4migration.org/",
-      "domain": "data4migration.org",
+      "name": "Responsible Data for Children",
+      "url": "https://rd4c.org/",
+      "domain": "rd4c.org",
       "arrow": "purple",
-      "logo": "/static/img/homepage/bd4m-logo.svg"
+      "logo": "/static/img/homepage/rd4c-logo.svg"
     },
     {
       "position": 10,
-      "name": "AI Localism",
-      "url": "https://ailocalism.org/",
-      "domain": "ailocalism.org",
+      "name": "Big Data for Migration Alliance",
+      "url": "https://data4migration.org/",
+      "domain": "data4migration.org",
       "arrow": "teal",
-      "logo": "/static/img/homepage/ai-localism-logo.png"
+      "logo": "/static/img/homepage/bd4m-logo.svg"
     },
     {
       "position": 11,
+      "name": "AI Localism",
+      "url": "https://ailocalism.org/",
+      "domain": "ailocalism.org",
+      "arrow": "orange",
+      "logo": "/static/img/homepage/ai-localism-logo.png"
+    },
+    {
+      "position": 12,
+      "name": "Data Collaboratives",
+      "url": "https://datacollaboratives.org/",
+      "domain": "datacollaboratives.org",
+      "arrow": "blue",
+      "logo": "/static/img/homepage/data-collaboratives-tile.png"
+    },
+    {
+      "position": 13,
+      "name": "The Data Assembly",
+      "url": "https://thedataassembly.org/",
+      "domain": "thedataassembly.org",
+      "arrow": "purple",
+      "logo": "/static/img/homepage/data-assembly-logo.png"
+    },
+    {
+      "position": 14,
+      "name": "New Commons",
+      "url": "https://newcommons.ai/",
+      "domain": "newcommons.ai",
+      "arrow": "teal",
+      "logo": "/static/img/homepage/newcommons-logo.svg"
+    },
+    {
+      "position": 15,
       "name": "International Network on Digital Self-Determination",
       "url": "https://www.idsd.network",
       "domain": "idsd.network",
@@ -91,7 +123,7 @@
       "wordmark": "International Network on Digital Self-Determination"
     },
     {
-      "position": 12,
+      "position": 16,
       "name": "The 100 Questions Initiative",
       "url": "https://the100questions.org",
       "domain": "the100questions.org",
@@ -99,7 +131,7 @@
       "logo": "https://the100questions.org/images/100-questions-logo-v-white.svg"
     },
     {
-      "position": 13,
+      "position": 17,
       "name": "DATA4Philanthropy",
       "url": "https://www.data4philanthropy.net",
       "domain": "data4philanthropy.net",
@@ -107,7 +139,7 @@
       "logo": "https://www.data4philanthropy.net/images/d4p-logo-colored.svg"
     },
     {
-      "position": 14,
+      "position": 18,
       "name": "Smarter Crowdsourcing",
       "url": "https://smartercrowdsourcing.org",
       "domain": "smartercrowdsourcing.org",
@@ -115,7 +147,7 @@
       "logo": "/static/img/homepage/smarter-crowdsourcing-logo.svg"
     },
     {
-      "position": 15,
+      "position": 19,
       "name": "The Community-Centered AI Project",
       "url": "https://communitycentered.ai",
       "domain": "communitycentered.ai",
