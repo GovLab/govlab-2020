@@ -51,10 +51,17 @@ const client=  new DirectusSDK({
 
 // Vue.use(VueCarousel)
 
+// Pages written by scripts/prerender.mjs (project/<slug>.html) already contain the project:
+// the data is in #project-data and the Vue template in #project-tpl, so Vue renders the same
+// markup straight away instead of fetching. project/index.html (new or unknown slugs) still fetches.
+var prerenderedData = document.getElementById('project-data');
+var prerenderedProject = prerenderedData ? JSON.parse(prerenderedData.textContent) : null;
+
 Vue.use(VueMeta);
-new Vue({
+var mountProjectPage = function () { return new Vue({
 
   el: '#projectpage',
+  template: document.getElementById('project-tpl') ? '#project-tpl' : undefined,
   // components: {
   //    "swiper" : VueAwesomeSwiper,
   //    "swiper-slide": VueAwesomeSwiper
@@ -76,7 +83,7 @@ new Vue({
   }
 },
 
-      projectData: [],
+      projectData: prerenderedProject || [],
       items: [],
       gallerInit: false,
       progessAr: ['m-define','m-prototype','m-test','m-complete'],
@@ -99,6 +106,8 @@ new Vue({
   //   }
   // },
   metaInfo () {
+        // Pre-rendered pages carry their title and link-preview tags in the HTML.
+        if (prerenderedProject) return {};
         return {
           title: this.meta_title,
           meta: [
@@ -121,14 +130,13 @@ new Vue({
     }
   },
   created: function created() {
-    this.projectslug=window.location.href.split('/');
-    this.projectslug = this.projectslug[this.projectslug.length - 1];
-    this.projectslug=this.projectslug.split('#');
-    this.projectslug = this.projectslug[0];
+    // Last path segment, without a trailing slash, ".html", query string or hash.
+    var path = window.location.pathname.replace(/\/+$/, '');
+    this.projectslug = decodeURIComponent(path.substring(path.lastIndexOf('/') + 1)).replace(/\.html$/, '');
     // this.projectslug = "project-data-assembly";
     
     console.log(this.projectslug);
-    this.fetchProject();
+    if (!prerenderedProject) this.fetchProject();
   },
 mounted() {
   this.$nextTick(function () {
@@ -193,7 +201,8 @@ client.getItems(
     self.progess = self.progessAr[data2.data[0].progress];
     self.meta_title = 'The GovLab | '+data2.data[0].name;
     self.meta_content = data2.data[0].description;
-    self.meta_image =  data2.data[0].picture ? data2.data[0].picture.id : data2.data[0].main_picture_2020
+    // og:image and twitter:image need an absolute URL, not the file id.
+    self.meta_image =  data2.data[0].picture ? self.apiURL + 'assets/' + data2.data[0].picture.id : data2.data[0].main_picture_2020
     self.items = data2.data[0].gallery? data2.data[0].gallery:data2.data[0].gallery_2020;
     
     self.projectData = data2.data[0];
@@ -224,5 +233,12 @@ client.getItems(
     	}
     },
   }
-});
+}); };
+
+// A pre-rendered page mounts Vue after the document-ready handlers in scripts.js (a plain
+// DOMContentLoaded listener, so it runs even if one of those handlers throws). The page then goes
+// through the same steps as one that fetched its project: Vue renders it, and the setTimeout in
+// mounted() turns the gallery into the carousel.
+if (prerenderedProject && document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountProjectPage);
+else mountProjectPage();
 

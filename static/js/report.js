@@ -30,13 +30,19 @@ main();
 ////////////////////////////////////////////////////////////
 
 
+// When scripts/prerender.mjs has built this page, the report and author are in #report-data and
+// the Vue template in #report-tpl, so Vue renders the same markup straight away without fetching.
+var prerenderedReportEl = document.getElementById('report-data');
+var prerenderedReport = prerenderedReportEl ? JSON.parse(prerenderedReportEl.textContent) : null;
+
 Vue.use(VueMeta);
 new Vue({
   el: '#reportpage',
+  template: document.getElementById('report-tpl') ? '#report-tpl' : undefined,
   data () {
     return {
-      reportData: [], // Initialize as an empty array
-      authorData: [], // Initialize as an empty array
+      reportData: prerenderedReport ? prerenderedReport.reportData : [], // Initialize as an empty array
+      authorData: prerenderedReport ? prerenderedReport.authorData : [], // Initialize as an empty array
       // maintag:[], // Not used in the provided code
       // subtag:[], // Not used in the provided code
       meta_title: 'The GovLab | Government Reform',
@@ -47,6 +53,8 @@ new Vue({
     }
   },
   metaInfo () {
+    // The pre-rendered page carries its title and link-preview tags in the HTML.
+    if (prerenderedReport) return {};
     return {
       title: this.meta_title,
       meta: [
@@ -56,8 +64,10 @@ new Vue({
     }
   },
   created: function created() {
-    this.fetchReport();
-    this.fetchAuthor();
+    if (!prerenderedReport) {
+      this.fetchReport();
+      this.fetchAuthor();
+    }
     window.addEventListener('scroll', this.scrollToAnchor);
   },
   // Optional: Good practice to remove listener when component is destroyed

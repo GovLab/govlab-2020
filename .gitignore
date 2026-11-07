@@ -1,2 +1,4 @@
 _archive/
 .env
+# build output of scripts/prerender.mjs
+dist/
