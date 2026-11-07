@@ -1,0 +1,9 @@
+# Build step added for crawler-readable project pages: scripts/prerender.mjs copies the site
+# into dist/ and writes project/<slug>.html (+ .md), the pre-rendered Paul Light report,
+# sitemap.xml, llms.txt, llms-full.txt and _headers. No npm dependencies.
+[build]
+  command = "node scripts/prerender.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
